@@ -48,7 +48,8 @@ public class EDeliverySBDTestImpl {
 
     private final Authorization auth;
     private final Authorization wrongAuth;
-    
+
+    private static String messageId = "9933_test1-20170512133113961@local_delivery";
     
     public EDeliverySBDTestImpl() {
         auth = new Authorization("sp1", "sp1");
@@ -89,11 +90,19 @@ public class EDeliverySBDTestImpl {
     //
     // @Test
     // public void hello() {}
+//    @Test
+//    public void shouldPostOutgoinMessage() throws InterruptedException, ExecutionException, JAXBException {
+//        System.out.println("Trying to post message");
+//        CompletableFuture<ResponseMessage> result = deliveryClient
+//                .createOutgoingDefaultImpl(sbdh, papDoc, auth);
+//        System.out.println(result.get().getStatus());
+//    }
+
     @Test
-    public void shouldPostOutgoinMessage() throws InterruptedException, ExecutionException, JAXBException {
-        System.out.println("Trying to post message");
-        CompletableFuture<ResponseMessage> result = deliveryClient
-                .createOutgoingDefaultImpl(sbdh, papDoc, auth);
-        System.out.println(result.get().getMessage());
+    public void shouldGetMessage() throws InterruptedException, ExecutionException, JAXBException {
+        System.out.println("Trying to get message");
+        CompletableFuture<Object> result = deliveryClient.getMessageDefault(messageId, auth);
+        System.out.println(result.get().getClass().toString());
     }
+
 }

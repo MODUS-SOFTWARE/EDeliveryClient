@@ -25,4 +25,6 @@ public interface EDeliveryClient {
 
     public CompletableFuture<ResponseMessage> createOutgoingDefaultImpl(StandardBusinessDocumentHeader sbdh, PapyrosDocument papDoc, Authorization auth) throws JAXBException;
 
+    public CompletableFuture<Object> getMessageDefault(String messageId, Authorization auth) throws JAXBException;
+    
 }
