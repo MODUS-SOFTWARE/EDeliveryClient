@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/Users/modussa/Java/EDeliveryClient/../../Downloads/messages/TestSBD.XML" uri="src/main/resources/jaxb/xmlfrompepol/TestSBD.XML"/>
+    <system systemId="file:/Users/modussa/Java/EDeliveryClient/../../Desktop/TestSBDvalid%3F.XML" uri="src/main/resources/jaxb/jaxbsbd/TestSBDvalid%3F.XML"/>
+    <system systemId="file:/Users/modussa/Java/EDeliveryClient/../../Desktop/StandardBusinessDocumentHeader.xsd" uri="src/main/resources/jaxb/StandardBusinessDocumentHeader/StandardBusinessDocumentHeader.xsd"/>
+    <system systemId="file:/Users/modussa/Java/EDeliveryClient/../../Desktop/StandardBusinessDocument.xsd" uri="src/main/resources/jaxb/StandardBusinessDocument/StandardBusinessDocument.xsd"/>
+    <system systemId="file:/Users/modussa/Java/EDeliveryClient/../../Desktop/eGIF_CoreComponents_Document-v1-1.xsd" uri="src/main/resources/jaxb/eGIF_CoreComponents_Document-v1-1/eGIF_CoreComponents_Document-v1-1.xsd"/>
+</catalog>

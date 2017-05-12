@@ -1,0 +1,70 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="StandardBusinessDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="StandardBusinessDocumentHeader">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:float" name="HeaderVersion"/>
+              <xs:element name="Sender">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Identifier">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="Authority"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Receiver">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Identifier">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="Authority"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="DocumentIdentification">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Standard"/>
+                    <xs:element type="xs:float" name="TypeVersion"/>
+                    <xs:element type="xs:string" name="InstanceIdentifier"/>
+                    <xs:element type="xs:string" name="Type"/>
+                    <xs:element type="xs:dateTime" name="CreationDateAndTime"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="BusinessScope">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Scope" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="Type"/>
+                          <xs:element type="xs:string" name="InstanceIdentifier"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
