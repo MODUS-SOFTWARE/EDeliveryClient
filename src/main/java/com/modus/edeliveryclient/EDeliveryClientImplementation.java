@@ -53,8 +53,8 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
     }
 
     @Override
-    public CompletableFuture<ResponseMessage> createOutgoingDefaultImpl(StandardBusinessDocumentHeader sbdh, PapyrosDocument papDoc, Authorization auth) throws JAXBException {
-        return sbdConsumer.createOutgoingDefault(sbdh, papDoc, auth);
+    public CompletableFuture<ResponseMessage> createOutgoingDefaultImpl(StandardBusinessDocumentHeader sbdh, String  payload, Authorization auth) throws JAXBException {
+        return sbdConsumer.createOutgoingDefault(sbdh, payload, auth);
     }
 
     @Override

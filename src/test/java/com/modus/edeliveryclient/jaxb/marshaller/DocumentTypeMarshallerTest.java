@@ -76,9 +76,10 @@ public class DocumentTypeMarshallerTest {
 //    private static final NameType name = new NameType();
 //    private static final CodeType season = new CodeType();
 //    private static final CodeType organizationType = new CodeType();
-    private File file = new File("/Users/modussa/Java/EDeliveryClient/src/test/resources/DocumentTypeXMLtest.xsd");
+    ///Users/modussa/Java/EDeliveryClient/src/test/resources/DocumentTypeXMLtest.xsd
+    private File file = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\standardBusinessDocumentAllXMLtest.xml");
 
-    private Path pathToTestFile = Paths.get("/Users/modussa/Java/EDeliveryClient/src/test/resources/test.txt");
+    private Path pathToTestFile = Paths.get("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\test.txt");
     private static byte[] data;
 
     public DocumentTypeMarshallerTest() throws DatatypeConfigurationException, IOException {

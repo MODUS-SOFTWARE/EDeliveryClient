@@ -18,7 +18,10 @@ import com.modus.edeliveryclient.models.Authorization;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serializer.JacksonSerializer;
+
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import javax.xml.bind.JAXBException;
@@ -49,7 +52,7 @@ public class EDeliverySBDTestImpl {
     private final Authorization auth;
     private final Authorization wrongAuth;
 
-    private static String messageId = "9933_test1-20170512133113961@local_delivery";
+    private static String messageId = "9933_test1-20170519124525399@local_delivery";
     
     public EDeliverySBDTestImpl() {
         auth = new Authorization("sp1", "sp1");
@@ -90,19 +93,23 @@ public class EDeliverySBDTestImpl {
     //
     // @Test
     // public void hello() {}
-//    @Test
-//    public void shouldPostOutgoinMessage() throws InterruptedException, ExecutionException, JAXBException {
-//        System.out.println("Trying to post message");
-//        CompletableFuture<ResponseMessage> result = deliveryClient
-//                .createOutgoingDefaultImpl(sbdh, papDoc, auth);
-//        System.out.println(result.get().getStatus());
-//    }
+    
+    public void shouldPostOutgoinMessage() throws InterruptedException, ExecutionException, JAXBException, IOException {
 
+    	File filePayload = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\RemDispatchWithSaml1.xml");
+    	 String payload = new String(Files.readAllBytes(filePayload.toPath())); //load payload.
+        CompletableFuture<ResponseMessage> result = deliveryClient
+                .createOutgoingDefaultImpl(sbdh, payload, auth);
+        System.out.println(result.get().getStatus());
+    }
+
+   
+  
     @Test
     public void shouldGetMessage() throws InterruptedException, ExecutionException, JAXBException {
         System.out.println("Trying to get message");
         CompletableFuture<Object> result = deliveryClient.getMessageDefault(messageId, auth);
-        System.out.println(result.get().getClass().toString());
+        System.out.println(result.get());
     }
 
 }

@@ -5,12 +5,14 @@
  */
 package com.modus.edeliveryclient.consumer;
 
+import com.modus.edelivery.utils.SBDMessageWrapper;
+import com.modus.edelivery.utils.StreamUtils;
 import com.modus.edeliveryclient.exception.EDeliveryException;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
-import com.modus.edeliveryclient.jaxb.unmarshaller.StandardBusinessDocumentUnmarshaller;
+import com.modus.edeliveryclient.jaxb.unmarshaller.StandardBusinessDocumentUnmarshallerTest;
 import com.modus.edeliveryclient.models.Authorization;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.serialize.Serializer;
@@ -18,6 +20,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 import java.util.concurrent.CompletableFuture;
@@ -58,7 +62,7 @@ public class SbdConsumer extends BaseConsumer {
     }
 
     public CompletableFuture<ResponseMessage> createOutgoingDefault(StandardBusinessDocumentHeader sbdh,
-            PapyrosDocument papDoc,
+            String payload,
             Authorization auth) throws JAXBException {
         String authorizationHeader;
         sbd = new StandardBusinessDocument();
@@ -72,23 +76,23 @@ public class SbdConsumer extends BaseConsumer {
         }
 
         JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
-//        this.jaxbMarshaller = jaxbContext.createMarshaller();
         Marshaller marshaller = jaxbContext.createMarshaller();
         try {
             sbd.setStandardBusinessDocumentHeader(sbdh);
-            sbd.setAny(papDoc);
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        StringWriter outputStream = new StringWriter();
         marshaller.marshal(sbd, outputStream);
+        SBDMessageWrapper sdbWrap = new SBDMessageWrapper();sdbWrap.setSBDMessageStr(outputStream.toString());
+        sdbWrap.appendPayload(payload);
         return httpClient.preparePost(sendEndpoind)
                 .addHeader("Content-Type", "application/xml")
                 .addHeader("Authorization", authorizationHeader)
-                .setBody(outputStream.toByteArray())
+                .setBody(sdbWrap.getSBDMessageStr())
                 .execute()
                 .toCompletableFuture()
                 .exceptionally(t -> {
@@ -154,10 +158,15 @@ public class SbdConsumer extends BaseConsumer {
                     switch (status) {
                         case 200: {
                             try {
-                                JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
+                                
+                            	/*String sbdMsg=StreamUtils.stream2String(resp.getResponseBodyAsStream(), "UTF-8"); 
+                            	SBDMessageWrapper sbdwrap = new SBDMessageWrapper(sbdMsg);
+                            	String payload = sbdwrap.getPayload(true);
+                            	JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
                                 Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-                                StandardBusinessDocument sbd = (StandardBusinessDocument) JAXBIntrospector.getValue(jaxbUnmarshaller.unmarshal(resp.getResponseBodyAsStream()));
-                                return sbd;
+                                StandardBusinessDocument sbd = (StandardBusinessDocument) JAXBIntrospector.getValue(jaxbUnmarshaller.unmarshal(new StringReader(sbdwrap.getSBDMessageStr())));
+                                */
+                                return StreamUtils.stream2String(resp.getResponseBodyAsStream(), "UTF-8");
                             } catch (Exception ex) {
                                 Logger.getLogger(SbdConsumer.class.getName()).log(Level.SEVERE, null, ex);
                             }
