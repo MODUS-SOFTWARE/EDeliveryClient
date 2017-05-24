@@ -52,7 +52,7 @@ public class EDeliverySBDTestImpl {
     private final Authorization auth;
     private final Authorization wrongAuth;
 
-    private static String messageId = "9933_test1-20170519124525399@local_delivery";
+    private static String messageId = "9933_test1-20170519130324418@local_delivery";
     
     public EDeliverySBDTestImpl() {
         auth = new Authorization("sp1", "sp1");
@@ -93,7 +93,7 @@ public class EDeliverySBDTestImpl {
     //
     // @Test
     // public void hello() {}
-    
+    @Test
     public void shouldPostOutgoinMessage() throws InterruptedException, ExecutionException, JAXBException, IOException {
 
     	File filePayload = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\RemDispatchWithSaml1.xml");

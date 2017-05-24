@@ -12,6 +12,9 @@ import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessD
 import com.modus.edeliveryclient.models.Authorization;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.serialize.Serializer;
+
+import gr.modus.edelivery.adapter.messages.MessageParams;
+
 import java.util.concurrent.CompletableFuture;
 import javax.xml.bind.JAXBException;
 import org.asynchttpclient.AsyncHttpClient;
@@ -61,5 +64,14 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
     public CompletableFuture<Object> getMessageDefault(String messageId, Authorization auth) throws JAXBException {
         return sbdConsumer.getMessageDefault(messageId, auth);
     }
+
+	@Override
+	public CompletableFuture<ResponseMessage> sendMessage(MessageParams params, Authorization auth)
+			throws JAXBException {
+		// TODO Auto-generated method stub
+		
+		//todo 
+		return null;
+	}
 
 }
