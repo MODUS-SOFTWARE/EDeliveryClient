@@ -111,7 +111,7 @@ public class EDeliverySBDTestImpl {
     public void shouldGetMessage() throws InterruptedException, ExecutionException, JAXBException {
         System.out.println("Trying to get message");
         CompletableFuture<Object> result = deliveryClient.getMessageDefault(messageId, auth);
-<<<<<<< HEAD
+
         StandardBusinessDocument sbd = new StandardBusinessDocument();
         try{
             sbd = (StandardBusinessDocument) result.get();
@@ -120,9 +120,6 @@ public class EDeliverySBDTestImpl {
         }
         
         System.out.println(result.get().getClass().toString());
-=======
-        System.out.println(result.get());
->>>>>>> origin/develop
     }
 
     @Test
