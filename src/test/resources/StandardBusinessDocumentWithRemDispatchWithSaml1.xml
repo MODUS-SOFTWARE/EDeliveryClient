@@ -13,7 +13,7 @@
             <TypeVersion>1</TypeVersion>
             <InstanceIdentifier>627a2e9a-a146-461f-b62f-f22f5799fd55</InstanceIdentifier>
             <Type>Invoice</Type>
-            <CreationDateAndTime>2017-05-24T00:00:00.000+03:00</CreationDateAndTime>
+            <CreationDateAndTime>2017-05-25T00:00:00.000+03:00</CreationDateAndTime>
         </DocumentIdentification>
         <Manifest>
             <NumberOfItems>1</NumberOfItems>

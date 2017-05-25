@@ -140,7 +140,7 @@ public class StandardBusinessDocumentHeaderMarshallerGeneratorTest {
     @Test
     public void generateHeaderXml() {
     	//C:\eclipseProj\edelivery\EDeliveryClient\src\test\resources\standardBusinessDocumentAllXMLtest.xsd
-        File file = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\standardBusinessDocumentAllXMLtest.xsd");
+        File file = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
 
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);

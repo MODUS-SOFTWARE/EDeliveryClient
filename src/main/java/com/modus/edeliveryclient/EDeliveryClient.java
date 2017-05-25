@@ -12,8 +12,8 @@ import com.modus.edeliveryclient.models.Messages;
 import com.modus.edeliveryclient.models.MessageId;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.models.SBDParams;
-
 import gr.modus.edelivery.adapter.messages.MessageParams;
+
 
 import java.net.MalformedURLException;
 import java.util.concurrent.CompletableFuture;

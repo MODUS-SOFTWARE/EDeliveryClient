@@ -10,7 +10,6 @@ package com.modus.edeliveryclient.consumer;
 import com.google.gson.Gson;
 
 import com.modus.edelivery.utils.SBDMessageWrapper;
-import com.modus.edelivery.utils.StreamUtils;
 
 import com.modus.edeliveryclient.exception.EDeliveryException;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;

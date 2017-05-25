@@ -20,10 +20,11 @@ import com.modus.edeliveryclient.models.MessageId;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.models.SBDParams;
 import com.modus.edeliveryclient.serialize.Serializer;
-
 import gr.modus.edelivery.adapter.messages.MessageParams;
 import gr.modus.edelivery.adapter.messages.PDispatchMessage;
 
+//import gr.modus.edelivery.adapter.messages.MessageParams;
+//import gr.modus.edelivery.adapter.messages.PDispatchMessage;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +71,7 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
     }
 
     @Override
-    public CompletableFuture<ResponseMessage> createOutgoingDefaultImpl(StandardBusinessDocumentHeader sbdh, String  payload, Authorization auth) throws JAXBException {
+    public CompletableFuture<ResponseMessage> createOutgoingDefaultImpl(StandardBusinessDocumentHeader sbdh, String payload, Authorization auth) throws JAXBException {
         return sbdConsumer.createOutgoingDefault(sbdh, payload, auth);
     }
 
@@ -78,65 +79,64 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
     public CompletableFuture<Object> getMessageDefault(String messageId, Authorization auth) throws JAXBException {
         return sbdConsumer.getMessageDefault(messageId, auth);
     }
-    
+
     @Override
-    public CompletableFuture<Messages> getMesaggesPending(Authorization auth){
+    public CompletableFuture<Messages> getMesaggesPending(Authorization auth) {
         return sbdConsumer.getMesaggesPending(auth);
     }
 
-	@Override
-	public CompletableFuture<ResponseMessage> sendMessage(SBDParams sbdParams,MessageParams params, Authorization auth)
-			throws JAXBException, MalformedURLException, DatatypeConfigurationException {
-		// TODO Auto-generated method stub
-		 //PDispatchMessage p = new PDispatchMessage(params);
-		 //p .createREMDispatchType();
-		 //StandardBusinessDocument sbd = new StandardBusinessDocument(); 
-		 //String sbdStr="";
-		 //return sbdConsumer.sendMessafeDefault(sbdStr, auth);// createOutgoingDefault(sbdh, payload, auth);
-		//StandardBusinessDocumentHeader sbdh ,MessageParams params, Authorization auth
-		
-		//StandardBusinessDocumentHeaderGenerator
-		StandardBusinessDocumentHeader sbdHeader = new StandardBusinessDocumentHeader(); 
-		/*
+    @Override
+    public CompletableFuture<ResponseMessage> sendMessage(SBDParams sbdParams, MessageParams params, Authorization auth)
+            throws JAXBException, MalformedURLException, DatatypeConfigurationException {
+        // TODO Auto-generated method stub
+        //PDispatchMessage p = new PDispatchMessage(params);
+        //p .createREMDispatchType();
+        //StandardBusinessDocument sbd = new StandardBusinessDocument(); 
+        //String sbdStr="";
+        //return sbdConsumer.sendMessafeDefault(sbdStr, auth);// createOutgoingDefault(sbdh, payload, auth);
+        //StandardBusinessDocumentHeader sbdh ,MessageParams params, Authorization auth
+
+        //StandardBusinessDocumentHeaderGenerator
+        StandardBusinessDocumentHeader sbdHeader = new StandardBusinessDocumentHeader();
+        /*
 		 * businDocHeader = new StandardBusinessDocumentHeaderGenerator()
                 .generateDocumentHeaderfromValues(headerVersion, participantIdentifierSenderScheme, participantIdentifierSenderValue,
                         participantIdentifierReceiverScheme, participantIdentifierReceiverValue,
                         documentIdStandard, docTypeVersion, documentInstanceIdentifier, documentType, businessScopes,
                         manifestDescr, manifestLanguage, maniTypeQualCode, uniformResourceIdentifier);
 		 * */
-		
-		List<Scope> businessScopes = new ArrayList<Scope>();
+
+        List<Scope> businessScopes = new ArrayList<Scope>();
         Scope scope1 = new Scope();
         scope1.setIdentifier(sbdParams.getScopeidentifier());
         scope1.setInstanceIdentifier("Instance");
         scope1.setType(sbdParams.getScopetype());
-        
+
         Scope scope2 = new Scope();
         scope2.setIdentifier(sbdParams.getScopeidentifier2());
         scope2.setInstanceIdentifier("Instance");
         scope2.setType(sbdParams.getScopetype2());
-        
+
         BusinessScope bScope1 = new BusinessScope();
         businessScopes.add(scope1);
         businessScopes.add(scope2);
-        
-		sbdHeader =  new StandardBusinessDocumentHeaderGenerator()
-                .generateDocumentHeaderfromValues(sbdParams.getHeaderVersion(), sbdParams.getParticipantidentifiersenderscheme()
-                		,sbdParams.getParticipantidentifiersendervalue()
-                		,sbdParams.getParticipantidentifierreceiverscheme()
-                		,sbdParams.getParticipantidentifierreceivervalue()
-                		,sbdParams.getDocumentidstandard() 
-                		,sbdParams.getDoctypeversion()
-                		,sbdParams.getDocumentinstanceidentifier()
-                		,sbdParams.getDocumenttype()
-                		, businessScopes,sbdParams.getManifestdescr()
-                		,sbdParams.getManifestlanguage(), sbdParams.getManitypequalcode(), sbdParams.getUniformresourceidentifier());
-		
-        
-		String payload="";
-		PDispatchMessage p = new PDispatchMessage(params);
-		payload = p .createREMDispatchType();
-		return sbdConsumer.createOutgoingDefault(sbdHeader, payload, auth);
-	}
+
+        sbdHeader = new StandardBusinessDocumentHeaderGenerator()
+                .generateDocumentHeaderfromValues(sbdParams.getHeaderVersion(), sbdParams.getParticipantidentifiersenderscheme(),
+                         sbdParams.getParticipantidentifiersendervalue(),
+                         sbdParams.getParticipantidentifierreceiverscheme(),
+                         sbdParams.getParticipantidentifierreceivervalue(),
+                         sbdParams.getDocumentidstandard(),
+                         sbdParams.getDoctypeversion(),
+                         sbdParams.getDocumentinstanceidentifier(),
+                         sbdParams.getDocumenttype(),
+                         businessScopes, sbdParams.getManifestdescr(),
+                         sbdParams.getManifestlanguage(), sbdParams.getManitypequalcode(), sbdParams.getUniformresourceidentifier());
+
+        String payload = "";
+        PDispatchMessage p = new PDispatchMessage(params);
+        payload = p.createREMDispatchType();
+        return sbdConsumer.createOutgoingDefault(sbdHeader, payload, auth);
+    }
 
 }
