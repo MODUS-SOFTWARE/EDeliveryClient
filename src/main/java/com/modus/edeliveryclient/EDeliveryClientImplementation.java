@@ -5,18 +5,30 @@
  */
 package com.modus.edeliveryclient;
 
+import com.modus.edelivery.standardbusinessdocumet.StandardBusinessDocument;
+import com.modus.edelivery.standardbusinessdocumet.StandardBusinessDocument.StandardBusinessDocumentHeader.BusinessScope;
 import com.modus.edeliveryclient.consumer.SbdConsumer;
 import com.modus.edeliveryclient.consumer.SmpParticipantConsumer;
+import com.modus.edeliveryclient.jaxb.marshaller.StandardBusinessDocumentHeaderGenerator;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.Scope;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.models.Authorization;
 import com.modus.edeliveryclient.models.ResponseMessage;
+import com.modus.edeliveryclient.models.SBDParams;
 import com.modus.edeliveryclient.serialize.Serializer;
 
 import gr.modus.edelivery.adapter.messages.MessageParams;
+import gr.modus.edelivery.adapter.messages.PDispatchMessage;
 
+import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import javax.xml.bind.JAXBException;
+import javax.xml.datatype.DatatypeConfigurationException;
+
 import org.asynchttpclient.AsyncHttpClient;
 
 /**
@@ -66,12 +78,58 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
     }
 
 	@Override
-	public CompletableFuture<ResponseMessage> sendMessage(MessageParams params, Authorization auth)
-			throws JAXBException {
+	public CompletableFuture<ResponseMessage> sendMessage(SBDParams sbdParams,MessageParams params, Authorization auth)
+			throws JAXBException, MalformedURLException, DatatypeConfigurationException {
 		// TODO Auto-generated method stub
+		 //PDispatchMessage p = new PDispatchMessage(params);
+		 //p .createREMDispatchType();
+		 //StandardBusinessDocument sbd = new StandardBusinessDocument(); 
+		 //String sbdStr="";
+		 //return sbdConsumer.sendMessafeDefault(sbdStr, auth);// createOutgoingDefault(sbdh, payload, auth);
+		//StandardBusinessDocumentHeader sbdh ,MessageParams params, Authorization auth
 		
-		//todo 
-		return null;
+		//StandardBusinessDocumentHeaderGenerator
+		StandardBusinessDocumentHeader sbdHeader = new StandardBusinessDocumentHeader(); 
+		/*
+		 * businDocHeader = new StandardBusinessDocumentHeaderGenerator()
+                .generateDocumentHeaderfromValues(headerVersion, participantIdentifierSenderScheme, participantIdentifierSenderValue,
+                        participantIdentifierReceiverScheme, participantIdentifierReceiverValue,
+                        documentIdStandard, docTypeVersion, documentInstanceIdentifier, documentType, businessScopes,
+                        manifestDescr, manifestLanguage, maniTypeQualCode, uniformResourceIdentifier);
+		 * */
+		
+		List<Scope> businessScopes = new ArrayList<Scope>();
+        Scope scope1 = new Scope();
+        scope1.setIdentifier(sbdParams.getScopeidentifier());
+        scope1.setInstanceIdentifier("Instance");
+        scope1.setType(sbdParams.getScopetype());
+        
+        Scope scope2 = new Scope();
+        scope2.setIdentifier(sbdParams.getScopeidentifier2());
+        scope2.setInstanceIdentifier("Instance");
+        scope2.setType(sbdParams.getScopetype2());
+        
+        BusinessScope bScope1 = new BusinessScope();
+        businessScopes.add(scope1);
+        businessScopes.add(scope2);
+        
+		sbdHeader =  new StandardBusinessDocumentHeaderGenerator()
+                .generateDocumentHeaderfromValues(sbdParams.getHeaderVersion(), sbdParams.getParticipantidentifiersenderscheme()
+                		,sbdParams.getParticipantidentifiersendervalue()
+                		,sbdParams.getParticipantidentifierreceiverscheme()
+                		,sbdParams.getParticipantidentifierreceivervalue()
+                		,sbdParams.getDocumentidstandard() 
+                		,sbdParams.getDoctypeversion()
+                		,sbdParams.getDocumentinstanceidentifier()
+                		,sbdParams.getDocumenttype()
+                		, businessScopes,sbdParams.getManifestdescr()
+                		,sbdParams.getManifestlanguage(), sbdParams.getManitypequalcode(), sbdParams.getUniformresourceidentifier());
+		
+        
+		String payload="";
+		PDispatchMessage p = new PDispatchMessage(params);
+		payload = p .createREMDispatchType();
+		return sbdConsumer.createOutgoingDefault(sbdHeader, payload, auth);
 	}
 
 }
