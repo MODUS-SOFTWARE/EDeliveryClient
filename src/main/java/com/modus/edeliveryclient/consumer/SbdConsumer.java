@@ -6,10 +6,7 @@
 package com.modus.edeliveryclient.consumer;
 
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
+
 import com.google.gson.Gson;
 
 import com.modus.edelivery.utils.SBDMessageWrapper;
@@ -395,7 +392,7 @@ public class SbdConsumer extends BaseConsumer {
         String messagesAll = messagesEndpoint;
         Messages msg = new Messages();
         Object obj = new Object();
-        ObjectMapper mapper = new ObjectMapper();
+        
         try {
             String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
             String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));
