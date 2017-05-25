@@ -1,9 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.modus.edeliveryclient;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
+import javax.xml.bind.JAXBException;
+import javax.xml.datatype.DatatypeConfigurationException;
+
+import org.asynchttpclient.AsyncHttpClient;
+import org.asynchttpclient.DefaultAsyncHttpClient;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.modus.edeliveryclient.consumer.SbdConsumer;
@@ -15,35 +27,15 @@ import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.models.Authorization;
-import com.modus.edeliveryclient.models.Messages;
-import com.modus.edeliveryclient.models.MessageId;
 import com.modus.edeliveryclient.models.ResponseMessage;
+import com.modus.edeliveryclient.models.SBDParams;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serializer.JacksonSerializer;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import javax.xml.bind.JAXBException;
-import javax.xml.datatype.DatatypeConfigurationException;
-import org.asynchttpclient.AsyncHttpClient;
-import org.asynchttpclient.DefaultAsyncHttpClient;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import gr.modus.edelivery.adapter.messages.MessageParams;
 
-/**
- *
- * @author Pantelispanka
- */
-public class EDeliverySBDTestImpl {
-
-    private static EDeliveryClient deliveryClient;
+public class EdeliverySendMessage {
+	private static EDeliveryClient deliveryClient;
 
     private static PapyrosDocument papDoc;
 
@@ -56,9 +48,10 @@ public class EDeliverySBDTestImpl {
 
     private static String messageId = "9933_test1-20170519130324418@local_delivery";
     
-    public EDeliverySBDTestImpl() {
+    public EdeliverySendMessage() {
         auth = new Authorization("sp1", "sp1");
         wrongAuth = new Authorization("wrong", "wrong");
+        
     }
 
     @BeforeClass
@@ -96,41 +89,35 @@ public class EDeliverySBDTestImpl {
     // @Test
     // public void hello() {}
     @Test
-    public void shouldPostOutgoinMessage() throws InterruptedException, ExecutionException, JAXBException, IOException {
+    public void sendMessage() throws InterruptedException, ExecutionException, JAXBException, IOException, DatatypeConfigurationException {
 
-    	File filePayload = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\RemDispatchWithSaml1.xml");
-    	 String payload = new String(Files.readAllBytes(filePayload.toPath())); //load payload.
-        CompletableFuture<ResponseMessage> result = deliveryClient
-                .createOutgoingDefaultImpl(sbdh, payload, auth);
+    	//File filePayload = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\RemDispatchWithSaml1.xml");
+    	//String payload = new String(Files.readAllBytes(filePayload.toPath())); //load payload.
+    	MessageParams params = new MessageParams(); 
+    	params.seteSensConfigFilename("C:\\eclipseProj\\edelivery\\GenericADAdapter-master\\main\\resource\\eSensConfig.xml");
+    	params.setOriginatorName("panos");
+    	params.setOriginatorEmail("panos@modus.gr");
+    	params.setDestinatorName("anagnosg");
+    	params.setDestinatorName("anagnosg@modus.gr");
+    	params.setFilename("F:\\testDocument\\test_upload.pdf");
+    	params.setMsgId("123");
+    	params.setMsgIdentification("1234");
+    	params.setNormalizedDocSubject("Esen");
+    	params.setNormalizedDocComments("comments");
+    	params.setSamSenderId("123");
+    	SBDParams sbdParams = new SBDParams();
+    	CompletableFuture<ResponseMessage> result = deliveryClient.sendMessage(sbdParams, params, auth);
+                
         System.out.println(result.get().getStatus());
     }
 
    
   
-    
+    /*
     public void shouldGetMessage() throws InterruptedException, ExecutionException, JAXBException {
         System.out.println("Trying to get message");
         CompletableFuture<Object> result = deliveryClient.getMessageDefault(messageId, auth);
-<<<<<<< HEAD
-        StandardBusinessDocument sbd = new StandardBusinessDocument();
-        try{
-            sbd = (StandardBusinessDocument) result.get();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        
-        System.out.println(result.get().getClass().toString());
-=======
         System.out.println(result.get());
->>>>>>> origin/develop
-    }
+    }*/
 
-    @Test
-    public void shouldGetMessagePending() throws InterruptedException, ExecutionException{
-        System.out.println("Messages Pending");
-        CompletableFuture<Messages> result = deliveryClient.getMesaggesPending(auth);
-        Messages msg = new Messages();
-        msg = (Messages) result.get();
-    }
-    
 }

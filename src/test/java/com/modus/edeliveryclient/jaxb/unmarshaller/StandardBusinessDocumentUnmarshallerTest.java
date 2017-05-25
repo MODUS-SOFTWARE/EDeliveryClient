@@ -5,6 +5,7 @@
  */
 package com.modus.edeliveryclient.jaxb.unmarshaller;
 
+import com.google.gson.Gson;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
@@ -24,9 +25,9 @@ import static org.junit.Assert.*;
  *
  * @author Pantelispanka
  */
-public class StandardBusinessDocumentUnmarshaller {
+public class StandardBusinessDocumentUnmarshallerTest {
 
-    public StandardBusinessDocumentUnmarshaller() {
+    public StandardBusinessDocumentUnmarshallerTest() {
     }
 
     @BeforeClass
@@ -55,13 +56,15 @@ public class StandardBusinessDocumentUnmarshaller {
 
         try {
 
-            File file = new File("/Users/modussa/Java/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xml");
+            File file = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\standardBusinessDocumentAllXMLtest.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             StandardBusinessDocument sbd = (StandardBusinessDocument) JAXBIntrospector.getValue(jaxbUnmarshaller.unmarshal(file));
 //            StandardBusinessDocument sbd = (StandardBusinessDocument) jaxbUnmarshaller.unmarshal(file);
 //            Object sbd =  jaxbUnmarshaller.unmarshal(file);
+            
+            System.out.println(new Gson().toJson(sbd));
             System.out.println(sbd.getStandardBusinessDocumentHeader().getManifest().getManifestItem().get(0).getDescription());
             PapyrosDocument paDoc = (PapyrosDocument) sbd.getAny();
             System.out.println(paDoc.getActualDoc());

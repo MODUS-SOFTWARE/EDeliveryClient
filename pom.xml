@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.modus</groupId>
     <artifactId>EDeliveryClient</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
     <build>
         <plugins>
@@ -177,6 +177,52 @@
             <artifactId>gson</artifactId>
             <version>2.4</version>
         </dependency>
+       <dependency>
+    		<groupId>com.google.code.gson</groupId>
+    		<artifactId>gson</artifactId>
+    		<version>2.4</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>eu.spocseu</groupId>
+			<artifactId>SpocsCommon</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
+		<dependency>
+		    <groupId>dom4j</groupId>
+		    <artifactId>dom4j</artifactId>
+		    <version>1.6.1</version>
+		</dependency>
+				<!-- https://mvnrepository.com/artifact/jaxen/jaxen -->
+<!-- https://mvnrepository.com/artifact/jaxen/jaxen -->
+<dependency>
+    <groupId>jaxen</groupId>
+    <artifactId>jaxen</artifactId>
+    <version>1.1.6</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-io -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>1.3.2</version>
+</dependency>
+<dependency>
+            <groupId>gr.modus.papyrus</groupId>
+            <artifactId>papyrusr6api</artifactId>
+            <version>1.9.4</version>
+        </dependency>
+				
+		
+        
+				
+		<dependency>
+            <groupId>gr.modus.edelivery</groupId>
+            <artifactId>GenericADAdapter</artifactId>
+            <version>0.0.5</version>
+        </dependency>	
+				
     </dependencies>
     
     
@@ -193,6 +239,8 @@
             <id>releases</id>
             <url>http://devsrv:8081/nexus/content/repositories/releases</url>
         </repository>
+        
+        
     </repositories>
     
     <distributionManagement>
