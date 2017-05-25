@@ -15,6 +15,8 @@ import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.models.Authorization;
+import com.modus.edeliveryclient.models.Messages;
+import com.modus.edeliveryclient.models.MessageId;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serializer.JacksonSerializer;
@@ -102,7 +104,22 @@ public class EDeliverySBDTestImpl {
     public void shouldGetMessage() throws InterruptedException, ExecutionException, JAXBException {
         System.out.println("Trying to get message");
         CompletableFuture<Object> result = deliveryClient.getMessageDefault(messageId, auth);
+        StandardBusinessDocument sbd = new StandardBusinessDocument();
+        try{
+            sbd = (StandardBusinessDocument) result.get();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
         System.out.println(result.get().getClass().toString());
     }
 
+    @Test
+    public void shouldGetMessagePending() throws InterruptedException, ExecutionException{
+        System.out.println("Messages Pending");
+        CompletableFuture<Messages> result = deliveryClient.getMesaggesPending(auth);
+        Messages msg = new Messages();
+        msg = (Messages) result.get();
+    }
+    
 }

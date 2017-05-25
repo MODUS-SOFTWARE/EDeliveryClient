@@ -10,6 +10,8 @@ import com.modus.edeliveryclient.consumer.SmpParticipantConsumer;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.models.Authorization;
+import com.modus.edeliveryclient.models.Messages;
+import com.modus.edeliveryclient.models.MessageId;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.serialize.Serializer;
 import java.util.concurrent.CompletableFuture;
@@ -60,6 +62,11 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
     @Override
     public CompletableFuture<Object> getMessageDefault(String messageId, Authorization auth) throws JAXBException {
         return sbdConsumer.getMessageDefault(messageId, auth);
+    }
+    
+    @Override
+    public CompletableFuture<Messages> getMesaggesPending(Authorization auth){
+        return sbdConsumer.getMesaggesPending(auth);
     }
 
 }

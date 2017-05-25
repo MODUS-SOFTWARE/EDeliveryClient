@@ -5,6 +5,11 @@
  */
 package com.modus.edeliveryclient.consumer;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
+import com.google.gson.Gson;
 import com.modus.edeliveryclient.exception.EDeliveryException;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
@@ -12,17 +17,25 @@ import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessD
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.jaxb.unmarshaller.StandardBusinessDocumentUnmarshaller;
 import com.modus.edeliveryclient.models.Authorization;
+import com.modus.edeliveryclient.models.Messages;
+import com.modus.edeliveryclient.models.MessageId;
 import com.modus.edeliveryclient.models.ResponseMessage;
+import com.modus.edeliveryclient.models.ResponseModel;
 import com.modus.edeliveryclient.serialize.Serializer;
+import com.modus.edeliveryclient.serialize.TypeReference;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.JAXBIntrospector;
@@ -39,7 +52,7 @@ public class SbdConsumer extends BaseConsumer {
 
     private final static String SENDENDPOINT = "/api/v1/outbox";
 
-    private static final String MESSAGESENDPOINT = "/api/v1/messages/";
+    private static final String MESSAGESENDPOINT = "/api/v1/messages";
 
     private JAXBContext jaxbContext;
     private Marshaller marshaller;
@@ -170,6 +183,67 @@ public class SbdConsumer extends BaseConsumer {
 
                     }
                     return rm;
+                });
+
+    }
+
+//    public CompletableFuture<Messages> getMesaggesPending(Authorization auth) {
+//
+//        String messagesUri = messagesEndpoint;
+//        
+//        
+//        
+//        return get(messagesUri, new TypeReference<ResponseModel<Messages>>() {
+//        }, auth)
+//                .thenApply((response) -> {
+//                    Messages msgs = new Messages();
+//                    if (!response.isSuccess()) {
+//                        throw new EDeliveryException(response.getProcessMessage());
+//                    }
+//                    response.getData();
+//                    response.getMessageTitle();
+//                    
+//                    return response.getSimpleData();
+//                });
+//
+//    }
+    
+    public CompletableFuture<Messages> getMesaggesPending(Authorization auth) {
+
+        String authorizationHeader;
+        String messagesAll = messagesEndpoint;
+        Messages msg = new Messages();
+        Object obj = new Object();
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
+            String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));
+            authorizationHeader = "Basic " + authHeaderEncoded;
+        } catch (UnsupportedEncodingException e) {
+            throw new EDeliveryException(e);
+        }
+
+        return httpClient.prepareGet(messagesAll)
+                .addHeader("Authorization", authorizationHeader)
+                .execute()
+                .toCompletableFuture()
+                .exceptionally(t -> {
+                    throw new EDeliveryException(t);
+                })
+                .thenApply(resp -> {
+                    int status = resp.getStatusCode();
+
+                    if (status == 200) {
+                        try {
+
+                            Messages msgs = new Gson().fromJson(resp.getResponseBody(), Messages.class);
+                            return msgs;
+                        } catch (Exception e) {
+                            throw new EDeliveryException(resp.getResponseBody());
+                        }
+                    } else {
+                        throw new EDeliveryException(resp.getResponseBody());
+                    }
                 });
 
     }
