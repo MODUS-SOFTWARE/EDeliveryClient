@@ -6,7 +6,7 @@
 //
 
 
-package oasis.names.tc.saml._2_0.assertion;
+package com.modus.edeliveryclient.jaxb.assertion;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.namespace.QName;
+import oasis.names.tc.saml._2_0.assertion.SubjectType;
 
 
 /**

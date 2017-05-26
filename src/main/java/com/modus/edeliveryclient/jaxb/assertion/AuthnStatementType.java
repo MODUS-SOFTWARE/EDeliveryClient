@@ -6,7 +6,7 @@
 //
 
 
-package oasis.names.tc.saml._2_0.assertion;
+package com.modus.edeliveryclient.jaxb.assertion;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

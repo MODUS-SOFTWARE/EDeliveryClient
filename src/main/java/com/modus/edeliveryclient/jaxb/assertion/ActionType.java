@@ -6,86 +6,91 @@
 //
 
 
-package oasis.names.tc.saml._2_0.assertion;
+package com.modus.edeliveryclient.jaxb.assertion;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java class for BaseIDAbstractType complex type.
+ * <p>Java class for ActionType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="BaseIDAbstractType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attGroup ref="{urn:oasis:names:tc:SAML:2.0:assertion}IDNameQualifiers"/>
- *     &lt;/restriction>
- *   &lt;/complexContent>
+ * &lt;complexType name="ActionType">
+ *   &lt;simpleContent>
+ *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
+ *       &lt;attribute name="Namespace" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
+ *     &lt;/extension>
+ *   &lt;/simpleContent>
  * &lt;/complexType>
  * </pre>
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BaseIDAbstractType")
-public abstract class BaseIDAbstractType {
+@XmlType(name = "ActionType", propOrder = {
+    "value"
+})
+public class ActionType {
 
-    @XmlAttribute(name = "NameQualifier")
-    protected String nameQualifier;
-    @XmlAttribute(name = "SPNameQualifier")
-    protected String spNameQualifier;
+    @XmlValue
+    protected String value;
+    @XmlAttribute(name = "Namespace", required = true)
+    @XmlSchemaType(name = "anyURI")
+    protected String namespace;
 
     /**
-     * Gets the value of the nameQualifier property.
+     * Gets the value of the value property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getNameQualifier() {
-        return nameQualifier;
+    public String getValue() {
+        return value;
     }
 
     /**
-     * Sets the value of the nameQualifier property.
+     * Sets the value of the value property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setNameQualifier(String value) {
-        this.nameQualifier = value;
+    public void setValue(String value) {
+        this.value = value;
     }
 
     /**
-     * Gets the value of the spNameQualifier property.
+     * Gets the value of the namespace property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSPNameQualifier() {
-        return spNameQualifier;
+    public String getNamespace() {
+        return namespace;
     }
 
     /**
-     * Sets the value of the spNameQualifier property.
+     * Sets the value of the namespace property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSPNameQualifier(String value) {
-        this.spNameQualifier = value;
+    public void setNamespace(String value) {
+        this.namespace = value;
     }
 
 }

@@ -6,7 +6,7 @@
 //
 
 
-package oasis.names.tc.saml._2_0.assertion;
+package com.modus.edeliveryclient.jaxb.assertion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,25 +19,30 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for SubjectType complex type.
+ * <p>Java class for AuthnContextType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="SubjectType">
+ * &lt;complexType name="AuthnContextType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice>
- *         &lt;sequence>
+ *       &lt;sequence>
+ *         &lt;choice>
+ *           &lt;sequence>
+ *             &lt;element ref="{urn:oasis:names:tc:SAML:2.0:assertion}AuthnContextClassRef"/>
+ *             &lt;choice minOccurs="0">
+ *               &lt;element ref="{urn:oasis:names:tc:SAML:2.0:assertion}AuthnContextDecl"/>
+ *               &lt;element ref="{urn:oasis:names:tc:SAML:2.0:assertion}AuthnContextDeclRef"/>
+ *             &lt;/choice>
+ *           &lt;/sequence>
  *           &lt;choice>
- *             &lt;element ref="{urn:oasis:names:tc:SAML:2.0:assertion}BaseID"/>
- *             &lt;element ref="{urn:oasis:names:tc:SAML:2.0:assertion}NameID"/>
- *             &lt;element ref="{urn:oasis:names:tc:SAML:2.0:assertion}EncryptedID"/>
+ *             &lt;element ref="{urn:oasis:names:tc:SAML:2.0:assertion}AuthnContextDecl"/>
+ *             &lt;element ref="{urn:oasis:names:tc:SAML:2.0:assertion}AuthnContextDeclRef"/>
  *           &lt;/choice>
- *           &lt;element ref="{urn:oasis:names:tc:SAML:2.0:assertion}SubjectConfirmation" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;/sequence>
- *         &lt;element ref="{urn:oasis:names:tc:SAML:2.0:assertion}SubjectConfirmation" maxOccurs="unbounded"/>
- *       &lt;/choice>
+ *         &lt;/choice>
+ *         &lt;element ref="{urn:oasis:names:tc:SAML:2.0:assertion}AuthenticatingAuthority" maxOccurs="unbounded" minOccurs="0"/>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -46,16 +51,16 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SubjectType", propOrder = {
+@XmlType(name = "AuthnContextType", propOrder = {
     "content"
 })
-public class SubjectType {
+public class AuthnContextType {
 
     @XmlElementRefs({
-        @XmlElementRef(name = "BaseID", namespace = "urn:oasis:names:tc:SAML:2.0:assertion", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "SubjectConfirmation", namespace = "urn:oasis:names:tc:SAML:2.0:assertion", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "EncryptedID", namespace = "urn:oasis:names:tc:SAML:2.0:assertion", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "NameID", namespace = "urn:oasis:names:tc:SAML:2.0:assertion", type = JAXBElement.class, required = false)
+        @XmlElementRef(name = "AuthnContextDecl", namespace = "urn:oasis:names:tc:SAML:2.0:assertion", type = JAXBElement.class, required = false),
+        @XmlElementRef(name = "AuthnContextDeclRef", namespace = "urn:oasis:names:tc:SAML:2.0:assertion", type = JAXBElement.class, required = false),
+        @XmlElementRef(name = "AuthenticatingAuthority", namespace = "urn:oasis:names:tc:SAML:2.0:assertion", type = JAXBElement.class, required = false),
+        @XmlElementRef(name = "AuthnContextClassRef", namespace = "urn:oasis:names:tc:SAML:2.0:assertion", type = JAXBElement.class, required = false)
     })
     protected List<JAXBElement<?>> content;
 
@@ -64,9 +69,9 @@ public class SubjectType {
      * 
      * <p>
      * You are getting this "catch-all" property because of the following reason: 
-     * The field name "SubjectConfirmation" is used by two different parts of a schema. See: 
-     * line 86 of file:/Users/modussa/Java/Eclipse/JaxbClasses/src/main/resources/REMDispatch/Assertion.xsd
-     * line 84 of file:/Users/modussa/Java/Eclipse/JaxbClasses/src/main/resources/REMDispatch/Assertion.xsd
+     * The field name "AuthnContextDecl" is used by two different parts of a schema. See: 
+     * line 211 of file:/Users/modussa/Java/Eclipse/JaxbClasses/src/main/resources/REMDispatch/Assertion.xsd
+     * line 206 of file:/Users/modussa/Java/Eclipse/JaxbClasses/src/main/resources/REMDispatch/Assertion.xsd
      * <p>
      * To get rid of this property, apply a property customization to one 
      * of both of the following declarations to change their names: 
@@ -87,10 +92,10 @@ public class SubjectType {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link JAXBElement }{@code <}{@link EncryptedElementType }{@code >}
-     * {@link JAXBElement }{@code <}{@link BaseIDAbstractType }{@code >}
-     * {@link JAXBElement }{@code <}{@link SubjectConfirmationType }{@code >}
-     * {@link JAXBElement }{@code <}{@link NameIDType }{@code >}
+     * {@link JAXBElement }{@code <}{@link Object }{@code >}
+     * {@link JAXBElement }{@code <}{@link String }{@code >}
+     * {@link JAXBElement }{@code <}{@link String }{@code >}
+     * {@link JAXBElement }{@code <}{@link String }{@code >}
      * 
      * 
      */

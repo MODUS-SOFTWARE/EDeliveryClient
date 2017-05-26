@@ -6,7 +6,7 @@
 //
 
 
-package oasis.names.tc.saml._2_0.assertion;
+package com.modus.edeliveryclient.jaxb.assertion;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

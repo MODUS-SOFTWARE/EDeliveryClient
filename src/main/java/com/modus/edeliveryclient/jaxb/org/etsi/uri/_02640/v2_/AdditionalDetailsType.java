@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import oasis.names.tc.saml._2_0.assertion.AssertionType;
+import com.modus.edeliveryclient.jaxb.assertion.AssertionType;
 
 
 /**

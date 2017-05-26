@@ -6,7 +6,7 @@
 //
 
 
-package oasis.names.tc.saml._2_0.assertion;
+package com.modus.edeliveryclient.jaxb.assertion;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -14,15 +14,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for OneTimeUseType complex type.
+ * <p>Java class for KeyInfoConfirmationDataType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="OneTimeUseType">
+ * &lt;complexType name="KeyInfoConfirmationDataType">
  *   &lt;complexContent>
- *     &lt;extension base="{urn:oasis:names:tc:SAML:2.0:assertion}ConditionAbstractType">
- *     &lt;/extension>
+ *     &lt;restriction base="{urn:oasis:names:tc:SAML:2.0:assertion}SubjectConfirmationDataType">
+ *       &lt;sequence>
+ *         &lt;element ref="{http://www.w3.org/2000/09/xmldsig#}KeyInfo" maxOccurs="unbounded"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -30,9 +33,9 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "OneTimeUseType")
-public class OneTimeUseType
-    extends ConditionAbstractType
+@XmlType(name = "KeyInfoConfirmationDataType")
+public class KeyInfoConfirmationDataType
+    extends SubjectConfirmationDataType
 {
 
 
