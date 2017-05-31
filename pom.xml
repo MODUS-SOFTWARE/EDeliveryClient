@@ -183,14 +183,13 @@
 			<version>1.9.4</version>
 		</dependency>
 
-
-
-
-		<dependency>
+	<dependency>
 			<groupId>gr.modus.edelivery</groupId>
 			<artifactId>GenericADAdapter</artifactId>
 			<version>0.0.5</version>
 		</dependency>
+
+
 
 
 	</dependencies>
