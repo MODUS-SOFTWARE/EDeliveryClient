@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.modus</groupId>
 	<artifactId>EDeliveryClient</artifactId>
-	<version>1.2</version>
+	<version>1.3</version>
 	<packaging>jar</packaging>
 	<build>
 		<plugins>
@@ -191,6 +191,7 @@
 			<artifactId>GenericADAdapter</artifactId>
 			<version>0.0.5</version>
 		</dependency>
+
 
 	</dependencies>
 

@@ -77,9 +77,11 @@ public class DocumentTypeMarshallerTest {
 //    private static final CodeType season = new CodeType();
 //    private static final CodeType organizationType = new CodeType();
     ///Users/modussa/Java/EDeliveryClient/src/test/resources/DocumentTypeXMLtest.xsd
-    private File file = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
-
-    private Path pathToTestFile = Paths.get("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/test.txt");
+    //EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd
+    //private File file = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
+    private File file = new File("/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
+    //private Path pathToTestFile = Paths.get("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/test.txt");
+    private Path pathToTestFile = Paths.get("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\test.txt");
     private static byte[] data;
 
     public DocumentTypeMarshallerTest() throws DatatypeConfigurationException, IOException {
@@ -243,7 +245,7 @@ public class DocumentTypeMarshallerTest {
     //
     // @Test
     // public void hello() {}
-    @Test
+    
     public void testAttachmentMarshaller() {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(AttachmentTypeHelper.class);

@@ -82,10 +82,10 @@ public class StandardBusinessDocumentMarshallerTest {
     //
     // @Test
     // public void hello() {}
-    @Test
+    
     public void generateHeaderXml() throws JAXBException {
-        File file = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
-
+        //File file = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
+    	File file = new File("/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
         try {
 //            prefixMapper = new MyPrefixMapper();
             JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
@@ -116,9 +116,12 @@ public class StandardBusinessDocumentMarshallerTest {
     
     @Test
     public void appendPayload() throws JAXBException, IOException {
-        File file = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
-        File filePayload = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/RemDispatchWithSaml1.xml");
-        File fileOuput = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/StandardBusinessDocumentWithRemDispatchWithSaml1.xml");
+        //File file = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
+    	File file = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\standardBusinessDocumentAllXMLtest.xml");
+        //File filePayload = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/RemDispatchWithSaml1.xml");
+    	File filePayload = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\RemDispatchWithSaml1.xml");
+        //File fileOuput = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/StandardBusinessDocumentWithRemDispatchWithSaml1.xml");
+    	File fileOuput = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\StandardBusinessDocumentWithRemDispatchWithSaml1.xml");
         String payload = new String(Files.readAllBytes(filePayload.toPath())); //load payload.
         StringWriter sw = new StringWriter();
         try {
@@ -156,7 +159,7 @@ public class StandardBusinessDocumentMarshallerTest {
     
     
     
-    @Test
+    
     public void getPayload() throws JAXBException, IOException {
         File file = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/StandardBusinessDocumentWithRemDispatchWithSaml1.xml");
         File filePayloadOut = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/RemDispatchWithSaml1_Out.xml");
