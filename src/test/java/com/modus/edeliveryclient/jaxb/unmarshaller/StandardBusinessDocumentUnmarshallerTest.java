@@ -6,7 +6,7 @@
 package com.modus.edeliveryclient.jaxb.unmarshaller;
 
 import com.google.gson.Gson;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.REMDispatch;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import java.io.File;
@@ -66,8 +66,8 @@ public class StandardBusinessDocumentUnmarshallerTest {
             
             System.out.println(new Gson().toJson(sbd));
             System.out.println(sbd.getStandardBusinessDocumentHeader().getManifest().getManifestItem().get(0).getDescription());
-            PapyrosDocument paDoc = (PapyrosDocument) sbd.getAny();
-            System.out.println(paDoc.getActualDoc());
+            REMDispatch paDoc = (REMDispatch) sbd.getAny();
+//            System.out.println(paDoc.getActualDoc());
 
         } catch (JAXBException e) {
             e.printStackTrace();

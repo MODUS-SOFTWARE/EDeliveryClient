@@ -6,7 +6,7 @@
 //
 
 
-package org.w3._2000._09.xmldsig_;
+package com.modus.edeliveryclient.jaxb.org.w3._2000._09.xmldsig_;
 
 import java.math.BigInteger;
 import javax.xml.bind.JAXBElement;
@@ -30,7 +30,7 @@ import javax.xml.namespace.QName;
  * 
  */
 @XmlRegistry
-public class ObjectFactory {
+public class XmlDsignFactory {
 
     private final static QName _KeyInfo_QNAME = new QName("http://www.w3.org/2000/09/xmldsig#", "KeyInfo");
     private final static QName _SignatureProperty_QNAME = new QName("http://www.w3.org/2000/09/xmldsig#", "SignatureProperty");
@@ -71,7 +71,7 @@ public class ObjectFactory {
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.w3._2000._09.xmldsig_
      * 
      */
-    public ObjectFactory() {
+    public XmlDsignFactory() {
     }
 
     /**

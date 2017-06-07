@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://uri.etsi.org/02640/v2#", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package org.etsi.uri._02640.v2_;
+package com.modus.edeliveryclient.jaxb.org.etsi.uri._02640.v2_;

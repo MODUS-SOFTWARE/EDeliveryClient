@@ -5,7 +5,7 @@
  */
 package com.modus.edeliveryclient;
 
-import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.REMDispatch;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.models.Authorization;
 import com.modus.edeliveryclient.models.Messages;

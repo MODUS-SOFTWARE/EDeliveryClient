@@ -6,7 +6,7 @@
 //
 
 
-package org.w3._2001._04.xmlenc_;
+package com.modus.edeliveryclient.jaxb.org.w3._2001._04.xmlenc_;
 
 import java.util.ArrayList;
 import java.util.HashMap;

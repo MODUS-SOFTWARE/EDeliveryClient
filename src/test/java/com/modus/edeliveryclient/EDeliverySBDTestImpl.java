@@ -11,7 +11,7 @@ import com.modus.edeliveryclient.consumer.SmpParticipantConsumer;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.AttachmentTypeHelper;
 import com.modus.edeliveryclient.jaxb.marshaller.DocumentTypeMarshallerTest;
 import com.modus.edeliveryclient.jaxb.marshaller.StandardBusinessDocumentHeaderMarshallerGeneratorTest;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.REMDispatch;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.models.Authorization;
@@ -45,7 +45,7 @@ public class EDeliverySBDTestImpl {
 
     private static EDeliveryClient deliveryClient;
 
-    private static PapyrosDocument papDoc;
+    private static REMDispatch papDoc;
 
     private static StandardBusinessDocument sbd;
     private static StandardBusinessDocumentHeader sbdh;
@@ -83,7 +83,7 @@ public class EDeliverySBDTestImpl {
         new DocumentTypeMarshallerTest().setUp();
         att = new DocumentTypeMarshallerTest().returnAttach();
         sbd = new StandardBusinessDocument();
-        papDoc = new PapyrosDocument();
+        papDoc = new REMDispatch();
     }
 
     @After

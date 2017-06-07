@@ -10,7 +10,7 @@ import com.modus.edelivery.standardbusinessdocumet.StandardBusinessDocument.Stan
 import com.modus.edeliveryclient.consumer.SbdConsumer;
 import com.modus.edeliveryclient.consumer.SmpParticipantConsumer;
 import com.modus.edeliveryclient.jaxb.marshaller.StandardBusinessDocumentHeaderGenerator;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.REMDispatch;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.Scope;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;

@@ -30,7 +30,7 @@ public class SBDHFactory {
     private final static QName _ScopeInformation_QNAME = new QName("http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", "ScopeInformation");
     private final static QName _StandardBusinessDocumentHeader_QNAME = new QName("http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", "StandardBusinessDocumentHeader");
     private final static QName _StandardBusinessDocument_QNAME = new QName("http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", "StandardBusinessDocument");
-    private final static QName _PapyrosDocument_QNAME = new QName("http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", "StandardBusinessDocument");
+    private final static QName _RemDispatch_QNAME = new QName("http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", "StandardBusinessDocument");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of
@@ -144,8 +144,8 @@ public class SBDHFactory {
         return new Partner();
     }
 
-    public PapyrosDocument createPapyrosDocument() {
-        return new PapyrosDocument();
+    public REMDispatch createRemDispatch() {
+        return new REMDispatch();
     }
 
     /**
@@ -198,9 +198,9 @@ public class SBDHFactory {
         return new JAXBElement<StandardBusinessDocument>(_StandardBusinessDocument_QNAME, StandardBusinessDocument.class, null, value);
     }
 
-    @XmlElementDecl(namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", name = "PapyrosDocument")
-    public JAXBElement<PapyrosDocument> createPapyrosDocument(PapyrosDocument value) {
-        return new JAXBElement<PapyrosDocument>(_PapyrosDocument_QNAME, PapyrosDocument.class, null, value);
+    @XmlElementDecl(namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", name = "RemDispatch")
+    public JAXBElement<REMDispatch> createREMDIspatch(REMDispatch value) {
+        return new JAXBElement<REMDispatch>(_RemDispatch_QNAME, REMDispatch.class, null, value);
     }
 
 }

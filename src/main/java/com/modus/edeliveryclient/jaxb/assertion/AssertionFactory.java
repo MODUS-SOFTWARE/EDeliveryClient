@@ -32,7 +32,7 @@ import oasis.names.tc.saml._2_0.assertion.SubjectType;
  * 
  */
 @XmlRegistry
-public class ObjectFactory {
+public class AssertionFactory {
 
     private final static QName _AuthnContextDecl_QNAME = new QName("urn:oasis:names:tc:SAML:2.0:assertion", "AuthnContextDecl");
     private final static QName _AuthnContextDeclRef_QNAME = new QName("urn:oasis:names:tc:SAML:2.0:assertion", "AuthnContextDeclRef");
@@ -72,7 +72,7 @@ public class ObjectFactory {
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: oasis.names.tc.saml._2_0.assertion
      * 
      */
-    public ObjectFactory() {
+    public AssertionFactory() {
     }
 
     /**

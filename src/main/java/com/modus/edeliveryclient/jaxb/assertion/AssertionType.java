@@ -120,204 +120,204 @@ public class AssertionType {
         this.issuer = value;
     }
 
-    /**
-     * Gets the value of the signature property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SignatureType }
-     *     
-     */
-    public SignatureType getSignature() {
-        return signature;
-    }
-
-    /**
-     * Sets the value of the signature property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SignatureType }
-     *     
-     */
-    public void setSignature(SignatureType value) {
-        this.signature = value;
-    }
-
-    /**
-     * Gets the value of the subject property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SubjectType }
-     *     
-     */
-    public SubjectType getSubject() {
-        return subject;
-    }
-
-    /**
-     * Sets the value of the subject property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SubjectType }
-     *     
-     */
-    public void setSubject(SubjectType value) {
-        this.subject = value;
-    }
-
-    /**
-     * Gets the value of the conditions property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ConditionsType }
-     *     
-     */
-    public ConditionsType getConditions() {
-        return conditions;
-    }
-
-    /**
-     * Sets the value of the conditions property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ConditionsType }
-     *     
-     */
-    public void setConditions(ConditionsType value) {
-        this.conditions = value;
-    }
-
-    /**
-     * Gets the value of the advice property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link AdviceType }
-     *     
-     */
-    public AdviceType getAdvice() {
-        return advice;
-    }
-
-    /**
-     * Sets the value of the advice property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AdviceType }
-     *     
-     */
-    public void setAdvice(AdviceType value) {
-        this.advice = value;
-    }
-
-    /**
-     * Gets the value of the statementOrAuthnStatementOrAuthzDecisionStatement property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the statementOrAuthnStatementOrAuthzDecisionStatement property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getStatementOrAuthnStatementOrAuthzDecisionStatement().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link StatementAbstractType }
-     * {@link AuthnStatementType }
-     * {@link AuthzDecisionStatementType }
-     * {@link AttributeStatementType }
-     * 
-     * 
-     */
-    public List<StatementAbstractType> getStatementOrAuthnStatementOrAuthzDecisionStatement() {
-        if (statementOrAuthnStatementOrAuthzDecisionStatement == null) {
-            statementOrAuthnStatementOrAuthzDecisionStatement = new ArrayList<StatementAbstractType>();
-        }
-        return this.statementOrAuthnStatementOrAuthzDecisionStatement;
-    }
-
-    /**
-     * Gets the value of the version property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getVersion() {
-        return version;
-    }
-
-    /**
-     * Sets the value of the version property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setVersion(String value) {
-        this.version = value;
-    }
-
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getID() {
-        return id;
-    }
-
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setID(String value) {
-        this.id = value;
-    }
-
-    /**
-     * Gets the value of the issueInstant property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getIssueInstant() {
-        return issueInstant;
-    }
-
-    /**
-     * Sets the value of the issueInstant property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setIssueInstant(XMLGregorianCalendar value) {
-        this.issueInstant = value;
-    }
+//    /**
+//     * Gets the value of the signature property.
+//     * 
+//     * @return
+//     *     possible object is
+//     *     {@link SignatureType }
+//     *     
+//     */
+//    public SignatureType getSignature() {
+//        return signature;
+//    }
+//
+//    /**
+//     * Sets the value of the signature property.
+//     * 
+//     * @param value
+//     *     allowed object is
+//     *     {@link SignatureType }
+//     *     
+//     */
+//    public void setSignature(SignatureType value) {
+//        this.signature = value;
+//    }
+//
+//    /**
+//     * Gets the value of the subject property.
+//     * 
+//     * @return
+//     *     possible object is
+//     *     {@link SubjectType }
+//     *     
+//     */
+//    public SubjectType getSubject() {
+//        return subject;
+//    }
+//
+//    /**
+//     * Sets the value of the subject property.
+//     * 
+//     * @param value
+//     *     allowed object is
+//     *     {@link SubjectType }
+//     *     
+//     */
+//    public void setSubject(SubjectType value) {
+//        this.subject = value;
+//    }
+//
+//    /**
+//     * Gets the value of the conditions property.
+//     * 
+//     * @return
+//     *     possible object is
+//     *     {@link ConditionsType }
+//     *     
+//     */
+//    public ConditionsType getConditions() {
+//        return conditions;
+//    }
+//
+//    /**
+//     * Sets the value of the conditions property.
+//     * 
+//     * @param value
+//     *     allowed object is
+//     *     {@link ConditionsType }
+//     *     
+//     */
+//    public void setConditions(ConditionsType value) {
+//        this.conditions = value;
+//    }
+//
+//    /**
+//     * Gets the value of the advice property.
+//     * 
+//     * @return
+//     *     possible object is
+//     *     {@link AdviceType }
+//     *     
+//     */
+//    public AdviceType getAdvice() {
+//        return advice;
+//    }
+//
+//    /**
+//     * Sets the value of the advice property.
+//     * 
+//     * @param value
+//     *     allowed object is
+//     *     {@link AdviceType }
+//     *     
+//     */
+//    public void setAdvice(AdviceType value) {
+//        this.advice = value;
+//    }
+//
+//    /**
+//     * Gets the value of the statementOrAuthnStatementOrAuthzDecisionStatement property.
+//     * 
+//     * <p>
+//     * This accessor method returns a reference to the live list,
+//     * not a snapshot. Therefore any modification you make to the
+//     * returned list will be present inside the JAXB object.
+//     * This is why there is not a <CODE>set</CODE> method for the statementOrAuthnStatementOrAuthzDecisionStatement property.
+//     * 
+//     * <p>
+//     * For example, to add a new item, do as follows:
+//     * <pre>
+//     *    getStatementOrAuthnStatementOrAuthzDecisionStatement().add(newItem);
+//     * </pre>
+//     * 
+//     * 
+//     * <p>
+//     * Objects of the following type(s) are allowed in the list
+//     * {@link StatementAbstractType }
+//     * {@link AuthnStatementType }
+//     * {@link AuthzDecisionStatementType }
+//     * {@link AttributeStatementType }
+//     * 
+//     * 
+//     */
+//    public List<StatementAbstractType> getStatementOrAuthnStatementOrAuthzDecisionStatement() {
+//        if (statementOrAuthnStatementOrAuthzDecisionStatement == null) {
+//            statementOrAuthnStatementOrAuthzDecisionStatement = new ArrayList<StatementAbstractType>();
+//        }
+//        return this.statementOrAuthnStatementOrAuthzDecisionStatement;
+//    }
+//
+//    /**
+//     * Gets the value of the version property.
+//     * 
+//     * @return
+//     *     possible object is
+//     *     {@link String }
+//     *     
+//     */
+//    public String getVersion() {
+//        return version;
+//    }
+//
+//    /**
+//     * Sets the value of the version property.
+//     * 
+//     * @param value
+//     *     allowed object is
+//     *     {@link String }
+//     *     
+//     */
+//    public void setVersion(String value) {
+//        this.version = value;
+//    }
+//
+//    /**
+//     * Gets the value of the id property.
+//     * 
+//     * @return
+//     *     possible object is
+//     *     {@link String }
+//     *     
+//     */
+//    public String getID() {
+//        return id;
+//    }
+//
+//    /**
+//     * Sets the value of the id property.
+//     * 
+//     * @param value
+//     *     allowed object is
+//     *     {@link String }
+//     *     
+//     */
+//    public void setID(String value) {
+//        this.id = value;
+//    }
+//
+//    /**
+//     * Gets the value of the issueInstant property.
+//     * 
+//     * @return
+//     *     possible object is
+//     *     {@link XMLGregorianCalendar }
+//     *     
+//     */
+//    public XMLGregorianCalendar getIssueInstant() {
+//        return issueInstant;
+//    }
+//
+//    /**
+//     * Sets the value of the issueInstant property.
+//     * 
+//     * @param value
+//     *     allowed object is
+//     *     {@link XMLGregorianCalendar }
+//     *     
+//     */
+//    public void setIssueInstant(XMLGregorianCalendar value) {
+//        this.issueInstant = value;
+//    }
 
 }

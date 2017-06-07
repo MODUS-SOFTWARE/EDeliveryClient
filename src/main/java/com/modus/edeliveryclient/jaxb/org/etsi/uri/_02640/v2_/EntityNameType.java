@@ -6,7 +6,7 @@
 //
 
 
-package org.etsi.uri._02640.v2_;
+package com.modus.edeliveryclient.jaxb.org.etsi.uri._02640.v2_;
 
 import java.io.Serializable;
 import java.util.ArrayList;

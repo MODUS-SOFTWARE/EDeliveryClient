@@ -6,7 +6,7 @@
 //
 
 
-package org.etsi.uri._02640.v2_;
+package com.modus.edeliveryclient.jaxb.org.etsi.uri._02640.v2_;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
@@ -29,7 +29,7 @@ import javax.xml.namespace.QName;
  * 
  */
 @XmlRegistry
-public class ObjectFactory {
+public class V2Factory {
 
     private final static QName _AttributedElectronicAddress_QNAME = new QName("http://uri.etsi.org/02640/v2#", "AttributedElectronicAddress");
     private final static QName _NamesPostalAddresses_QNAME = new QName("http://uri.etsi.org/02640/v2#", "NamesPostalAddresses");
@@ -40,7 +40,7 @@ public class ObjectFactory {
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.etsi.uri._02640.v2_
      * 
      */
-    public ObjectFactory() {
+    public V2Factory() {
     }
 
     /**

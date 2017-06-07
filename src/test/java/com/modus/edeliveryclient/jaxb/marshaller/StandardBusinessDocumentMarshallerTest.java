@@ -16,7 +16,7 @@ import com.modus.edeliveryclient.jaxb.egif_core_component.PictureType;
 import com.modus.edeliveryclient.jaxb.egif_core_component.TextType;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.AttachmentTypeHelper;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.StandardBusinessDocumentWrapper;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.REMDispatch;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
@@ -48,7 +48,7 @@ public class StandardBusinessDocumentMarshallerTest {
     private static StandardBusinessDocumentHeader sbdh;
     private static AttachmentTypeHelper att;
     
-    private static PapyrosDocument papDoc;
+    private static REMDispatch remDisp;
     
     private static StandardBusinessDocument sbd;
 
@@ -62,7 +62,7 @@ public class StandardBusinessDocumentMarshallerTest {
         new DocumentTypeMarshallerTest().setUp();
         att = new DocumentTypeMarshallerTest().returnAttach();
         sbd = new StandardBusinessDocument();
-        papDoc = new PapyrosDocument();
+        remDisp = new REMDispatch();
     }
 
     @AfterClass
@@ -91,9 +91,9 @@ public class StandardBusinessDocumentMarshallerTest {
             JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             sbd.setStandardBusinessDocumentHeader(sbdh);
-            papDoc.setFormat(".txt");
-            papDoc.setActualDoc("Aqsdqwedikbn`1@!~#4!!@qwdsf!@#^6b1%^$%&*BDBFG@#$78DFBHQENT^*()$ADSFC");
-            //sbd.setAny();
+//            remDisp.setFormat(".txt");
+//            remDisp.setActualDoc("Aqsdqwedikbn`1@!~#4!!@qwdsf!@#^6b1%^$%&*BDBFG@#$78DFBHQENT^*()$ADSFC");
+            sbd.setAny(remDisp);
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
 //            try{
@@ -101,8 +101,8 @@ public class StandardBusinessDocumentMarshallerTest {
 //            }catch(Exception e){
 //                e.printStackTrace();
 //            }
-            String s = new String();
-            //jaxbMarshaller.marshal(sbd, file);
+//            String s = new String();
+            jaxbMarshaller.marshal(sbd, file);
            //jaxbMarshaller.marshal(sbd, s);
 
             //jaxbMarshaller.marshal(sbd, System.out);

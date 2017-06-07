@@ -6,13 +6,13 @@
 //
 
 
-package org.etsi.uri._02640.v2_;
+package com.modus.edeliveryclient.jaxb.org.etsi.uri._02640.v2_;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import com.modus.edeliveryclient.jaxb.assertion.AssertionType;
+import oasis.names.tc.saml._2_0.assertion.AssertionType;
 
 
 /**

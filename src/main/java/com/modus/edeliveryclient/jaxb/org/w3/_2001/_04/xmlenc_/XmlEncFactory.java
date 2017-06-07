@@ -6,7 +6,7 @@
 //
 
 
-package org.w3._2001._04.xmlenc_;
+package com.modus.edeliveryclient.jaxb.org.w3._2001._04.xmlenc_;
 
 import java.math.BigInteger;
 import javax.xml.bind.JAXBElement;
@@ -31,7 +31,7 @@ import org.w3._2000._09.xmldsig_.KeyInfoType;
  * 
  */
 @XmlRegistry
-public class ObjectFactory {
+public class XmlEncFactory {
 
     private final static QName _EncryptedData_QNAME = new QName("http://www.w3.org/2001/04/xmlenc#", "EncryptedData");
     private final static QName _EncryptionProperties_QNAME = new QName("http://www.w3.org/2001/04/xmlenc#", "EncryptionProperties");
@@ -52,7 +52,7 @@ public class ObjectFactory {
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.w3._2001._04.xmlenc_
      * 
      */
-    public ObjectFactory() {
+    public XmlEncFactory() {
     }
 
     /**

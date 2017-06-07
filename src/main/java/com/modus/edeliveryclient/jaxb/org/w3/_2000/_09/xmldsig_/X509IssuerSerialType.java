@@ -6,7 +6,7 @@
 //
 
 
-package org.w3._2000._09.xmldsig_;
+package com.modus.edeliveryclient.jaxb.org.w3._2000._09.xmldsig_;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;

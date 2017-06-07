@@ -46,7 +46,7 @@ import org.w3c.dom.Element;
     "any"
 })
 @XmlRootElement( name = "StandardBusinessDocument")
-@XmlSeeAlso({PapyrosDocument.class})
+@XmlSeeAlso({REMDispatch.class})
 public class StandardBusinessDocument {
 
     @XmlElement(name = "StandardBusinessDocumentHeader")

@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import com.modus.edelivery.utils.SBDMessageWrapper;
 
 import com.modus.edeliveryclient.exception.EDeliveryException;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.REMDispatch;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
@@ -73,7 +73,7 @@ public class SbdConsumer extends BaseConsumer {
     }
 
     public CompletableFuture<ResponseMessage> createOutgoingDefault(StandardBusinessDocumentHeader sbdh,
-            PapyrosDocument papDoc,
+            REMDispatch papDoc,
             Authorization auth) throws JAXBException {
         String authorizationHeader;
         sbd = new StandardBusinessDocument();
