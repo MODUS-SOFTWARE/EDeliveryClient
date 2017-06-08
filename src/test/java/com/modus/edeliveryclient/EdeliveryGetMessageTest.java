@@ -80,7 +80,7 @@ public class EdeliveryGetMessageTest {
     }
 
 
-    @Test
+   
     public void getMessagePending() throws InterruptedException, ExecutionException{
         System.out.println("Messages Pending");
         CompletableFuture<Messages> result = deliveryClient.getMesaggesPending(auth);
