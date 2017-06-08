@@ -6,6 +6,7 @@
 package com.modus.edeliveryclient;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.modus.edeliveryclient.consumer.SbdConsumer;
 import com.modus.edeliveryclient.consumer.SmpParticipantConsumer;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.AttachmentTypeHelper;
@@ -95,7 +96,8 @@ public class EDeliverySBDTestImpl {
     //
     // @Test
     // public void hello() {}
-    @Test
+
+   @Test
     public void shouldPostOutgoinMessage() throws InterruptedException, ExecutionException, JAXBException, IOException {
 
     	File filePayload = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\RemDispatchWithSaml1.xml");
@@ -110,7 +112,7 @@ public class EDeliverySBDTestImpl {
     
     public void shouldGetMessage() throws InterruptedException, ExecutionException, JAXBException {
         System.out.println("Trying to get message");
-        CompletableFuture<Object> result = deliveryClient.getMessageDefault(messageId, auth);
+        CompletableFuture<Object> result = deliveryClient.getMessageDefault(messageId, auth,false);
 
         StandardBusinessDocument sbd = new StandardBusinessDocument();
         try{
@@ -122,12 +124,15 @@ public class EDeliverySBDTestImpl {
         System.out.println(result.get().getClass().toString());
     }
 
-    @Test
+   
     public void shouldGetMessagePending() throws InterruptedException, ExecutionException{
         System.out.println("Messages Pending");
         CompletableFuture<Messages> result = deliveryClient.getMesaggesPending(auth);
         Messages msg = new Messages();
         msg = (Messages) result.get();
+        System.out.println(new Gson().toJson(msg));
     }
+    
+    
     
 }

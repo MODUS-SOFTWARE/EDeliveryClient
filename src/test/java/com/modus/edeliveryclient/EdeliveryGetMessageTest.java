@@ -95,6 +95,7 @@ public class EdeliveryGetMessageTest {
     	 String messageId = "9933_test1-20170519130324418@local_delivery";
     	
     	System.out.println("Trying to get message");
+        CompletableFuture<Object> result = deliveryClient.getMessageDefault(messageId, auth,true);
         System.out.println(result.get());
     }
 
