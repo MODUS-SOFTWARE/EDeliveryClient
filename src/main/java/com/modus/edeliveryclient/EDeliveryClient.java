@@ -35,7 +35,7 @@ public interface EDeliveryClient {
 
     public CompletableFuture<ResponseMessage> sendMessage(SBDParams sbdParams,MessageParams params, Authorization auth) throws JAXBException, MalformedURLException, DatatypeConfigurationException;
     
-    public CompletableFuture<Object> getMessageDefault(String messageId, Authorization auth) throws JAXBException;
+    public CompletableFuture<Object> getMessageDefault(String messageId, Authorization auth,boolean stringForm) throws JAXBException;
 
     public CompletableFuture<Messages> getMesaggesPending(Authorization auth);
 
