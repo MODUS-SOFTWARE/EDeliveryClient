@@ -1,15 +1,37 @@
 package com.modus.edelivery.utils;
 
+import java.io.StringReader;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+
 public class SBDMessageWrapper {
 	String SBDMessageStr ;
+	DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
+	DocumentBuilder builder;
+	Document dDoc;
+	XPathFactory xpathFactory;
+	XPath xPath ;
 	
-	public SBDMessageWrapper(){
-		
-	}
-	
-	
+	public SBDMessageWrapper(){}
 	public SBDMessageWrapper(String msg){
-		SBDMessageStr = msg;
+		this.SBDMessageStr =msg;
+		try {
+			builder = domFactory.newDocumentBuilder();
+			InputSource is = new InputSource(new StringReader(SBDMessageStr));
+			dDoc = builder.parse(is);
+			xpathFactory = XPathFactory.newInstance();
+			xPath = xpathFactory.newInstance().newXPath();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getSBDMessageStr() {
@@ -60,4 +82,24 @@ public class SBDMessageWrapper {
 	
 
 	
+	
+	
+	public String extractSenderIdentifier() throws XPathExpressionException{
+		String s = (String) xPath.evaluate("/StandardBusinessDocument/StandardBusinessDocumentHeader/Sender/Identifier/text()", dDoc, XPathConstants.STRING);
+		return s;
+	}
+	
+	public String extractSenderAuthority() throws XPathExpressionException{
+		String s = (String) xPath.evaluate("/StandardBusinessDocument/StandardBusinessDocumentHeader/Sender/Identifier/@Authority", dDoc, XPathConstants.STRING);
+		return s;
+	}
+	
+	public String extractReceiverIdentifier() throws XPathExpressionException{
+		String s = (String) xPath.evaluate("/StandardBusinessDocument/StandardBusinessDocumentHeader/Receiver/Identifier/text()", dDoc, XPathConstants.STRING);
+		return s;
+	}
+	public String extractReceiverAuthority() throws XPathExpressionException{
+		String s = (String) xPath.evaluate("/StandardBusinessDocument/StandardBusinessDocumentHeader/Receiver/Identifier/@Authority", dDoc, XPathConstants.STRING);
+		return s;
+	}
 }

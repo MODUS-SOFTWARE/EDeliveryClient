@@ -25,7 +25,7 @@ public class DispatchExtractorTest {
 	public void extractOrigin() throws IOException, XPathExpressionException {
 
 		String simpleXml = "C:/eclipseProj/edelivery/EDeliveryClient/src/test/resources/RemDispatchWithSaml2.xml";
-		StringWriter sw = new StringWriter();
+		
 		String msg = StreamUtils.stream2String(simpleXml, "UTF-8");
 		DispatchExtractor disex = new DispatchExtractor(msg);
 		System.out.println(disex.extractOrigin()); 
@@ -35,7 +35,7 @@ public class DispatchExtractorTest {
 	public void extractOriginatorName() throws IOException, XPathExpressionException {
 
 		String simpleXml = "C:/eclipseProj/edelivery/EDeliveryClient/src/test/resources/RemDispatchWithSaml2.xml";
-		StringWriter sw = new StringWriter();
+		
 		String msg = StreamUtils.stream2String(simpleXml, "UTF-8");
 		DispatchExtractor disex = new DispatchExtractor(msg);
 		System.out.println(disex.extractOriginatorName()); 
@@ -45,7 +45,7 @@ public class DispatchExtractorTest {
 	@Test
 	public void extractOriginatorEmail() throws IOException, XPathExpressionException {
 		String simpleXml = "C:/eclipseProj/edelivery/EDeliveryClient/src/test/resources/RemDispatchWithSaml2.xml";
-		StringWriter sw = new StringWriter();
+		
 		String msg = StreamUtils.stream2String(simpleXml, "UTF-8");
 		DispatchExtractor disex = new DispatchExtractor(msg);
 		System.out.println(disex.extractOriginatorEmail()); 
@@ -54,7 +54,7 @@ public class DispatchExtractorTest {
 	@Test
 	public void extractDestinationsName() throws IOException, XPathExpressionException {
 		String simpleXml = "C:/eclipseProj/edelivery/EDeliveryClient/src/test/resources/RemDispatchWithSaml2.xml";
-		StringWriter sw = new StringWriter();
+		
 		String msg = StreamUtils.stream2String(simpleXml, "UTF-8");
 		DispatchExtractor disex = new DispatchExtractor(msg);
 		System.out.println(disex.extractDestinatorName()); 
@@ -63,7 +63,7 @@ public class DispatchExtractorTest {
 	@Test
 	public void extractDestinationsEmail() throws IOException, XPathExpressionException {
 		String simpleXml = "C:/eclipseProj/edelivery/EDeliveryClient/src/test/resources/RemDispatchWithSaml2.xml";
-		StringWriter sw = new StringWriter();
+		
 		String msg = StreamUtils.stream2String(simpleXml, "UTF-8");
 		DispatchExtractor disex = new DispatchExtractor(msg);
 		System.out.println(disex.extractDestinatorEmail()); 
@@ -73,7 +73,7 @@ public class DispatchExtractorTest {
 	@Test
 	public void extractMsgId() throws IOException, XPathExpressionException {
 		String simpleXml = "C:/eclipseProj/edelivery/EDeliveryClient/src/test/resources/RemDispatchWithSaml2.xml";
-		StringWriter sw = new StringWriter();
+		
 		String msg = StreamUtils.stream2String(simpleXml, "UTF-8");
 		DispatchExtractor disex = new DispatchExtractor(msg);
 		System.out.println(disex.extractMsgId()); 
@@ -82,7 +82,7 @@ public class DispatchExtractorTest {
 	@Test
 	public void extractFilename() throws IOException, XPathExpressionException {
 		String simpleXml = "C:/eclipseProj/edelivery/EDeliveryClient/src/test/resources/RemDispatchWithSaml2.xml";
-		StringWriter sw = new StringWriter();
+		
 		String msg = StreamUtils.stream2String(simpleXml, "UTF-8");
 		DispatchExtractor disex = new DispatchExtractor(msg);
 		System.out.println(disex.extractFilename()); 
@@ -91,7 +91,7 @@ public class DispatchExtractorTest {
 	@Test
 	public void extractFile() throws IOException, XPathExpressionException {
 		String simpleXml = "C:/eclipseProj/edelivery/EDeliveryClient/src/test/resources/RemDispatchWithSaml2.xml";
-		StringWriter sw = new StringWriter();
+		
 		String msg = StreamUtils.stream2String(simpleXml, "UTF-8");
 		DispatchExtractor disex = new DispatchExtractor(msg);
 		System.out.println(disex.extractFile()); 
