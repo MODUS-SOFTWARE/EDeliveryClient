@@ -49,7 +49,7 @@ import org.asynchttpclient.AsyncHttpClient;
  * @author AG
  */
 public class SbdConsumer extends BaseConsumer {
-
+	private static final Logger log = Logger.getLogger(SbdConsumer.class.getName());
 	private final static String SENDENDPOINT = "/api/v1/outbox";
 
 	private static final String MESSAGESENDPOINT = "/api/v1/messages";
@@ -213,7 +213,7 @@ public class SbdConsumer extends BaseConsumer {
 		SBDMessageWrapper sdbWrap = new SBDMessageWrapper();
 		sdbWrap.setSBDMessageStr(outputStream.toString());
 		sdbWrap.appendPayload(payload);
-		// LOG.log(Level.FINE, sdbWrap.getSBDMessageStr());
+		log.log(Level.INFO, sdbWrap.getSBDMessageStr());
 		return httpClient.preparePost(sendEndpoind).addHeader("Content-Type", "application/xml")
 				.addHeader("Authorization", authorizationHeader).setBody(sdbWrap.getSBDMessageStr()).execute()
 				.toCompletableFuture().exceptionally(t -> {

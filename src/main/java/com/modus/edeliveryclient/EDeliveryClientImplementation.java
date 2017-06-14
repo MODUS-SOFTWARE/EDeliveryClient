@@ -23,12 +23,16 @@ import com.modus.edeliveryclient.serialize.Serializer;
 import gr.modus.edelivery.adapter.messages.MessageParams;
 import gr.modus.edelivery.adapter.messages.PDispatchMessage;
 
+
 //import gr.modus.edelivery.adapter.messages.MessageParams;
 //import gr.modus.edelivery.adapter.messages.PDispatchMessage;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
 
@@ -39,7 +43,7 @@ import org.asynchttpclient.AsyncHttpClient;
  * @author Pantelispanka
  */
 public class EDeliveryClientImplementation implements EDeliveryClient {
-
+	private static final Logger log = Logger.getLogger(EDeliveryClientImplementation.class.getName());
     private final Serializer serializer;
     private final AsyncHttpClient httpClient;
 
@@ -134,7 +138,7 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
                          sbdParams.getManifestLanguage(),
                          sbdParams.getManiTypeQualCode(),
                          sbdParams.getUniformResourceIdentifier());
-
+        
         String payload = "";
         PDispatchMessage p = new PDispatchMessage(params);
         payload = p.createREMDispatchType();
