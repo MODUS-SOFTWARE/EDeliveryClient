@@ -51,23 +51,28 @@ public class StandardBusinessDocumentUnmarshallerTest {
     //
     // @Test
     // public void hello() {}
+
     @Test
     public void testUnmarshallingAll() {
 
         try {
 
-            File file = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\standardBusinessDocumentAllXMLtest.xml");
+//            File file = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\standardBusinessDocumentAllXMLtest.xml");
+            
+            File file2 = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/SignedTests.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            StandardBusinessDocument sbd = (StandardBusinessDocument) JAXBIntrospector.getValue(jaxbUnmarshaller.unmarshal(file));
+            StandardBusinessDocument sbd = (StandardBusinessDocument) JAXBIntrospector.getValue(jaxbUnmarshaller.unmarshal(file2));
 //            StandardBusinessDocument sbd = (StandardBusinessDocument) jaxbUnmarshaller.unmarshal(file);
 //            Object sbd =  jaxbUnmarshaller.unmarshal(file);
             
-            System.out.println(new Gson().toJson(sbd));
-            System.out.println(sbd.getStandardBusinessDocumentHeader().getManifest().getManifestItem().get(0).getDescription());
-            REMDispatch paDoc = (REMDispatch) sbd.getAny();
+//            System.out.println(new Gson().toJson(sbd));
+//            System.out.println(sbd.getStandardBusinessDocumentHeader().getManifest().getManifestItem().get(0).getDescription());
+//            REMDispatch remDisp = (REMDispatch) sbd.getAny();
 //            System.out.println(paDoc.getActualDoc());
+            
+
 
         } catch (JAXBException e) {
             e.printStackTrace();

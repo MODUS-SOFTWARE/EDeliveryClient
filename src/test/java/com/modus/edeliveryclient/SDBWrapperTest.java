@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.modus.edeliveryclient.models.ResponseMessage;
 
 public class SDBWrapperTest {
-	 @Test
+	 
 	 public void atestParticipantConsumerCreation() throws InterruptedException, ExecutionException {
 	 
 	 }

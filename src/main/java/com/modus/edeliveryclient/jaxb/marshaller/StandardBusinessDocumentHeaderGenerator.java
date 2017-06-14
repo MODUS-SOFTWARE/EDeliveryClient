@@ -6,7 +6,6 @@
 package com.modus.edeliveryclient.jaxb.marshaller;
 
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
-import com.modus.edeliveryclient.jaxb.jaxbwrapper.StandardBusinessDocumentWrapper;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.BusinessScope;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.DocumentIdentification;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.Manifest;
@@ -33,7 +32,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 public class StandardBusinessDocumentHeaderGenerator {
 
-    StandardBusinessDocumentWrapper businessDocument = new StandardBusinessDocumentWrapper();
+//    StandardBusinessDocumentWrapper businessDocument = new StandardBusinessDocumentWrapper();
     SBDHFactory headerFactory = new SBDHFactory();
 
     public StandardBusinessDocumentHeader generateDocumentHeaderfromValues(float headerVersion,

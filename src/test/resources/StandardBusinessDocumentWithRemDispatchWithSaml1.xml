@@ -35,26 +35,6 @@
                 <InstanceIdentifier>Instance</InstanceIdentifier>
                 <Identifier>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2:: Invoice##urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn: www.peppol.eu:bis:peppol4a:ver2.0::2.1</Identifier>
             </Scope>
-            <Scope>
-                <Type>PROCESSID</Type>
-                <InstanceIdentifier>Instance</InstanceIdentifier>
-                <Identifier>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2:: Invoice##urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn: www.peppol.eu:bis:peppol4a:ver2.0::2.1</Identifier>
-            </Scope>
-            <Scope>
-                <Type>DOCUMENTID</Type>
-                <InstanceIdentifier>Instance</InstanceIdentifier>
-                <Identifier>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2:: Invoice##urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn: www.peppol.eu:bis:peppol4a:ver2.0::2.1</Identifier>
-            </Scope>
-            <Scope>
-                <Type>PROCESSID</Type>
-                <InstanceIdentifier>Instance</InstanceIdentifier>
-                <Identifier>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2:: Invoice##urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn: www.peppol.eu:bis:peppol4a:ver2.0::2.1</Identifier>
-            </Scope>
-            <Scope>
-                <Type>DOCUMENTID</Type>
-                <InstanceIdentifier>Instance</InstanceIdentifier>
-                <Identifier>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2:: Invoice##urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn: www.peppol.eu:bis:peppol4a:ver2.0::2.1</Identifier>
-            </Scope>
         </BusinessScope>
     </StandardBusinessDocumentHeader><?xml version='1.0' encoding='UTF-8'?>
 <ns7:REMDispatch xmlns:ns7="http://uri.etsi.org/02640/soapbinding/v1#"

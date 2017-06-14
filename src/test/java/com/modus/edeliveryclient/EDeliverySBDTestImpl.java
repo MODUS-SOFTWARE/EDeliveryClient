@@ -8,8 +8,6 @@ package com.modus.edeliveryclient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.modus.edeliveryclient.consumer.SbdConsumer;
 import com.modus.edeliveryclient.consumer.SmpParticipantConsumer;
-import com.modus.edeliveryclient.jaxb.jaxbwrapper.AttachmentTypeHelper;
-import com.modus.edeliveryclient.jaxb.marshaller.DocumentTypeMarshallerTest;
 import com.modus.edeliveryclient.jaxb.marshaller.StandardBusinessDocumentHeaderMarshallerGeneratorTest;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.REMDispatch;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
@@ -49,7 +47,6 @@ public class EDeliverySBDTestImpl {
 
     private static StandardBusinessDocument sbd;
     private static StandardBusinessDocumentHeader sbdh;
-    private static AttachmentTypeHelper att;
 
     private final Authorization auth;
     private final Authorization wrongAuth;
@@ -80,8 +77,6 @@ public class EDeliverySBDTestImpl {
     public void setUp() throws DatatypeConfigurationException, IOException {
         new StandardBusinessDocumentHeaderMarshallerGeneratorTest().setUp();
         sbdh = new StandardBusinessDocumentHeaderMarshallerGeneratorTest().returnDocHead();
-        new DocumentTypeMarshallerTest().setUp();
-        att = new DocumentTypeMarshallerTest().returnAttach();
         sbd = new StandardBusinessDocument();
         papDoc = new REMDispatch();
     }

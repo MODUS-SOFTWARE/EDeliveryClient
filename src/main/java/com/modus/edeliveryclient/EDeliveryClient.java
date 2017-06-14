@@ -12,7 +12,6 @@ import com.modus.edeliveryclient.models.Messages;
 import com.modus.edeliveryclient.models.MessageId;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.models.SBDParams;
-import gr.modus.edelivery.adapter.messages.MessageParams;
 
 
 import java.net.MalformedURLException;
@@ -33,7 +32,7 @@ public interface EDeliveryClient {
 
     public CompletableFuture<ResponseMessage> createOutgoingDefaultImpl(StandardBusinessDocumentHeader sbdh, String payload, Authorization auth) throws JAXBException;
 
-    public CompletableFuture<ResponseMessage> sendMessage(SBDParams sbdParams,MessageParams params, Authorization auth) throws JAXBException, MalformedURLException, DatatypeConfigurationException;
+//    public CompletableFuture<ResponseMessage> sendMessage(SBDParams sbdParams,MessageParams params, Authorization auth) throws JAXBException, MalformedURLException, DatatypeConfigurationException;
     
     public CompletableFuture<Object> getMessageDefault(String messageId, Authorization auth) throws JAXBException;
 
