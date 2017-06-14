@@ -108,30 +108,32 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
 
         List<Scope> businessScopes = new ArrayList<Scope>();
         Scope scope1 = new Scope();
-        scope1.setIdentifier(sbdParams.getScopeidentifier());
+        scope1.setIdentifier(sbdParams.getScopeIdentifier());
         scope1.setInstanceIdentifier("Instance");
-        scope1.setType(sbdParams.getScopetype());
+        scope1.setType(sbdParams.getScopeType());
 
         Scope scope2 = new Scope();
-        scope2.setIdentifier(sbdParams.getScopeidentifier2());
+        scope2.setIdentifier(sbdParams.getScopeIdentifier2());
         scope2.setInstanceIdentifier("Instance");
-        scope2.setType(sbdParams.getScopetype2());
+        scope2.setType(sbdParams.getScopeType2());
 
         BusinessScope bScope1 = new BusinessScope();
         businessScopes.add(scope1);
         businessScopes.add(scope2);
 
         sbdHeader = new StandardBusinessDocumentHeaderGenerator()
-                .generateDocumentHeaderfromValues(sbdParams.getHeaderVersion(), sbdParams.getParticipantidentifiersenderscheme(),
-                         sbdParams.getParticipantidentifiersendervalue(),
-                         sbdParams.getParticipantidentifierreceiverscheme(),
-                         sbdParams.getParticipantidentifierreceivervalue(),
-                         sbdParams.getDocumentidstandard(),
-                         sbdParams.getDoctypeversion(),
-                         sbdParams.getDocumentinstanceidentifier(),
-                         sbdParams.getDocumenttype(),
-                         businessScopes, sbdParams.getManifestdescr(),
-                         sbdParams.getManifestlanguage(), sbdParams.getManitypequalcode(), sbdParams.getUniformresourceidentifier());
+                .generateDocumentHeaderfromValues(sbdParams.getHeaderVersion(), sbdParams.getParticipantIdentifierSenderScheme(),
+                         sbdParams.getParticipantIdentifierSenderValue(),
+                         sbdParams.getParticipantIdentifierReceiverScheme(),
+                         sbdParams.getParticipantIdentifierReceiverValue(),
+                         sbdParams.getDocumentIdStandard(),
+                         sbdParams.getDocTypeVersion(),
+                         sbdParams.getDocumentInstanceIdentifier(),
+                         sbdParams.getDocumentType(),
+                         businessScopes, sbdParams.getManifestDescr(),
+                         sbdParams.getManifestLanguage(),
+                         sbdParams.getManiTypeQualCode(),
+                         sbdParams.getUniformResourceIdentifier());
 
         String payload = "";
         PDispatchMessage p = new PDispatchMessage(params);

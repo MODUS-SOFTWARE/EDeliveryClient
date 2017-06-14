@@ -2,86 +2,135 @@ package com.modus.edeliveryclient.models;
 
 public class SBDParams {
 
+	
 	//TODO remove default values .
-	private static int headerVersion = 1;
+	private float headerVersion = 1.0f;
 
-    private final static String participantIdentifierSenderScheme = "iso6523-actorid-upis";
-    private final static String participantIdentifierSenderValue = "9933:test1";
-    private final static String participantIdentifierReceiverScheme = "iso6523-actorid-upis";
-    private final static String participantIdentifierReceiverValue = "9933:test1";
+   
+	
+	private   String participantIdentifierSenderScheme = "iso6523-actorid-upis";
+    private   String participantIdentifierSenderValue = "9933:test1";
+    private   String participantIdentifierReceiverScheme = "iso6523-actorid-upis";
+    private   String participantIdentifierReceiverValue = "9933:test1";
 
-    private final static String documentIdStandard = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
-    private final static int docTypeVersion = 1;
-    private final static String documentInstanceIdentifier = "627a2e9a-a146-461f-b62f-f22f5799fd55";
-    private final static String documentType = "Invoice";
+    private   String documentIdStandard = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
+    private   int docTypeVersion = 1;
+    private   String documentInstanceIdentifier = "627a2e9a-a146-461f-b62f-f22f5799fd55";
+    private   String documentType = "Invoice";
 
-    private final static String scopeType = "DOCUMENTID";
-    private final static String scopeIdentifier = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2:: Invoice##urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn: www.peppol.eu:bis:peppol4a:ver2.0::2.1";
-    private final static String scopeType2 = "PROCESSID";
-    private final static String scopeIdentifier2 = "urn:www.cenbii.eu:profile:bii04:ver2.0";
+    private   String scopeType = "DOCUMENTID";
+    private   String scopeIdentifier = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2:: Invoice##urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn: www.peppol.eu:bis:peppol4a:ver2.0::2.1";
+    private   String scopeType2 = "PROCESSID";
+    private   String scopeIdentifier2 = "urn:www.cenbii.eu:profile:bii04:ver2.0";
 
-    private final static String manifestDescr = "manifestDescr";
-    private final static String manifestLanguage = " manifestLanguage";
-    private final static String maniTypeQualCode = "maniTypeQualCode";
-    private final static String uniformResourceIdentifier = "uniformResourceIdentifier";
+    private   String manifestDescr = "manifestDescr";
+    private   String manifestLanguage = " manifestLanguage";
+    private   String maniTypeQualCode = "maniTypeQualCode";
+    private   String uniformResourceIdentifier = "uniformResourceIdentifier";
     
-    
-	public static int getHeaderVersion() {
+    public float getHeaderVersion() {
 		return headerVersion;
 	}
-	public static void setHeaderVersion(int headerVersion) {
-		SBDParams.headerVersion = headerVersion;
+	public void setHeaderVersion(float headerVersion) {
+		this.headerVersion = headerVersion;
 	}
-	public static String getParticipantidentifiersenderscheme() {
+    
+	public String getParticipantIdentifierSenderScheme() {
 		return participantIdentifierSenderScheme;
 	}
-	public static String getParticipantidentifiersendervalue() {
+	public void setParticipantIdentifierSenderScheme(String participantIdentifierSenderScheme) {
+		this.participantIdentifierSenderScheme = participantIdentifierSenderScheme;
+	}
+	public String getParticipantIdentifierSenderValue() {
 		return participantIdentifierSenderValue;
 	}
-	public static String getParticipantidentifierreceiverscheme() {
+	public void setParticipantIdentifierSenderValue(String participantIdentifierSenderValue) {
+		this.participantIdentifierSenderValue = participantIdentifierSenderValue;
+	}
+	public String getParticipantIdentifierReceiverScheme() {
 		return participantIdentifierReceiverScheme;
 	}
-	public static String getParticipantidentifierreceivervalue() {
+	public void setParticipantIdentifierReceiverScheme(String participantIdentifierReceiverScheme) {
+		this.participantIdentifierReceiverScheme = participantIdentifierReceiverScheme;
+	}
+	public String getParticipantIdentifierReceiverValue() {
 		return participantIdentifierReceiverValue;
 	}
-	public static String getDocumentidstandard() {
+	public void setParticipantIdentifierReceiverValue(String participantIdentifierReceiverValue) {
+		this.participantIdentifierReceiverValue = participantIdentifierReceiverValue;
+	}
+	public String getDocumentIdStandard() {
 		return documentIdStandard;
 	}
-	public static int getDoctypeversion() {
+	public void setDocumentIdStandard(String documentIdStandard) {
+		this.documentIdStandard = documentIdStandard;
+	}
+	public int getDocTypeVersion() {
 		return docTypeVersion;
 	}
-	public static String getDocumentinstanceidentifier() {
+	public void setDocTypeVersion(int docTypeVersion) {
+		this.docTypeVersion = docTypeVersion;
+	}
+	public String getDocumentInstanceIdentifier() {
 		return documentInstanceIdentifier;
 	}
-	public static String getDocumenttype() {
+	public void setDocumentInstanceIdentifier(String documentInstanceIdentifier) {
+		this.documentInstanceIdentifier = documentInstanceIdentifier;
+	}
+	public String getDocumentType() {
 		return documentType;
 	}
-	public static String getScopetype() {
+	public void setDocumentType(String documentType) {
+		this.documentType = documentType;
+	}
+	public String getScopeType() {
 		return scopeType;
 	}
-	public static String getScopeidentifier() {
+	public void setScopeType(String scopeType) {
+		this.scopeType = scopeType;
+	}
+	public String getScopeIdentifier() {
 		return scopeIdentifier;
 	}
-	public static String getScopetype2() {
+	public void setScopeIdentifier(String scopeIdentifier) {
+		this.scopeIdentifier = scopeIdentifier;
+	}
+	public String getScopeType2() {
 		return scopeType2;
 	}
-	public static String getScopeidentifier2() {
+	public void setScopeType2(String scopeType2) {
+		this.scopeType2 = scopeType2;
+	}
+	public String getScopeIdentifier2() {
 		return scopeIdentifier2;
 	}
-	public static String getManifestdescr() {
+	public void setScopeIdentifier2(String scopeIdentifier2) {
+		this.scopeIdentifier2 = scopeIdentifier2;
+	}
+	public String getManifestDescr() {
 		return manifestDescr;
 	}
-	public static String getManifestlanguage() {
+	public void setManifestDescr(String manifestDescr) {
+		this.manifestDescr = manifestDescr;
+	}
+	public String getManifestLanguage() {
 		return manifestLanguage;
 	}
-	public static String getManitypequalcode() {
+	public void setManifestLanguage(String manifestLanguage) {
+		this.manifestLanguage = manifestLanguage;
+	}
+	public String getManiTypeQualCode() {
 		return maniTypeQualCode;
 	}
-	public static String getUniformresourceidentifier() {
+	public void setManiTypeQualCode(String maniTypeQualCode) {
+		this.maniTypeQualCode = maniTypeQualCode;
+	}
+	public String getUniformResourceIdentifier() {
 		return uniformResourceIdentifier;
 	}
-    
-    
+	public void setUniformResourceIdentifier(String uniformResourceIdentifier) {
+		this.uniformResourceIdentifier = uniformResourceIdentifier;
+	}
     
     
 }
