@@ -12,6 +12,10 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
+import com.modus.edeliveryclient.models.SBDParams;
+
+import gr.modus.edelivery.adapter.messages.MessageParams;
+
 public class SBDMessageWrapper {
 	String SBDMessageStr ;
 	DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
@@ -101,5 +105,36 @@ public class SBDMessageWrapper {
 	public String extractReceiverAuthority() throws XPathExpressionException{
 		String s = (String) xPath.evaluate("/StandardBusinessDocument/StandardBusinessDocumentHeader/Receiver/Identifier/@Authority", dDoc, XPathConstants.STRING);
 		return s;
+	}
+/*private   String participantIdentifierSenderScheme = "iso6523-actorid-upis";
+    private   String participantIdentifierSenderValue = "9933:test1";
+    private   String participantIdentifierReceiverScheme = "iso6523-actorid-upis";
+    private   String participantIdentifierReceiverValue = "9933:test1";
+
+    private   String documentIdStandard = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
+    private   int docTypeVersion = 1;
+    private   String documentInstanceIdentifier = "627a2e9a-a146-461f-b62f-f22f5799fd55";
+    private   String documentType = "Invoice";
+
+    private   String scopeType = "DOCUMENTID";
+    private   String scopeIdentifier = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2:: Invoice##urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn: www.peppol.eu:bis:peppol4a:ver2.0::2.1";
+    private   String scopeType2 = "PROCESSID";
+    private   String scopeIdentifier2 = "urn:www.cenbii.eu:profile:bii04:ver2.0";
+
+    private   String manifestDescr = "manifestDescr";
+    private   String manifestLanguage = " manifestLanguage";
+    private   String maniTypeQualCode = "maniTypeQualCode";
+    private   String uniformResourceIdentifier = "uniformResourceIdentifier";*/
+	
+	public SBDParams extractParams() throws XPathExpressionException{
+		SBDParams params= new SBDParams();
+		//params.setDocTypeVersion(docTypeVersion); TODO OTHER fields
+		params.setParticipantIdentifierReceiverScheme(this.extractReceiverAuthority());
+		params.setParticipantIdentifierReceiverValue(this.extractReceiverIdentifier());
+		params.setParticipantIdentifierSenderScheme(this.extractSenderAuthority());
+		params.setParticipantIdentifierSenderValue(this.extractSenderIdentifier());
+		
+		return params;
+		
 	}
 }
