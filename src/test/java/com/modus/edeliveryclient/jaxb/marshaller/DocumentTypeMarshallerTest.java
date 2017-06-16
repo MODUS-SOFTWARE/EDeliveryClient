@@ -33,6 +33,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.w3._2000._09.xmldsig_.KeyInfoType;
+import org.w3._2000._09.xmldsig_.SignatureType;
+
 import static org.junit.Assert.*;
 
 /**
@@ -94,6 +97,15 @@ public class DocumentTypeMarshallerTest {
     @BeforeClass
     public static void setUpClass() throws DatatypeConfigurationException, IOException {
 
+    	
+    	SignatureType type = new SignatureType();
+    	
+    	KeyInfoType kif = new KeyInfoType();
+    	
+    
+    	
+    	
+    	
         DocumentTypeMarshallerTest march = new DocumentTypeMarshallerTest();
 
         embeddedBinObj = new BinaryObjectType();
