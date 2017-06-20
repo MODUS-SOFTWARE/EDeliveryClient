@@ -29,9 +29,9 @@ public class EdeliverySendMessageTest {
 
 	AsyncHttpClient httpClient;
 	Serializer serializer;
-	String basepath = "http://192.168.20.10:8080/APREST";
-	String user = "sp1";
-	String password = "sp1";
+	String basepath = "https://edelivery.ydmed.gov.gr/"; //"http://192.168.20.10:8080/APREST";
+	String user = "modus1";//"sp1";
+	String password = "modus123";//"sp1";
 	Authorization auth;
 	EDeliveryClient deliveryClient;
 
@@ -45,7 +45,7 @@ public class EdeliverySendMessageTest {
 				new SbdConsumer(httpClient, serializer, basepath));
 	}
 
-	@Test
+	
 	public void sendMessage() throws InterruptedException, ExecutionException, JAXBException, IOException,
 			DatatypeConfigurationException {
 
@@ -71,4 +71,15 @@ public class EdeliverySendMessageTest {
 
 		System.out.println(result.get().getStatus());
 	}
+
+	
+	public void getEvidenceAp() throws InterruptedException, ExecutionException, JAXBException, IOException,
+			DatatypeConfigurationException {
+		
+		String messageId = "9933_test1-20170619155009133@local_delivery";
+		CompletableFuture<Object> result = deliveryClient.getMessageEvidenceAp(messageId, auth, true);
+
+		System.out.println(result.get());
+	}
+
 }

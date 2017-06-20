@@ -184,6 +184,57 @@ public class SbdConsumer extends BaseConsumer {
 				});
 
 	}
+	
+	public CompletableFuture<Object> getMessageEvidenceAp(String messageId, Authorization auth, boolean stringForm) throws JAXBException {
+		String authorizationHeader;
+		String messageUri = messagesEndpoint + "/" + messageId+"/evidence";
+		sbd = new StandardBusinessDocument();
+		ResponseMessage rm = new ResponseMessage();
+		try {
+			String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
+			String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));
+			authorizationHeader = "Basic " + authHeaderEncoded;
+		} catch (UnsupportedEncodingException e) {
+			throw new EDeliveryException(e);
+		}
+		return httpClient.prepareGet(messageUri).addHeader("Authorization", authorizationHeader).execute()
+				.toCompletableFuture().exceptionally(t -> {
+					throw new EDeliveryException(t);
+				}).thenApply(resp -> {
+					int status = resp.getStatusCode();
+
+					switch (status) {
+					case 200: {
+						try {
+							if(stringForm){
+								return resp.getResponseBody();
+							}
+							else{
+								JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class,
+										SBDHFactory.class);
+								Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+								StandardBusinessDocument sbd = (StandardBusinessDocument) JAXBIntrospector
+										.getValue(jaxbUnmarshaller.unmarshal(resp.getResponseBodyAsStream()));
+								return sbd;
+							}
+							
+							
+						} catch (Exception ex) {
+							Logger.getLogger(SbdConsumer.class.getName()).log(Level.SEVERE, null, ex);
+						}
+					}
+						break;
+					case 401:
+						throw new EDeliveryException(resp.getResponseBody());
+					case 404:
+						throw new EDeliveryException(resp.getResponseBody());
+
+					}
+					return rm;
+				});
+
+	}
+	
 
 	public CompletableFuture<ResponseMessage> createOutgoingDefault(StandardBusinessDocumentHeader sbdh, String payload,
 			Authorization auth ) throws JAXBException {

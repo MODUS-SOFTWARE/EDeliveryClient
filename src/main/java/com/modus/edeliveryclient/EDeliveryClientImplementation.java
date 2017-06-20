@@ -84,6 +84,13 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
         return sbdConsumer.getMessageDefault(messageId, auth,stringForm);
     }
 
+    
+    @Override
+    public CompletableFuture<Object> getMessageEvidenceAp(String messageId, Authorization auth, boolean stringForm) throws JAXBException {
+        return sbdConsumer.getMessageEvidenceAp(messageId, auth,stringForm);
+    }
+    
+    
     @Override
     public CompletableFuture<Messages> getMesaggesPending(Authorization auth) {
         return sbdConsumer.getMesaggesPending(auth);

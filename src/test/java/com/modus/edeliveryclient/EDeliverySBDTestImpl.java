@@ -20,7 +20,7 @@ import com.modus.edeliveryclient.models.Messages;
 import com.modus.edeliveryclient.models.MessageId;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.serialize.Serializer;
-import com.modus.edeliveryclient.serializer.JacksonSerializer;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -64,7 +64,7 @@ public class EDeliverySBDTestImpl {
 
     @BeforeClass
     public static void setUpClass() {
-        Serializer serializer = new JacksonSerializer(new ObjectMapper());
+        Serializer serializer = null;
         AsyncHttpClient httpClient = new DefaultAsyncHttpClient();
         String basepath = "http://192.168.20.10:8080/APREST";
         deliveryClient = new EDeliveryClientImplementation(httpClient,

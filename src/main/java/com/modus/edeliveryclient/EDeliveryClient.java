@@ -38,5 +38,7 @@ public interface EDeliveryClient {
     public CompletableFuture<Object> getMessageDefault(String messageId, Authorization auth,boolean stringForm) throws JAXBException;
 
     public CompletableFuture<Messages> getMesaggesPending(Authorization auth);
+    
+    public CompletableFuture<Object> getMessageEvidenceAp(String messageId, Authorization auth,boolean stringForm) throws JAXBException;
 
 }

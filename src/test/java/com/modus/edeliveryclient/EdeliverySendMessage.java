@@ -56,7 +56,7 @@ public class EdeliverySendMessage {
 
     @BeforeClass
     public static void setUpClass() {
-        Serializer serializer = new JacksonSerializer(new ObjectMapper());
+        Serializer serializer = null;
         AsyncHttpClient httpClient = new DefaultAsyncHttpClient();
         String basepath = "http:192.168.20.10:8080/APREST";
         deliveryClient = new EDeliveryClientImplementation(httpClient,

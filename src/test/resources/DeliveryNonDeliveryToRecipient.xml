@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<DeliveryNonDeliveryToRecipient xmlns="http://uri.etsi.org/02640/v2#" xmlns:ns2="http://uri.etsi.org/02231/v2#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#" xmlns:ns4="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns5="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns6="http://www.w3.org/2001/04/xmlenc#" version="2">
+    <EventCode>http//:uri.etsi.org/REM/Event#Delivery</EventCode>
+    <EvidenceIdentifier>249f141e-5beb-44b9-90e9-eb85de70e75d</EvidenceIdentifier>
+    <EvidenceIssuerDetails>
+        <NamesPostalAddresses>
+            <NamePostalAddress>
+                <EntityName>
+                    <Name>YDMED Access Point</Name>
+                </EntityName>
+            </NamePostalAddress>
+        </NamesPostalAddresses>
+    </EvidenceIssuerDetails>
+    <EventTime>2017-06-19T15:50:09.148+03:00</EventTime>
+    <SenderDetails>
+        <AttributedElectronicAddress scheme="iso6523-actorid-upis">9933:test1</AttributedElectronicAddress>
+    </SenderDetails>
+    <RecipientsDetails>
+        <EntityDetails>
+            <AttributedElectronicAddress scheme="iso6523-actorid-upis">9933:test1</AttributedElectronicAddress>
+        </EntityDetails>
+    </RecipientsDetails>
+    <EvidenceRefersToRecipient>1</EvidenceRefersToRecipient>
+    <SenderMessageDetails isNotification="false">
+        <MessageSubject>http://uri.etsi.org/02640/soapbinding/v2#::REMDispatch:2</MessageSubject>
+        <MessageIdentifierByREMMD>627a2e9a-a146-461f-b62f-f22f5799fd55</MessageIdentifierByREMMD>
+        <ns3:DigestMethod Algorithm="SHA-256"/>
+        <ns3:DigestValue>47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=</ns3:DigestValue>
+    </SenderMessageDetails>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <SignedInfo>
+            <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+            <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+            <Reference URI="">
+                <Transforms>
+                    <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                </Transforms>
+                <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                <DigestValue>aswLGVVi0I1tfSmjkXr3w2/iBP6CZNBThy5aN94x8bI=</DigestValue>
+            </Reference>
+        </SignedInfo>
+        <SignatureValue>NeGz8jYZ/tqQwUkWIulhbep3/dwlQ6UaoB1nkQ/wwW67PB9fhIIIkg3qI/6rOZpvFer3z7Ag6ado
+mxtv2wv//rML1EFj/qei2QJsNm+HpaEWpq79K88Y/N7TNlDBqQXr5BLiT8394d8d723YfL5clUqC
+ZEK3+oFVvTlN82xS2DX53TkX9kM3+sedkaj7OlUIDQUyBF/AH+DUg7Be2QqrmzQ0tF0l03olwad6
+KtdzZC0I6FFXfSxGz2ftkYI8q6P5yNdzVqG6eNq/q51aMNAWq7dN3vQV48GxqkPI1EWq+fsWQcto
+hMMfkb4L6cis3/M0JeMcaVPjHTJAQnuifGrZLQ==</SignatureValue>
+        <KeyInfo>
+            <X509Data>
+                <X509SubjectName>2.5.4.5=#130131,1.2.840.113549.1.9.1=#16224345462d4544454c49564552592d535550504f52544065632e6575726f70612e6575,CN=GENERALERDS_AP_TEST_HMAR2,OU=Hellenic Ministry of Administrative Reconstruction AP2,OU=generalERDS,OU=CEF_eDelivery.europa.eu,O=European Commission,C=GR</X509SubjectName>
+                <X509Certificate>MIIGczCCBVugAwIBAgIIYrwxygOysacwDQYJKoZIhvcNAQELBQAwgdYxCzAJBgNVBAYTAkRFMSUw
+IwYDVQQKExxULVN5c3RlbXMgSW50ZXJuYXRpb25hbCBHbWJIMR8wHQYDVQQLExZULVN5c3RlbXMg
+VHJ1c3QgQ2VudGVyMRwwGgYDVQQIExNOb3JkcmhlaW4gV2VzdGZhbGVuMQ4wDAYDVQQREwU1NzI1
+MDEQMA4GA1UEBxMHTmV0cGhlbjEgMB4GA1UECRMXVW50ZXJlIEluZHVzdHJpZXN0ci4gMjAxHTAb
+BgNVBAMTFFNoYXJlZCBCdXNpbmVzcyBDQSA0MB4XDTE3MDQyMDA3NDQ1OFoXDTE5MDcwOTIzNTkw
+MFowggEHMQswCQYDVQQGEwJHUjEcMBoGA1UEChMTRXVyb3BlYW4gQ29tbWlzc2lvbjEgMB4GA1UE
+CwwXQ0VGX2VEZWxpdmVyeS5ldXJvcGEuZXUxFDASBgNVBAsTC2dlbmVyYWxFUkRTMT8wPQYDVQQL
+EzZIZWxsZW5pYyBNaW5pc3RyeSBvZiBBZG1pbmlzdHJhdGl2ZSBSZWNvbnN0cnVjdGlvbiBBUDIx
+IjAgBgNVBAMMGUdFTkVSQUxFUkRTX0FQX1RFU1RfSE1BUjIxMTAvBgkqhkiG9w0BCQEWIkNFRi1F
+REVMSVZFUlktU1VQUE9SVEBlYy5ldXJvcGEuZXUxCjAIBgNVBAUTATEwggEiMA0GCSqGSIb3DQEB
+AQUAA4IBDwAwggEKAoIBAQC7gUZkl95NdSjwIr8OTHvjxlB9nYIqGkP0/i21X/sWma0AH57O8xn1
+yfttyEjvj2R2bfjYc/OsQb8mLiNBb7BVe1VadXHsrQLUtUFVi8klJF2nyHPJGFC8N1Rz9A05Mec/
+WbwHEfE6YuXUV9zEBWQWT1sxRVUSVm3ZPTLNSHTUoxHJyqtDuxSabVLtABH3/cJj85nbEJShKHNP
+d4oWCsD+C/eCAoxFKlVUNGTFIhI3HKtyTSuo963C4bsf59HW7HLWeWNU2DwuObWR61j11Qy7xov6
+tHZbXjW0bs3EmwLAI00almiMo63ogtWgK0lTs7bUf/YzjATmKYCtypZ/QyUVAgMBAAGjggIPMIIC
+CzAfBgNVHSMEGDAWgBSr/2/REm9XytLY2MG+9hM0InSBMzAdBgNVHQ4EFgQUoJ9idK7oFCNM7KS4
+MhXY4zhgKR8wDgYDVR0PAQH/BAQDAgWgME0GA1UdIARGMEQwQgYJKwYBBAG9Rw0ZMDUwMwYIKwYB
+BQUHAgEWJ2h0dHA6Ly9zYmNhLnRlbGVzZWMuZGUvZG93bmxvYWQvY3BzLnBkZjAJBgNVHRMEAjAA
+MIHuBgNVHR8EgeYwgeMwPKA6oDiGNmh0dHA6Ly9jcmwuc2JjYS50ZWxlc2VjLmRlL3JsL1NoYXJl
+ZF9CdXNpbmVzc19DQV80LmNybDCBoqCBn6CBnIaBmWxkYXA6Ly9sZGFwLnNiY2EudGVsZXNlYy5k
+ZS9DTj1TaGFyZWQlMjBCdXNpbmVzcyUyMENBJTIwNCxPVT1ULVN5c3RlbXMlMjBUcnVzdCUyMENl
+bnRlcixPPVQtU3lzdGVtcyUyMEludGVybmF0aW9uYWwlMjBHbWJILEM9REU/Q2VydGlmaWNhdGVS
+ZXZvY2F0aW9uTGlzdDA/BggrBgEFBQcBAQQzMDEwLwYIKwYBBQUHMAGGI2h0dHA6Ly9vY3NwMDMu
+c2JjYS50ZWxlc2VjLmRlL29jc3ByMC0GA1UdEQQmMCSBIkNFRi1FREVMSVZFUlktU1VQUE9SVEBl
+Yy5ldXJvcGEuZXUwDQYJKoZIhvcNAQELBQADggEBAJjMRaSBAkeTMkGt8vep9vWJfqE9nQZ/hHCw
+9pcNw7OTrGpNMQQ331dvqCC/Rn9iIpU6mY+qzdssENCoUpUmwHnb38buuroNpX1vbnCNe0piPy7E
+jh4k7Gp+k6L20mjKomQ3TKR0ghnBN6kZ0u6E1jKVXqDF8+UUSDCAH8ulYa6L0MpuwZgN3TJpqUWr
+inH37H/D26Rx6IzSGgDIGqPFAqale4l2ntM3R42+yLoAu0BLPwa9JDQxFSblNdfUSs2lN6w3qLOs
+e5+dKrdf2yv9TqJwLDH2bRNNA6wQYCk2qLhJil34PafQzgRAe//wbm4RVDnwlh+wNqy9/lKDtCDY
+HMs=</X509Certificate>
+            </X509Data>
+        </KeyInfo>
+    </Signature>
+</DeliveryNonDeliveryToRecipient>
