@@ -264,7 +264,7 @@ public class SbdConsumer extends BaseConsumer {
 		SBDMessageWrapper sdbWrap = new SBDMessageWrapper();
 		sdbWrap.setSBDMessageStr(outputStream.toString());
 		sdbWrap.appendPayload(payload);
-		log.log(Level.INFO, sdbWrap.getSBDMessageStr());
+		log.log(Level.FINEST, sdbWrap.getSBDMessageStr());
 		return httpClient.preparePost(sendEndpoind).addHeader("Content-Type", "application/xml")
 				.addHeader("Authorization", authorizationHeader).setBody(sdbWrap.getSBDMessageStr()).execute()
 				.toCompletableFuture().exceptionally(t -> {

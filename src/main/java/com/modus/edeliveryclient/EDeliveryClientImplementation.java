@@ -120,12 +120,12 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
         List<Scope> businessScopes = new ArrayList<Scope>();
         Scope scope1 = new Scope();
         scope1.setIdentifier(sbdParams.getScopeIdentifier());
-        scope1.setInstanceIdentifier("Instance");
+        scope1.setInstanceIdentifier(sbdParams.getScopeInstance());
         scope1.setType(sbdParams.getScopeType());
 
         Scope scope2 = new Scope();
         scope2.setIdentifier(sbdParams.getScopeIdentifier2());
-        scope2.setInstanceIdentifier("Instance");
+        scope2.setInstanceIdentifier(sbdParams.getScopeInstance2());
         scope2.setType(sbdParams.getScopeType2());
 
         BusinessScope bScope1 = new BusinessScope();

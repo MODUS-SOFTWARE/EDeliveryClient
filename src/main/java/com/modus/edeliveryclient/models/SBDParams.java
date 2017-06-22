@@ -19,15 +19,29 @@ public class SBDParams {
     private   String documentType = "Invoice";
 
     private   String scopeType = "DOCUMENTID";
+    private   String scopeInstance="http://uri.etsi.org/02640/soapbinding/v2#::REMDispatch:2";
     private   String scopeIdentifier = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2:: Invoice##urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn: www.peppol.eu:bis:peppol4a:ver2.0::2.1";
     private   String scopeType2 = "PROCESSID";
-    private   String scopeIdentifier2 = "urn:www.cenbii.eu:profile:bii04:ver2.0";
+    private   String scopeInstance2="urn:cef-eDelivery.europa.eu::generalERDS:ver1.0";
+    
+	private   String scopeIdentifier2 = "urn:www.cenbii.eu:profile:bii04:ver2.0";
 
     private   String manifestDescr = "manifestDescr";
     private   String manifestLanguage = " manifestLanguage";
     private   String maniTypeQualCode = "maniTypeQualCode";
     private   String uniformResourceIdentifier = "uniformResourceIdentifier";
-    
+    public String getScopeInstance() {
+		return scopeInstance;
+	}
+	public void setScopeInstance(String scopeInstance) {
+		this.scopeInstance = scopeInstance;
+	}
+	public String getScopeInstance2() {
+		return scopeInstance2;
+	}
+	public void setScopeInstance2(String scopeInstance2) {
+		this.scopeInstance2 = scopeInstance2;
+	}
     public float getHeaderVersion() {
 		return headerVersion;
 	}
