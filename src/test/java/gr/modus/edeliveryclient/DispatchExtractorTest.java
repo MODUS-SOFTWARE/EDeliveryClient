@@ -97,4 +97,25 @@ public class DispatchExtractorTest {
 		System.out.println(disex.extractFile()); 
 	}
 	
+	
+	@Test
+	public void extractComments() throws IOException, XPathExpressionException {
+		String simpleXml = "C:/eclipseProj/edelivery/EDeliveryClient/src/test/resources/RemDispatchWithSaml2.xml";
+		
+		String msg = StreamUtils.stream2String(simpleXml, "UTF-8");
+		DispatchExtractor disex = new DispatchExtractor(msg);
+		System.out.println(disex.extractComments()); 
+	}
+	
+	
+	@Test
+	public void extractTitle() throws IOException, XPathExpressionException {
+		String simpleXml = "C:/eclipseProj/edelivery/EDeliveryClient/src/test/resources/RemDispatchWithSaml2.xml";
+		
+		String msg = StreamUtils.stream2String(simpleXml, "UTF-8");
+		DispatchExtractor disex = new DispatchExtractor(msg);
+		System.out.println(disex.extractTitle()); 
+	}
+	
+	
 }

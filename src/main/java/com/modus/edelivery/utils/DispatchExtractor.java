@@ -46,6 +46,8 @@ public class DispatchExtractor {
 		params.setOriginatorName(this.extractOriginatorName());
 		params.setOriginatorEmail(this.extractOriginatorEmail());
 		params.setFile(this.extractFile());
+		params.setComments(this.extractComments());
+		params.setTitle(this.extractTitle());
 		return params;
 		
 	}
@@ -82,6 +84,14 @@ public class DispatchExtractor {
 	
 	public String extractFile() throws XPathExpressionException{
 		String s = (String) xPath.evaluate("//*[local-name()='NormalizedMsg']/*/*[local-name()='Embedded']/text()", dDoc, XPathConstants.STRING);
+		return s;
+	}
+	public String extractTitle() throws XPathExpressionException{
+		String s = (String) xPath.evaluate("//*[local-name()='NormalizedMsg']/*/*[local-name()='Subject']/text()", dDoc, XPathConstants.STRING);
+		return s;
+	}
+	public String extractComments() throws XPathExpressionException{
+		String s = (String) xPath.evaluate("//*[local-name()='NormalizedMsg']/*/*[local-name()='Comments']/text()", dDoc, XPathConstants.STRING);
 		return s;
 	}
 	

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectDB {
+	public static long TIME = 60000L;
 	String userName ="papyrosm3";
 	String password = "papyrosm3";
 	//jdbc:sqlserver://[serverName[\instanceName][:portNumber]][;property=value[;property=value]]
