@@ -144,9 +144,9 @@ public class SBDHFactory {
         return new Partner();
     }
 
-    public REMDispatch createRemDispatch() {
-        return new REMDispatch();
-    }
+//    public REMDispatch createRemDispatch() {
+//        return new REMDispatch();
+//    }
 
     /**
      * Create an instance of
@@ -198,9 +198,9 @@ public class SBDHFactory {
         return new JAXBElement<StandardBusinessDocument>(_StandardBusinessDocument_QNAME, StandardBusinessDocument.class, null, value);
     }
 
-    @XmlElementDecl(namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", name = "RemDispatch")
-    public JAXBElement<REMDispatch> createREMDIspatch(REMDispatch value) {
-        return new JAXBElement<REMDispatch>(_RemDispatch_QNAME, REMDispatch.class, null, value);
-    }
+//    @XmlElementDecl(namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", name = "RemDispatch")
+//    public JAXBElement<REMDispatch> createREMDIspatch(REMDispatch value) {
+//        return new JAXBElement<REMDispatch>(_RemDispatch_QNAME, REMDispatch.class, null, value);
+//    }
 
 }

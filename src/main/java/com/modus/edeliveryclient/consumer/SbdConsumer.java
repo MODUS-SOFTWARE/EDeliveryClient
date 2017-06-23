@@ -5,13 +5,12 @@
  */
 package com.modus.edeliveryclient.consumer;
 
-
-
 import com.google.gson.Gson;
 
 import com.modus.edelivery.utils.SBDMessageWrapper;
 
 import com.modus.edeliveryclient.exception.EDeliveryException;
+import com.modus.edeliveryclient.jaxb.requestGenerator.RequestBodyGenerator;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.REMDispatch;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
@@ -23,6 +22,7 @@ import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.models.ResponseModel;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serialize.TypeReference;
+import eu.noble.rem.jaxb.despatch.REMDispatchType;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -72,76 +72,76 @@ public class SbdConsumer extends BaseConsumer {
         this.messagesEndpoint = createPath(basepath, MESSAGESENDPOINT);
     }
 
-    public CompletableFuture<ResponseMessage> createOutgoingDefault(StandardBusinessDocumentHeader sbdh,
-            REMDispatch papDoc,
-            Authorization auth) throws JAXBException {
-        String authorizationHeader;
-        sbd = new StandardBusinessDocument();
-        ResponseMessage rm = new ResponseMessage();
-        try {
-            String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
-            String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));
-            authorizationHeader = "Basic " + authHeaderEncoded;
-        } catch (UnsupportedEncodingException e) {
-            throw new EDeliveryException(e);
-        }
-
-        JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
+//    public CompletableFuture<ResponseMessage> createOutgoingDefault(StandardBusinessDocumentHeader sbdh,
+//            REMDispatch papDoc,
+//            Authorization auth) {
+//        String authorizationHeader;
+//        sbd = new StandardBusinessDocument();
+//        ResponseMessage rm = new ResponseMessage();
+//        try {
+//            String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
+//            String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));
+//            authorizationHeader = "Basic " + authHeaderEncoded;
+//        } catch (UnsupportedEncodingException e) {
+//            throw new EDeliveryException(e);
+//        }
+//
+//        JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
 //        this.jaxbMarshaller = jaxbContext.createMarshaller();
-        Marshaller marshaller = jaxbContext.createMarshaller();
-        try {
-            sbd.setStandardBusinessDocumentHeader(sbdh);
-            sbd.setAny(papDoc);
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        marshaller.marshal(sbd, outputStream);
-        return httpClient.preparePost(sendEndpoind)
-                .addHeader("Content-Type", "application/xml")
-                .addHeader("Authorization", authorizationHeader)
-                .setBody(outputStream.toByteArray())
-                .execute()
-                .toCompletableFuture()
-                .exceptionally(t -> {
-                    throw new EDeliveryException(t);
-                })
-                .thenApply(resp -> {
-                    int status = resp.getStatusCode();
-
-                    switch (status) {
-                        case 201:
-                            rm.setStatus(201);
-                            rm.setMessage("Participant created");
-                            break;
-                        case 202:
-                            rm.setStatus(202);
-                            rm.setMessage("Created");
-                            break;
-                        case 400:
-                            rm.setStatus(400);
-                            rm.setMessage("Bad Request");
-                            break;
-                        case 401:
-                            rm.setStatus(401);
-                            rm.setMessage(resp.getResponseBody());
-                            break;
-                        case 406:
-                            rm.setStatus(406);
-                            rm.setMessage("Message not in the right format");
-                            break;
-                        case 500:
-                            rm.setStatus(500);
-                            rm.setMessage("Internal server error from AP connector");
-                            break;
-                    }
-                    return rm;
-                });
-
-    }
+//        Marshaller marshaller = jaxbContext.createMarshaller();
+//        try {
+//            sbd.setStandardBusinessDocumentHeader(sbdh);
+//            sbd.setAny(papDoc);
+//            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//            marshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//        marshaller.marshal(sbd, outputStream);
+//        return httpClient.preparePost(sendEndpoind)
+//                .addHeader("Content-Type", "application/xml")
+//                .addHeader("Authorization", authorizationHeader)
+//                .setBody(outputStream.toByteArray())
+//                .execute()
+//                .toCompletableFuture()
+//                .exceptionally(t -> {
+//                    throw new EDeliveryException(t);
+//                })
+//                .thenApply(resp -> {
+//                    int status = resp.getStatusCode();
+//
+//                    switch (status) {
+//                        case 201:
+//                            rm.setStatus(201);
+//                            rm.setMessage("Participant created");
+//                            break;
+//                        case 202:
+//                            rm.setStatus(202);
+//                            rm.setMessage("Created");
+//                            break;
+//                        case 400:
+//                            rm.setStatus(400);
+//                            rm.setMessage("Bad Request");
+//                            break;
+//                        case 401:
+//                            rm.setStatus(401);
+//                            rm.setMessage(resp.getResponseBody());
+//                            break;
+//                        case 406:
+//                            rm.setStatus(406);
+//                            rm.setMessage("Message not in the right format");
+//                            break;
+//                        case 500:
+//                            rm.setStatus(500);
+//                            rm.setMessage("Internal server error from AP connector");
+//                            break;
+//                    }
+//                    return rm;
+//                });
+//
+//    }
 
     public CompletableFuture<Object> getMessageDefault(String messageId,
             Authorization auth) throws JAXBException {
@@ -188,125 +188,112 @@ public class SbdConsumer extends BaseConsumer {
                 });
 
     }
-	
 
-	public CompletableFuture<ResponseMessage> createOutgoingDefault(StandardBusinessDocumentHeader sbdh, String payload,
-			Authorization auth) throws JAXBException {
-		String authorizationHeader;
-		sbd = new StandardBusinessDocument();
-		ResponseMessage rm = new ResponseMessage();
-		try {
-			String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
-			String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));
-			authorizationHeader = "Basic " + authHeaderEncoded;
-		} catch (UnsupportedEncodingException e) {
-			throw new EDeliveryException(e);
-		}
+    public CompletableFuture<ResponseMessage> createOutgoingDefault(StandardBusinessDocumentHeader sbdh, REMDispatchType remType,
+            Authorization auth) {
+        String authorizationHeader;
+        String requestBody;
+        RequestBodyGenerator rbg = new RequestBodyGenerator();
+        ResponseMessage rm = new ResponseMessage();
+        try {
+            String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
+            String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));
+            authorizationHeader = "Basic " + authHeaderEncoded;
+        } catch (UnsupportedEncodingException e) {
+            throw new EDeliveryException(e);
+        }
 
-		JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
-		Marshaller marshaller = jaxbContext.createMarshaller();
-		try {
-			sbd.setStandardBusinessDocumentHeader(sbdh);
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			marshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
+        requestBody = rbg.generateBody(sbdh, remType);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		StringWriter outputStream = new StringWriter();
-		marshaller.marshal(sbd, outputStream);
-		SBDMessageWrapper sdbWrap = new SBDMessageWrapper();
-		sdbWrap.setSBDMessageStr(outputStream.toString());
-		sdbWrap.appendPayload(payload);
-//		LOG.log(Level.FINE, sdbWrap.getSBDMessageStr());
-		return httpClient.preparePost(sendEndpoind).addHeader("Content-Type", "application/xml")
-				.addHeader("Authorization", authorizationHeader).setBody(sdbWrap.getSBDMessageStr()).execute()
-				.toCompletableFuture().exceptionally(t -> {
-					throw new EDeliveryException(t);
-				}).thenApply(resp -> {
-					int status = resp.getStatusCode();
 
-					switch (status) {
-					case 201:
-						rm.setStatus(201);
-						rm.setMessage("Participant created");
-						break;
-					case 202:
-						rm.setStatus(202);
-						rm.setMessage("Created");
-						break;
-					case 400:
-						rm.setStatus(400);
-						rm.setMessage("Bad Request");
-						break;
-					case 401:
-						rm.setStatus(401);
-						rm.setMessage(resp.getResponseBody());
-						break;
-					case 406:
-						rm.setStatus(406);
-						rm.setMessage("Message not in the right format");
-						break;
-					case 500:
-						rm.setStatus(500);
-						rm.setMessage("Internal server error from AP connector");
-						break;
-					}
-					return rm;
-				});
+        return httpClient.preparePost(sendEndpoind).addHeader("Content-Type", "application/xml")
+                .addHeader("Authorization", authorizationHeader).setBody(requestBody).execute()
+                .toCompletableFuture().exceptionally(t -> {
+                    throw new EDeliveryException(t);
+                }).thenApply(resp -> {
+            int status = resp.getStatusCode();
 
-	}
+            switch (status) {
+                case 201:
+                    rm.setStatus(201);
+                    rm.setMessage("Participant created");
+                    break;
+                case 202:
+                    rm.setStatus(202);
+                    rm.setMessage("Created");
+                    break;
+                case 400:
+                    rm.setStatus(400);
+                    rm.setMessage("Bad Request");
+                    break;
+                case 401:
+                    rm.setStatus(401);
+                    rm.setMessage(resp.getResponseBody());
+                    break;
+                case 406:
+                    rm.setStatus(406);
+                    rm.setMessage("Message not in the right format");
+                    break;
+                case 500:
+                    rm.setStatus(500);
+                    rm.setMessage("Internal server error from AP connector");
+                    break;
+            }
+            return rm;
+        });
 
-	public CompletableFuture<ResponseMessage> sendMessafeDefault(String sbdStr, Authorization auth)
-			throws JAXBException {
-		String authorizationHeader;
-		sbd = new StandardBusinessDocument();
-		ResponseMessage rm = new ResponseMessage();
-		try {
-			String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
-			String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));
-			authorizationHeader = "Basic " + authHeaderEncoded;
-		} catch (UnsupportedEncodingException e) {
-			throw new EDeliveryException(e);
-		}
+    }
 
-		return httpClient.preparePost(sendEndpoind).addHeader("Content-Type", "application/xml")
-				.addHeader("Authorization", authorizationHeader).setBody(sbdStr).execute().toCompletableFuture()
-				.exceptionally(t -> {
-					throw new EDeliveryException(t);
-				}).thenApply(resp -> {
-					int status = resp.getStatusCode();
+    public CompletableFuture<ResponseMessage> sendMessafeDefault(String sbdStr, Authorization auth)
+            throws JAXBException {
+        String authorizationHeader;
+        sbd = new StandardBusinessDocument();
+        ResponseMessage rm = new ResponseMessage();
+        try {
+            String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
+            String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));
+            authorizationHeader = "Basic " + authHeaderEncoded;
+        } catch (UnsupportedEncodingException e) {
+            throw new EDeliveryException(e);
+        }
 
-					switch (status) {
-					case 201:
-						rm.setStatus(201);
-						rm.setMessage("Participant created");
-						break;
-					case 202:
-						rm.setStatus(202);
-						rm.setMessage("Created");
-						break;
-					case 400:
-						rm.setStatus(400);
-						rm.setMessage("Bad Request");
-						break;
-					case 401:
-						rm.setStatus(401);
-						rm.setMessage(resp.getResponseBody());
-						break;
-					case 406:
-						rm.setStatus(406);
-						rm.setMessage("Message not in the right format");
-						break;
-					case 500:
-						rm.setStatus(500);
-						rm.setMessage("Internal server error from AP connector");
-						break;
-					}
-					return rm;
-				});
+        return httpClient.preparePost(sendEndpoind).addHeader("Content-Type", "application/xml")
+                .addHeader("Authorization", authorizationHeader).setBody(sbdStr).execute().toCompletableFuture()
+                .exceptionally(t -> {
+                    throw new EDeliveryException(t);
+                }).thenApply(resp -> {
+            int status = resp.getStatusCode();
 
-	}
+            switch (status) {
+                case 201:
+                    rm.setStatus(201);
+                    rm.setMessage("Participant created");
+                    break;
+                case 202:
+                    rm.setStatus(202);
+                    rm.setMessage("Created");
+                    break;
+                case 400:
+                    rm.setStatus(400);
+                    rm.setMessage("Bad Request");
+                    break;
+                case 401:
+                    rm.setStatus(401);
+                    rm.setMessage(resp.getResponseBody());
+                    break;
+                case 406:
+                    rm.setStatus(406);
+                    rm.setMessage("Message not in the right format");
+                    break;
+                case 500:
+                    rm.setStatus(500);
+                    rm.setMessage("Internal server error from AP connector");
+                    break;
+            }
+            return rm;
+        });
+
+    }
 
 //	public CompletableFuture<Object> getMessageDefault(String messageId, Authorization auth) throws JAXBException {
 //		String authorizationHeader;
@@ -363,7 +350,6 @@ public class SbdConsumer extends BaseConsumer {
 //				});
 //
 //	}
-
 //    public CompletableFuture<Messages> getMesaggesPending(Authorization auth) {
 //
 //        String messagesUri = messagesEndpoint;
@@ -384,14 +370,13 @@ public class SbdConsumer extends BaseConsumer {
 //                });
 //
 //    }
-    
     public CompletableFuture<Messages> getMesaggesPending(Authorization auth) {
 
         String authorizationHeader;
         String messagesAll = messagesEndpoint;
         Messages msg = new Messages();
         Object obj = new Object();
-        
+
         try {
             String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
             String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));

@@ -46,12 +46,13 @@ import org.w3c.dom.Element;
     "any"
 })
 @XmlRootElement( name = "StandardBusinessDocument")
-@XmlSeeAlso({REMDispatchType.class})
+//@XmlSeeAlso({REMDispatchType.class})
 public class StandardBusinessDocument {
 
     @XmlElement(name = "StandardBusinessDocumentHeader")
     protected StandardBusinessDocumentHeader standardBusinessDocumentHeader;
     @XmlAnyElement(lax = true)
+//    @XmlElement(name = "RemDispatch")
     protected Object any;
 
     /**

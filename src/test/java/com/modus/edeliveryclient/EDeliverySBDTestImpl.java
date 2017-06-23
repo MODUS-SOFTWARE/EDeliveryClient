@@ -18,6 +18,7 @@ import com.modus.edeliveryclient.models.MessageId;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serializer.JacksonSerializer;
+import eu.noble.rem.jaxb.despatch.REMDispatchType;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,6 +49,8 @@ public class EDeliverySBDTestImpl {
     private static StandardBusinessDocument sbd;
     private static StandardBusinessDocumentHeader sbdh;
 
+    private static REMDispatchType remType;
+    
     private final Authorization auth;
     private final Authorization wrongAuth;
 
@@ -94,9 +97,9 @@ public class EDeliverySBDTestImpl {
     public void shouldPostOutgoinMessage() throws InterruptedException, ExecutionException, JAXBException, IOException {
 
     	File filePayload = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\RemDispatchWithSaml1.xml");
-    	 String payload = new String(Files.readAllBytes(filePayload.toPath())); //load payload.
+    	String payload = new String(Files.readAllBytes(filePayload.toPath())); //load payload.
         CompletableFuture<ResponseMessage> result = deliveryClient
-                .createOutgoingDefaultImpl(sbdh, payload, auth);
+                .createOutgoingDefaultImpl(sbdh, remType, auth);
         System.out.println(result.get().getStatus());
     }
 

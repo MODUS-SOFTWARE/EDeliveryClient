@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AcceptanceRejectionByRecipient xmlns="http://uri.etsi.org/02640/v2#"
+
+                                xmlns:ns2="http://uri.etsi.org/02231/v2#"
+                                xmlns:ns3="http://www.w3.org/2000/09/xmldsig#"
+                                xmlns:ns4="http://uri.etsi.org/01903/v1.3.2#"
+                                xmlns:ns5="urn:oasis:names:tc:SAML:2.0:assertion"
+                                xmlns:ns6="http://www.w3.org/2001/04/xmlenc#">
+    <EventCode>http//:uri.etsi.org/REM/Event#Acceptance</EventCode>
+    <EventReasons>
+        <EventReason>
+            <Code>code</Code>
+            <Details>details</Details>
+        </EventReason>
+    </EventReasons>
+    <EvidenceIdentifier>InstanceIdentifier</EvidenceIdentifier>
+    <EvidenceIssuerDetails>
+        <NamesPostalAddresses>
+            <NamePostalAddress>
+                <PostalAddress xml:lang="Gr">
+                    <Locality>Gr</Locality>
+                    <StateOrProvince>stateOrProvince</StateOrProvince>
+                    <PostalCode>11111</PostalCode>
+                    <CountryName>Greece</CountryName>
+                </PostalAddress>
+            </NamePostalAddress>
+        </NamesPostalAddresses>
+    </EvidenceIssuerDetails>
+    <ReplyTo>Reply to</ReplyTo>
+</AcceptanceRejectionByRecipient>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><REMDispatch xmlns="http://uri.etsi.org/02640/soapbinding/v1#" xmlns:ns2="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns3="http://uri.etsi.org/02640/v2#" xmlns:ns4="http://uri.etsi.org/02231/v2#" xmlns:ns5="http://www.w3.org/2000/09/xmldsig#" xmlns:ns6="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns7="http://www.w3.org/2001/04/xmlenc#" xmlns:ns9="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" Id="123-=123-123">
+    <MsgMetaData>
+        <DeliveryConstraints>
+            <Origin>2017-06-21T15:22:19.337+03:00</Origin>
+            <InitialSend>2017-06-21T15:22:19.337+03:00</InitialSend>
+            <ObsoleteAfter>2017-06-21+03:00</ObsoleteAfter>
+        </DeliveryConstraints>
+        <Destinations>
+            <Recipient>
+                <ns3:NamesPostalAddresses>
+                    <ns3:NamePostalAddress>
+                        <ns3:PostalAddress xml:lang="Greek">
+                            <ns3:Locality>gr</ns3:Locality>
+                            <ns3:StateOrProvince>stateOrProvince</ns3:StateOrProvince>
+                            <ns3:PostalCode>postalCode</ns3:PostalCode>
+                            <ns3:CountryName>Greece</ns3:CountryName>
+                        </ns3:PostalAddress>
+                    </ns3:NamePostalAddress>
+                </ns3:NamesPostalAddresses>
+            </Recipient>
+        </Destinations>
+        <MsgIdentification>
+            <Message-ID>as-12-cdv-qw-2</Message-ID>
+        </MsgIdentification>
+    </MsgMetaData>
+    <OriginalMsg ContentType="ContentType" Size="1">QSB0ZXN0IGRvY3VtZW50IHRvIGJlIHNlbmQgYW5kIHJlY2VpdmVkIGZyb20gYW4KIFNCQiAtIENJUEEgQmFja2VuZCBDb25uZWN0b3Igd2l0aCBBUCBhbmQgU01QCg==</OriginalMsg>
+    <NormalizedMsg>
+        <Informational>
+            <Subject>Subbject</Subject>
+            <Comments>Comments</Comments>
+        </Informational>
+    </NormalizedMsg>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <SignedInfo>
+        <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+        <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+        <Reference URI="">
+            <Transforms>
+                <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+            </Transforms>
+            <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+            <DigestValue>klo/swCFjpERa+xQL/hhUHbPKmY=</DigestValue>
+        </Reference>
+    </SignedInfo>
+    <SignatureValue>CcEwZe1OpicUan0hdQ5xCUD57jsd82YI0+JBKUQxj3vb4kaYycFUtQ==</SignatureValue>
+    <KeyInfo>
+        <X509Data>
+            <X509SubjectName>CN=modus,OU=modus,O=modus,L=Athens,ST=Athens,C=gr</X509SubjectName>
+            <X509Certificate>MIIDHDCCAtmgAwIBAgIEAv0rsTALBgcqhkjOOAQDBQAwXzELMAkGA1UEBhMCZ3IxDzANBgNVBAgT
+                        BkF0aGVuczEPMA0GA1UEBxMGQXRoZW5zMQ4wDAYDVQQKEwVtb2R1czEOMAwGA1UECxMFbW9kdXMx
+                        DjAMBgNVBAMTBW1vZHVzMB4XDTE3MDYwNzA5MzYzM1oXDTE3MDkwNTA5MzYzM1owXzELMAkGA1UE
+                        BhMCZ3IxDzANBgNVBAgTBkF0aGVuczEPMA0GA1UEBxMGQXRoZW5zMQ4wDAYDVQQKEwVtb2R1czEO
+                        MAwGA1UECxMFbW9kdXMxDjAMBgNVBAMTBW1vZHVzMIIBuDCCASwGByqGSM44BAEwggEfAoGBAP1/
+                        U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00
+                        b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNaFpEy9nXzrith
+                        1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA9+GghdabPd7LvKtcNrhXuXmU
+                        r7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOu
+                        HiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYUA
+                        AoGBAJzSV3JzuQ1HhWX0PiWt3/afXX+PiEQANDvjBHD1jIdlj/OMn+jxDAPRcH9FG2JlC7Yqlcsx
+                        P0+id/mpYymEYtD0a473wELffu4t09z0iIZgpWcHnGwOa0zga+tk8WDqGDkwA1PTFn9A9yZRIP16
+                        HQ1mqeWNGKDY8PxLUhIRZilWoyEwHzAdBgNVHQ4EFgQUYpJ8mYG0BIhRZeRRce2PJ6AKvMEwCwYH
+                        KoZIzjgEAwUAAzAAMC0CFQCUXk5sJB/IzGeh9x4JUztTWNDHRgIUKrjt8Zwya4XOnYLpAUdBg7Zp
+            W0g=</X509Certificate>
+        </X509Data>
+    </KeyInfo>
+</Signature>
+</REMDispatch>

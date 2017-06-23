@@ -35,6 +35,10 @@ public class StandardBusinessDocumentHeaderGenerator {
 //    StandardBusinessDocumentWrapper businessDocument = new StandardBusinessDocumentWrapper();
     SBDHFactory headerFactory = new SBDHFactory();
 
+    public StandardBusinessDocumentHeaderGenerator(){}
+    
+    
+    
     public StandardBusinessDocumentHeader generateDocumentHeaderfromValues(float headerVersion,
             String participantIdentifierSenderScheme, String participantIdentifierSenderValue,
             String participantIdentifierReceiverScheme, String participantIdentifierReceiverValue,
@@ -125,11 +129,7 @@ public class StandardBusinessDocumentHeaderGenerator {
 
     }
 
-//    public StandardBusinessDocumentHeader generateDocumentHeaderfromClass(){
-//        
-//        
-//        
-//        
-//        
-//    }
+    
+    
+    
 }

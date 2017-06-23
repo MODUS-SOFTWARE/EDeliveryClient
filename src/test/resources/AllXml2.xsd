@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<StandardBusinessDocument xmlns="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:ns2="http://uri.etsi.org/02640/v2#" xmlns:ns3="http://uri.etsi.org/02231/v2#" xmlns:ns4="http://www.w3.org/2000/09/xmldsig#" xmlns:ns5="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns6="http://uri.etsi.org/02640/soapbinding/v1#" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:ns8="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns9="http://www.w3.org/2001/04/xmlenc#">
+    <StandardBusinessDocumentHeader>
+        <HeaderVersion>1.0</HeaderVersion>
+        <Sender>
+            <Identifier Authority="iso6523-actorid-upis">9933:test1</Identifier>
+        </Sender>
+        <Receiver>
+            <Identifier Authority="iso6523-actorid-upis">9933:test1</Identifier>
+        </Receiver>
+        <DocumentIdentification>
+            <Standard>http://uri.etsi.org/02640/soapbinding/v2#</Standard>
+            <TypeVersion>2</TypeVersion>
+            <InstanceIdentifier>e275dd1d-f636-4c46-a4f4-489f162e334f</InstanceIdentifier>
+            <Type>REMDispatch</Type>
+            <CreationDateAndTime>2017-06-22T00:00:00.000+03:00</CreationDateAndTime>
+        </DocumentIdentification>
+        <Manifest>
+            <NumberOfItems>1</NumberOfItems>
+            <ManifestItem>
+                <MimeTypeQualifierCode>maniTypeQualCode</MimeTypeQualifierCode>
+                <UniformResourceIdentifier>UniformResourceIdentifier</UniformResourceIdentifier>
+                <Description>manifestDescr</Description>
+                <LanguageCode>manifestLanguage</LanguageCode>
+            </ManifestItem>
+        </Manifest>
+        <BusinessScope>
+            <Scope>
+                <Type>DOCUMENTID</Type>
+                <InstanceIdentifier> http://uri.etsi.org/02640/soapbinding/v2#::REMDispatch:2</InstanceIdentifier>
+            </Scope>
+            <Scope>
+                <Type>PROCESSID</Type>
+                <InstanceIdentifier>urn:cef-eDelivery.europa.eu::generalERDS:ver1.0</InstanceIdentifier>
+            </Scope>
+        </BusinessScope>
+    </StandardBusinessDocumentHeader>
+    <ns6:REMDispatch Id="123-=123-123">
+        <ns6:MsgMetaData>
+            <ns6:DeliveryConstraints>
+                <ns6:Origin>2017-06-21T15:22:19.337+03:00</ns6:Origin>
+                <ns6:InitialSend>2017-06-21T15:22:19.337+03:00</ns6:InitialSend>
+                <ns6:ObsoleteAfter>2017-06-21+03:00</ns6:ObsoleteAfter>
+            </ns6:DeliveryConstraints>
+            <ns6:Destinations>
+                <ns6:Recipient>
+                    <ns2:NamesPostalAddresses>
+                        <ns2:NamePostalAddress>
+                            <ns2:PostalAddress xml:lang="Greek">
+                                <ns2:Locality>gr</ns2:Locality>
+                                <ns2:StateOrProvince>stateOrProvince</ns2:StateOrProvince>
+                                <ns2:PostalCode>postalCode</ns2:PostalCode>
+                                <ns2:CountryName>Greece</ns2:CountryName>
+                            </ns2:PostalAddress>
+                        </ns2:NamePostalAddress>
+                    </ns2:NamesPostalAddresses>
+                </ns6:Recipient>
+            </ns6:Destinations>
+            <ns6:MsgIdentification>
+                <ns6:Message-ID>as-12-cdv-qw-2</ns6:Message-ID>
+            </ns6:MsgIdentification>
+        </ns6:MsgMetaData>
+        <ns6:OriginalMsg ContentType="ContentType" Size="1">QSB0ZXN0IGRvY3VtZW50IHRvIGJlIHNlbmQgYW5kIHJlY2VpdmVkIGZyb20gYW4KIFNCQiAtIENJUEEgQmFja2VuZCBDb25uZWN0b3Igd2l0aCBBUCBhbmQgU01QCg==</ns6:OriginalMsg>
+        <ns6:NormalizedMsg>
+            <ns6:Informational>
+                <ns6:Subject>Subbject</ns6:Subject>
+                <ns6:Comments>Comments</ns6:Comments>
+            </ns6:Informational>
+        </ns6:NormalizedMsg>
+        <ns4:Signature>
+            <ns4:SignedInfo>
+                <ns4:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+                <ns4:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+                <ns4:Reference URI="">
+                    <ns4:Transforms>
+                        <ns4:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                    </ns4:Transforms>
+                    <ns4:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+                    <ns4:DigestValue>klo/swCFjpERa+xQL/hhUHbPKmY=</ns4:DigestValue>
+                </ns4:Reference>
+            </ns4:SignedInfo>
+            <ns4:SignatureValue>CcEwZe1OpicUan0hdQ5xCUD57jsd82YI0+JBKUQxj3vb4kaYycFUtQ==</ns4:SignatureValue>
+            <ns4:KeyInfo>
+        <ns4:X509Data><ns4:X509SubjectName>CN=modus,OU=modus,O=modus,L=Athens,ST=Athens,C=gr</ns4:X509SubjectName><ns4:X509Certificate>MIIDHDCCAtmgAwIBAgIEAv0rsTALBgcqhkjOOAQDBQAwXzELMAkGA1UEBhMCZ3IxDzANBgNVBAgTBkF0aGVuczEPMA0GA1UEBxMGQXRoZW5zMQ4wDAYDVQQKEwVtb2R1czEOMAwGA1UECxMFbW9kdXMxDjAMBgNVBAMTBW1vZHVzMB4XDTE3MDYwNzA5MzYzM1oXDTE3MDkwNTA5MzYzM1owXzELMAkGA1UEBhMCZ3IxDzANBgNVBAgTBkF0aGVuczEPMA0GA1UEBxMGQXRoZW5zMQ4wDAYDVQQKEwVtb2R1czEOMAwGA1UECxMFbW9kdXMxDjAMBgNVBAMTBW1vZHVzMIIBuDCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNaFpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYUAAoGBAJzSV3JzuQ1HhWX0PiWt3/afXX+PiEQANDvjBHD1jIdlj/OMn+jxDAPRcH9FG2JlC7YqlcsxP0+id/mpYymEYtD0a473wELffu4t09z0iIZgpWcHnGwOa0zga+tk8WDqGDkwA1PTFn9A9yZRIP16HQ1mqeWNGKDY8PxLUhIRZilWoyEwHzAdBgNVHQ4EFgQUYpJ8mYG0BIhRZeRRce2PJ6AKvMEwCwYHKoZIzjgEAwUAAzAAMC0CFQCUXk5sJB/IzGeh9x4JUztTWNDHRgIUKrjt8Zwya4XOnYLpAUdBg7ZpW0g=</ns4:X509Certificate></ns4:X509Data>
+    </ns4:KeyInfo>
+        </ns4:Signature>
+    </ns6:REMDispatch>
+</StandardBusinessDocument>

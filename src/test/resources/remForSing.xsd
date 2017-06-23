@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><ns2:REMDispatch xmlns:ns2="http://uri.etsi.org/02640/soapbinding/v1#" xmlns="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:ns3="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns4="http://uri.etsi.org/02640/v2#" xmlns:ns5="http://uri.etsi.org/02231/v2#" xmlns:ns6="http://www.w3.org/2000/09/xmldsig#" xmlns:ns7="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns8="http://www.w3.org/2001/04/xmlenc#" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" Id="String id">
+    <ns2:MsgMetaData>
+        <ns2:DeliveryConstraints>
+            <ns2:Origin>2017-06-21T15:21:33.608+03:00</ns2:Origin>
+            <ns2:InitialSend>2017-06-21T15:21:33.608+03:00</ns2:InitialSend>
+            <ns2:ObsoleteAfter>2017-06-21+03:00</ns2:ObsoleteAfter>
+        </ns2:DeliveryConstraints>
+        <ns2:Destinations>
+            <ns2:Recipient>
+                <ns4:NamesPostalAddresses>
+                    <ns4:NamePostalAddress>
+                        <ns4:PostalAddress xml:lang="Greek">
+                            <ns4:Locality>gr</ns4:Locality>
+                            <ns4:StateOrProvince>stateOrProvince</ns4:StateOrProvince>
+                            <ns4:PostalCode>postalCode</ns4:PostalCode>
+                            <ns4:CountryName>Greece</ns4:CountryName>
+                        </ns4:PostalAddress>
+                    </ns4:NamePostalAddress>
+                </ns4:NamesPostalAddresses>
+            </ns2:Recipient>
+        </ns2:Destinations>
+        <ns2:MsgIdentification>
+            <ns2:Message-ID>as-12-cdv-qw-2</ns2:Message-ID>
+        </ns2:MsgIdentification>
+    </ns2:MsgMetaData>
+    <ns2:OriginalMsg ContentType="txt" Size="10">QSB0ZXN0IGRvY3VtZW50IHRvIGJlIHNlbmQgYW5kIHJlY2VpdmVkIGZyb20gYW4KIFNCQiAtIENJUEEgQmFja2VuZCBDb25uZWN0b3Igd2l0aCBBUCBhbmQgU01QCg==</ns2:OriginalMsg>
+    <ns2:NormalizedMsg>
+        <ns2:Informational>
+            <ns2:Subject>Subject to be seen for test</ns2:Subject>
+            <ns2:Comments>Comments to be seen for test</ns2:Comments>
+        </ns2:Informational>
+    </ns2:NormalizedMsg>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>u+MMe7Yr49Kunyzj0E0TQMBxyHE=</DigestValue></Reference></SignedInfo><SignatureValue>MvSLSq2CY8SCMy5dsq/vSViDXAwaUcKIxdk2X2jaxVUWhTBMAmaTLA==</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=modus,OU=modus,O=modus,L=Athens,ST=Athens,C=gr</X509SubjectName><X509Certificate>MIIDHDCCAtmgAwIBAgIEAv0rsTALBgcqhkjOOAQDBQAwXzELMAkGA1UEBhMCZ3IxDzANBgNVBAgT
+BkF0aGVuczEPMA0GA1UEBxMGQXRoZW5zMQ4wDAYDVQQKEwVtb2R1czEOMAwGA1UECxMFbW9kdXMx
+DjAMBgNVBAMTBW1vZHVzMB4XDTE3MDYwNzA5MzYzM1oXDTE3MDkwNTA5MzYzM1owXzELMAkGA1UE
+BhMCZ3IxDzANBgNVBAgTBkF0aGVuczEPMA0GA1UEBxMGQXRoZW5zMQ4wDAYDVQQKEwVtb2R1czEO
+MAwGA1UECxMFbW9kdXMxDjAMBgNVBAMTBW1vZHVzMIIBuDCCASwGByqGSM44BAEwggEfAoGBAP1/
+U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00
+b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNaFpEy9nXzrith
+1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA9+GghdabPd7LvKtcNrhXuXmU
+r7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOu
+HiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYUA
+AoGBAJzSV3JzuQ1HhWX0PiWt3/afXX+PiEQANDvjBHD1jIdlj/OMn+jxDAPRcH9FG2JlC7Yqlcsx
+P0+id/mpYymEYtD0a473wELffu4t09z0iIZgpWcHnGwOa0zga+tk8WDqGDkwA1PTFn9A9yZRIP16
+HQ1mqeWNGKDY8PxLUhIRZilWoyEwHzAdBgNVHQ4EFgQUYpJ8mYG0BIhRZeRRce2PJ6AKvMEwCwYH
+KoZIzjgEAwUAAzAAMC0CFQCUXk5sJB/IzGeh9x4JUztTWNDHRgIUKrjt8Zwya4XOnYLpAUdBg7Zp
+W0g=</X509Certificate></X509Data></KeyInfo></Signature></ns2:REMDispatch>

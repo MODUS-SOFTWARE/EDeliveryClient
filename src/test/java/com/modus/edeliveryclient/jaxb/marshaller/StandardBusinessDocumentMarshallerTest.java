@@ -18,13 +18,17 @@ import com.modus.edeliveryclient.jaxb.standardbusinessdocument.REMDispatch;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
+import eu.noble.rem.jaxb.despatch.OriginalMsgType;
+import eu.noble.rem.jaxb.despatch.REMDispatchType;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.math.BigInteger;
 import java.nio.file.Files;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -79,18 +83,31 @@ public class StandardBusinessDocumentMarshallerTest {
     // @Test
     // public void hello() {}
     
-//    @Test
+    @Test
     public void generateHeaderXml() throws JAXBException {
         //File file = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
-    	File file = new File("./EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
+    	File file = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
         try {
 //            prefixMapper = new MyPrefixMapper();
-            JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class,
+                    eu.noble.rem.jaxb.despatch.ObjectFactory.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             sbd.setStandardBusinessDocumentHeader(sbdh);
+            REMDispatchType remType = new REMDispatchType();
+            remType.setId("11111");
+            OriginalMsgType omt = new OriginalMsgType();
+            omt.setContentType("sadcf");
+            omt.setSize(BigInteger.ONE);
+            remType.setOriginalMsg(omt);
+            remDisp.setRemType(remType);
+            
+            
+            
+            eu.noble.rem.jaxb.despatch.ObjectFactory rem = new eu.noble.rem.jaxb.despatch.ObjectFactory();
+            JAXBElement<REMDispatchType> re1 = rem.createREMDispatch(remType);
 //            remDisp.setFormat(".txt");
 //            remDisp.setActualDoc("Aqsdqwedikbn`1@!~#4!!@qwdsf!@#^6b1%^$%&*BDBFG@#$78DFBHQENT^*()$ADSFC");
-            sbd.setAny(remDisp);
+            sbd.setAny(re1);
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
 //            try{
@@ -111,48 +128,6 @@ public class StandardBusinessDocumentMarshallerTest {
     }
     
     
-//    @Test
-//    public void appendPayload() throws JAXBException, IOException {
-//        //File file = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
-//    	File file = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\standardBusinessDocumentAllXMLtest.xml");
-//        //File filePayload = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/RemDispatchWithSaml1.xml");
-//    	File filePayload = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\RemDispatchWithSaml1.xml");
-//        //File fileOuput = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/StandardBusinessDocumentWithRemDispatchWithSaml1.xml");
-//    	File fileOuput = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\StandardBusinessDocumentWithRemDispatchWithSaml1.xml");
-//        String payload = new String(Files.readAllBytes(filePayload.toPath())); //load payload.
-//        StringWriter sw = new StringWriter();
-//        try {
-////            prefixMapper = new MyPrefixMapper();
-//            JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
-//            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-//            sbd.setStandardBusinessDocumentHeader(sbdh);
-//            //sbd.setAny();
-//            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-//            jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
-////            try{
-////                jaxbMarshaller.setProperty("com.sun.xml.bind.marshaller.namespacePrefixMapper", prefixMapper);
-////            }catch(Exception e){
-////                e.printStackTrace();
-////            }
-//            //jaxbMarshaller.marshal(sbd, file);
-//            jaxbMarshaller.marshal(sbd, sw);
-//            SBDMessageWrapper sbdWrapper = new SBDMessageWrapper();
-//            sbdWrapper.setSBDMessageStr(sw.toString());
-//            sbdWrapper.appendPayload(payload);
-//            //System.out.println(sbdWrapper.getSBDMessageStr());
-//            PrintWriter out = new PrintWriter(fileOuput);
-//            try{
-//            	out.print(sbdWrapper.getSBDMessageStr());out.flush();
-//            }
-//            finally{
-//            	out.close();
-//            }
-//            
-//        } catch (JAXBException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
     
     
     

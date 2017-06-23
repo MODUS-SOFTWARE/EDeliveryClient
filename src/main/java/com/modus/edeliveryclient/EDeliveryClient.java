@@ -12,6 +12,7 @@ import com.modus.edeliveryclient.models.Messages;
 import com.modus.edeliveryclient.models.MessageId;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.models.SBDParams;
+import eu.noble.rem.jaxb.despatch.REMDispatchType;
 
 
 import java.net.MalformedURLException;
@@ -30,7 +31,7 @@ public interface EDeliveryClient {
 
     public CompletableFuture<ResponseMessage> deleteParticipantId(String participantIdentifierScheme, String participantIdentifierValue, Authorization auth);
 
-    public CompletableFuture<ResponseMessage> createOutgoingDefaultImpl(StandardBusinessDocumentHeader sbdh, String payload, Authorization auth) throws JAXBException;
+    public CompletableFuture<ResponseMessage> createOutgoingDefaultImpl(StandardBusinessDocumentHeader sbdh, REMDispatchType remType, Authorization auth);
 
 //    public CompletableFuture<ResponseMessage> sendMessage(SBDParams sbdParams,MessageParams params, Authorization auth) throws JAXBException, MalformedURLException, DatatypeConfigurationException;
     
