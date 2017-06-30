@@ -18,7 +18,7 @@ import javax.xml.bind.JAXBElement;
 public class RemMessageHelper {
 
     public REMMDMessageType createMessage(String messageId,
-            REMEvidenceType evid, SignatureType signature) {
+            REMEvidenceType evid) {
 
         eu.noble.rem.jaxb.despatch.ObjectFactory of = new eu.noble.rem.jaxb.despatch.ObjectFactory();
         
@@ -31,7 +31,7 @@ public class RemMessageHelper {
         JAXBElement<REMEvidenceType> e = of2.createAcceptanceRejectionByRecipient(evid);
         remList.getSubmissionAcceptanceRejectionAndRelayREMMDAcceptanceRejectionAndRelayREMMDFailure().add(e);
         remMessage.setREMMDEvidenceList(remList);
-        remMessage.setSignature(signature);
+//        remMessage.setSignature(signature);
         
         
         return remMessage;

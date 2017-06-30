@@ -5,6 +5,7 @@
  */
 package com.modus.edeliveryclient.models;
 
+import java.io.File;
 import java.util.Collection;
 
 /**
@@ -21,6 +22,25 @@ public class ResponseModel<E> {
     private String messageTitle;
     private String processMessage;
     private int total; //totalproperty
+
+    private Boolean validated;
+    private String response;
+
+    public Boolean getValidated() {
+        return validated;
+    }
+
+    public void setValidated(Boolean validated) {
+        this.validated = validated;
+    }
+
+    public String getResponse() {
+        return response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
+    }
 
     public boolean isSuccess() {
         return success;
@@ -45,7 +65,6 @@ public class ResponseModel<E> {
 //    public void setMetaData(MetaDataModel metaData) {
 //        this.metaData = metaData;
 //    }
-
     public E getSimpleData() {
         return simpleData;
     }

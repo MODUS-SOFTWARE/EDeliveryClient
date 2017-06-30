@@ -21,6 +21,7 @@ import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.models.SBDParams;
 import com.modus.edeliveryclient.serialize.Serializer;
 import eu.noble.rem.jaxb.despatch.REMDispatchType;
+import eu.noble.rem.jaxb.despatch.REMMDMessageType;
 
 
 //import gr.modus.edelivery.adapter.messages.MessageParams;
@@ -83,6 +84,12 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
     @Override
     public CompletableFuture<Messages> getMesaggesPending(Authorization auth) {
         return sbdConsumer.getMesaggesPending(auth);
+    }
+    
+    @Override
+    public CompletableFuture<ResponseMessage> createEvidenceDefault(StandardBusinessDocumentHeader sbdh,
+             REMMDMessageType remType, Authorization auth){
+        return sbdConsumer.createEvidenceDefault(sbdh, remType, auth);
     }
 
 

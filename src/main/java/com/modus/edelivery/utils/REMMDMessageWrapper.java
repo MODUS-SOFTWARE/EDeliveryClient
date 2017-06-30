@@ -1,16 +1,16 @@
-//package com.modus.edelivery.utils;
-//
-//import java.net.MalformedURLException;
-//
-//import javax.xml.datatype.DatatypeConfigurationException;
-//
-////import gr.modus.edelivery.adapter.messages.MessageParams;
-////import gr.modus.edelivery.adapter.messages.PDispatchMessage;
-//
-//public class PDispatchMessageWrapper {
+package com.modus.edelivery.utils;
+
+import java.net.MalformedURLException;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+
+//import gr.modus.edelivery.adapter.messages.MessageParams;
+//import gr.modus.edelivery.adapter.messages.PDispatchMessage;
+
+public class REMMDMessageWrapper {
 //	PDispatchMessage pDisMsg;
 //	
-//	
+//	PDispatchMessage
 //	public PDispatchMessage getpDisMsg() {
 //		return pDisMsg;
 //	}
@@ -31,5 +31,5 @@
 //	public String createREMDispatchTypeString(){
 //		return this.pDisMsg.createREMDispatchType();
 //	}
-//	
-//}
+	
+}

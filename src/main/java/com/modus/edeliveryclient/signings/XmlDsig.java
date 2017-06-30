@@ -30,11 +30,21 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.security.Key;
+import java.security.KeyException;
 import java.security.KeyStore;
+import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import javax.xml.crypto.AlgorithmMethod;
+import javax.xml.crypto.KeySelector;
+import javax.xml.crypto.KeySelectorException;
+import javax.xml.crypto.KeySelectorResult;
+import javax.xml.crypto.XMLCryptoContext;
+import javax.xml.crypto.XMLStructure;
 import javax.xml.crypto.dsig.CanonicalizationMethod;
 import javax.xml.crypto.dsig.DigestMethod;
 import javax.xml.crypto.dsig.Reference;
@@ -45,8 +55,10 @@ import javax.xml.crypto.dsig.XMLSignature;
 import javax.xml.crypto.dsig.XMLSignature.SignatureValue;
 import javax.xml.crypto.dsig.XMLSignatureFactory;
 import javax.xml.crypto.dsig.dom.DOMSignContext;
+import javax.xml.crypto.dsig.dom.DOMValidateContext;
 import javax.xml.crypto.dsig.keyinfo.KeyInfo;
 import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
+import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import javax.xml.crypto.dsig.keyinfo.X509Data;
 import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
 import javax.xml.crypto.dsig.spec.TransformParameterSpec;
@@ -89,14 +101,7 @@ public class XmlDsig {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        try {
-//            ref = (Reference) fac.newReference("", fac.newDigestMethod(DigestMethod.SHA1, null),
-//                    Collections.singletonList(fac.newTransform(Transform.XPATH2,new  XPathFilterParameterSpec("//REMDispatch[]"))),
-//                    null, null);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+
 
         SignedInfo si = fac.newSignedInfo(fac.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE,
                 (C14NMethodParameterSpec) null),
@@ -143,7 +148,6 @@ public class XmlDsig {
 
         return dsc;
 
-        
     }
 
     public REMDispatch signRem(REMDispatch remDispatch, File f) throws ParserConfigurationException,
@@ -253,9 +257,6 @@ public class XmlDsig {
 //        return signature;
 //
 //    }
-    
-    
-    
     public XMLSignature signature() throws NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
             UnrecoverableEntryException,
@@ -284,11 +285,8 @@ public class XmlDsig {
 
         X509Certificate sigCert = (X509Certificate) keyEntry.getCertificate();
 
-        
         SignatureType sinTy = new SignatureType();
-        
-        
-        
+
         KeyInfo ki = null;
         KeyInfoType kift = new KeyInfoType();
         try {
@@ -296,39 +294,144 @@ public class XmlDsig {
             x509Content.add(sigCert.getSubjectX500Principal().getName());
             x509Content.add(sigCert);
             X509Data xd = kif.newX509Data(x509Content);
-            
-             
-            
+
 //            sinTy.getKeyInfo()
-            
             ki = kif.newKeyInfo(Collections.singletonList(xd));
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         XMLSignature signature = fac.newXMLSignature(si, ki);
-        
-        
-        
-        SignatureValue sv =  signature.getSignatureValue();
-        
-        
-                
-        
-        
-        
+
+        SignatureValue sv = signature.getSignatureValue();
+
         kift.getContent().add(ki);
         sinTy.setKeyInfo(kift);
-        
-        
+
         SignatureValueType svt = new SignatureValueType();
-        
-        
-        
+
 //        sinTy.setSignatureValue( (SignatureValueType)  sv.getValue());
-        
         return signature;
 
+    }
+
+    public boolean checkSignature(File f) throws ParserConfigurationException, FileNotFoundException, SAXException, IOException, Exception {
+
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        dbf.setNamespaceAware(true);
+        Document doc
+                = dbf.newDocumentBuilder().parse(new FileInputStream(f));
+
+        // Find Signature element
+        NodeList nl
+                = doc.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
+        if (nl.getLength() == 0) {
+            throw new Exception("Cannot find Signature element");
+        }
+
+        // Create a DOM XMLSignatureFactory that will be used to unmarshal the
+        // document containing the XMLSignature
+        XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM");
+
+        // Create a DOMValidateContext and specify a KeyValue KeySelector
+        // and document context
+        DOMValidateContext valContext = new DOMValidateContext(new KeyValueKeySelector(), nl.item(0));
+
+        // unmarshal the XMLSignature
+        XMLSignature signature = fac.unmarshalXMLSignature(valContext);
+
+        // Validate the XMLSignature (generated above)
+        boolean coreValidity = signature.validate(valContext);
+
+        // Check core validation status
+        if (coreValidity == false) {
+            System.err.println("Signature failed core validation");
+            boolean sv = signature.getSignatureValue().validate(valContext);
+            System.out.println("signature validation status: " + sv);
+            // check the validation status of each Reference
+            Iterator i = signature.getSignedInfo().getReferences().iterator();
+            for (int j = 0; i.hasNext(); j++) {
+                boolean refValid
+                        = ((Reference) i.next()).validate(valContext);
+                
+                System.out.println("ref[" + j + "] validity status: " + refValid);
+                
+            }
+        } else {
+            System.out.println("Signature passed core validation");
+        }
+        return coreValidity;
+    }
+
+    private static class KeyValueKeySelector extends KeySelector {
+
+        public KeySelectorResult select(KeyInfo keyInfo,
+                KeySelector.Purpose purpose,
+                AlgorithmMethod method,
+                XMLCryptoContext context)
+                throws KeySelectorException {
+            if (keyInfo == null) {
+                throw new KeySelectorException("Null KeyInfo object!");
+            }
+            SignatureMethod sm = (SignatureMethod) method;
+            List list = keyInfo.getContent();
+
+            for (int i = 0; i < list.size(); i++) {
+                XMLStructure xmlStructure = (XMLStructure) list.get(i);
+                if (xmlStructure instanceof KeyValue) {
+                    PublicKey pk = null;
+                    try {
+                        pk = ((KeyValue) xmlStructure).getPublicKey();
+                    } catch (KeyException ke) {
+                        throw new KeySelectorException(ke);
+                    }
+
+                    // make sure algorithm is compatible with method
+                    if (algEquals(sm.getAlgorithm(), pk.getAlgorithm())) {
+                        return new SimpleKeySelectorResult(pk);
+                    }
+
+                } else if (xmlStructure instanceof X509Data) {
+                    PublicKey pk = null;
+                    for (Object data : ((X509Data) xmlStructure).getContent()) {
+                        if (data instanceof X509Certificate) {
+                            pk = ((X509Certificate) data).getPublicKey();
+                            if (algEquals(sm.getAlgorithm(), pk.getAlgorithm())) {
+                                return new SimpleKeySelectorResult(pk);
+                            }
+                        }
+                    }
+
+                }
+            }
+            throw new KeySelectorException("No KeyValue element found!");
+        }
+
+        //@@@FIXME: this should also work for key types other than DSA/RSA
+        static boolean algEquals(String algURI, String algName) {
+            if (algName.equalsIgnoreCase("DSA")
+                    && algURI.equalsIgnoreCase(SignatureMethod.DSA_SHA1)) {
+                return true;
+            } else if (algName.equalsIgnoreCase("RSA")
+                    && algURI.equalsIgnoreCase(SignatureMethod.RSA_SHA1)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    private static class SimpleKeySelectorResult implements KeySelectorResult {
+
+        private PublicKey pk;
+
+        SimpleKeySelectorResult(PublicKey pk) {
+            this.pk = pk;
+        }
+
+        public Key getKey() {
+            return pk;
+        }
     }
 
 }

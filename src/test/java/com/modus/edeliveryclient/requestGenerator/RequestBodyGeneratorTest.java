@@ -112,7 +112,7 @@ public class RequestBodyGeneratorTest {
 
         RequestBodyGenerator rbg = new RequestBodyGenerator();
 
-        String body = rbg.generateBody(sbdh, remType);
+        String body = rbg.generateRemDispatchBody(sbdh, remType);
 
         
         System.out.print(body);

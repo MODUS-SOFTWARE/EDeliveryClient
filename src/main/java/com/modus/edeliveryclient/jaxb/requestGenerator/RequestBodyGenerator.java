@@ -12,6 +12,7 @@ import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessD
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.signings.XmlDsig;
 import eu.noble.rem.jaxb.despatch.REMDispatchType;
+import eu.noble.rem.jaxb.despatch.REMMDMessageType;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -37,14 +38,13 @@ import org.xml.sax.SAXException;
  */
 public class RequestBodyGenerator {
 
-    
     /**
-     * 
+     *
      * @param sbdh
      * @param remType
      * @return an sbd in string with a signed rem dispatch context
      */
-    public String generateBody(StandardBusinessDocumentHeader sbdh, REMDispatchType remType) {
+    public String generateRemDispatchBody(StandardBusinessDocumentHeader sbdh, REMDispatchType remType) {
 
         SBDMessageWrapper sbdWrap = new SBDMessageWrapper();
 
@@ -98,9 +98,9 @@ public class RequestBodyGenerator {
             String remStringSigned = remString.substring(index1, index2 + 13);
 
             sbdWrap.appendPayload(remStringSigned);
-            
+
             requestBody = sbdWrap.getSBDMessageStr();
-            
+
         } catch (IOException | InvalidAlgorithmParameterException
                 | KeyStoreException | NoSuchAlgorithmException
                 | UnrecoverableEntryException | CertificateException
@@ -110,7 +110,81 @@ public class RequestBodyGenerator {
         }
 
         return requestBody;
+
+    }
+
+    public String generateRemMessageBody(StandardBusinessDocumentHeader sbdh, REMMDMessageType remMessage) {
+
+        SBDMessageWrapper sbdWrap = new SBDMessageWrapper();
+
+        String requestBody;
+        String requestBodyTemp;
+
+        try {
+            File temp = File.createTempFile("tempfile", ".tmp");
+
+            JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
+
+            StandardBusinessDocument sbd = new StandardBusinessDocument();
+
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            sbd.setStandardBusinessDocumentHeader(sbdh);
+
+            jaxbMarshaller.marshal(sbd, temp);
+
+            byte[] encoded = Files.readAllBytes(Paths.get(temp.getAbsolutePath()));
+            String sbdString = new String(encoded, "UTF-8");
+
+            sbdWrap.setSBDMessageStr(sbdString);
+
+            File temp2 = File.createTempFile("tempfile2", ".tmp");
+
+            JAXBContext jaxbContext2 = JAXBContext.newInstance(REMMDMessageType.class, SBDHFactory.class,
+                    eu.noble.rem.jaxb.despatch.ObjectFactory.class,
+                    eu.noble.rem.jaxb.evidence.ObjectFactory.class,
+                    eu.noble.rem.jaxb.xmldsig.ObjectFactory.class
+            );
+
+            eu.noble.rem.jaxb.despatch.ObjectFactory of = new eu.noble.rem.jaxb.despatch.ObjectFactory();
+
+            JAXBElement<REMMDMessageType> remDispJ = of.createREMMDMessage(remMessage);
+
+            Marshaller jaxbMarshaller2 = jaxbContext2.createMarshaller();
+
+            jaxbMarshaller2.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            jaxbMarshaller2.marshal(remDispJ, temp2);
+
+            XmlDsig signat = new XmlDsig();
+
+            signat.signatureBuilder(temp2);
+
+            byte[] encoded2 = Files.readAllBytes(Paths.get(temp2.getAbsolutePath()));
+            String remMessageS = new String(encoded2, "UTF-8");
+
+            int one = remMessageS.indexOf("?>");
+            int two = remMessageS.indexOf("REMMDMessage>");
+//            System.out.println(remMessageS.substring(one + 2, two + 13));
+
+            sbdWrap.appendPayload(remMessageS.substring(one+2, two + 13));
+
+            requestBodyTemp = sbdWrap.getSBDMessageStr();
+
+        } catch (IOException | InvalidAlgorithmParameterException
+                | KeyStoreException | NoSuchAlgorithmException
+                | UnrecoverableEntryException | CertificateException
+                | JAXBException | MarshalException | XMLSignatureException
+                | ParserConfigurationException | TransformerException | SAXException e) {
+            throw new EDeliveryException("Could not generate request body", e);
+        }
+
         
+        int oneT = requestBodyTemp.indexOf("?>");
+        int twoT = requestBodyTemp.indexOf("Document>");
+        requestBody = requestBodyTemp.substring(oneT+2, twoT + 9);
+        
+        return requestBody;
+
     }
 
 }

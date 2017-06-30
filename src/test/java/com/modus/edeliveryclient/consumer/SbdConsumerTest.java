@@ -12,14 +12,12 @@ import com.modus.edeliveryclient.EDeliveryClientImplementation;
 import com.modus.edeliveryclient.jaxb.marshaller.REMDispatchMarshaller;
 import com.modus.edeliveryclient.jaxb.marshaller.StandardBusinessDocumentHeaderGenerator;
 import com.modus.edeliveryclient.jaxb.remdispatchhelpers.RemDispatchHelper;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocument.REMDispatch;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.Scope;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.models.Authorization;
 import com.modus.edeliveryclient.models.ResponseMessage;
-import com.modus.edeliveryclient.requestGenerator.RequestBodyGeneratorTest;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serializer.JacksonSerializer;
 import eu.noble.rem.jaxb.despatch.MsgMetaData;
@@ -30,10 +28,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -42,10 +38,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -56,7 +49,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -197,7 +189,12 @@ public class SbdConsumerTest {
     }
 
     
+    @Test
+    public void testRemMessage(){
     
+        
+    
+    }
     
     
     
