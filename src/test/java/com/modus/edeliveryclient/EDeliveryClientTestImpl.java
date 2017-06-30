@@ -12,6 +12,7 @@ import com.modus.edeliveryclient.models.Authorization;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serializer.JacksonSerializer;
+import com.modus.edeliveryclient.signings.XmlDsig;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -33,6 +34,11 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EDeliveryClientTestImpl {
 
+    private static String keystorePath = "/Users/modussa/certificates/privateKey.store";
+    private static String keystorePasword = "@#$M0dus";
+    private static String pkEntry = "ftpkey";
+    private static String keystoreInstance = "JKS";
+    
     private static EDeliveryClient deliveryClient;
 
     private final String participantIdentifierScheme = "iso6523-actorid-upis";
@@ -51,10 +57,11 @@ public class EDeliveryClientTestImpl {
         Serializer serializer = new JacksonSerializer(new ObjectMapper());
         AsyncHttpClient httpClient = new DefaultAsyncHttpClient();
         String basepath = "http://192.168.20.10:8080/APREST";
-        deliveryClient = new EDeliveryClientImplementation(httpClient,
-                 serializer,
-                 new SmpParticipantConsumer(httpClient, serializer, basepath),
-                 new SbdConsumer(httpClient, serializer, basepath));
+        XmlDsig signature = new XmlDsig(keystorePath, keystorePasword, pkEntry, keystoreInstance);
+        
+        deliveryClient = new EDeliveryClientImplementation(httpClient, serializer,
+                new SmpParticipantConsumer(httpClient, serializer, basepath, signature),
+                new SbdConsumer(httpClient, serializer, basepath, signature), signature);
     }
 
     @AfterClass

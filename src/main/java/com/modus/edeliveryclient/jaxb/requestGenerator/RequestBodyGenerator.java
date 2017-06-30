@@ -10,6 +10,7 @@ import com.modus.edeliveryclient.exception.EDeliveryException;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
+import com.modus.edeliveryclient.signings.ISignatures;
 import com.modus.edeliveryclient.signings.XmlDsig;
 import eu.noble.rem.jaxb.despatch.REMDispatchType;
 import eu.noble.rem.jaxb.despatch.REMMDMessageType;
@@ -42,10 +43,13 @@ public class RequestBodyGenerator {
      *
      * @param sbdh
      * @param remType
+     * @param XmlDsig
      * @return an sbd in string with a signed rem dispatch context
      */
-    public String generateRemDispatchBody(StandardBusinessDocumentHeader sbdh, REMDispatchType remType) {
+    public String generateRemDispatchBody(StandardBusinessDocumentHeader sbdh, REMDispatchType remType, ISignatures XmlDsig) {
 
+        
+        
         SBDMessageWrapper sbdWrap = new SBDMessageWrapper();
 
         String requestBody;
@@ -85,9 +89,11 @@ public class RequestBodyGenerator {
 
             jaxbMarshaller2.marshal(remdispJ, temp2);
 
-            XmlDsig signat = new XmlDsig();
+//            XmlDsig signat = new XmlDsig();
 
-            signat.signatureBuilder(temp2);
+            XmlDsig.signatureBuilder(temp2);
+
+//            signat.signatureBuilder(temp2);
 
             byte[] encoded2 = Files.readAllBytes(Paths.get(temp2.getAbsolutePath()));
             String remString = new String(encoded2, "UTF-8");
@@ -113,7 +119,7 @@ public class RequestBodyGenerator {
 
     }
 
-    public String generateRemMessageBody(StandardBusinessDocumentHeader sbdh, REMMDMessageType remMessage) {
+    public String generateRemMessageBody(StandardBusinessDocumentHeader sbdh, REMMDMessageType remMessage, ISignatures signatures) {
 
         SBDMessageWrapper sbdWrap = new SBDMessageWrapper();
 
@@ -155,9 +161,10 @@ public class RequestBodyGenerator {
 
             jaxbMarshaller2.marshal(remDispJ, temp2);
 
-            XmlDsig signat = new XmlDsig();
-
-            signat.signatureBuilder(temp2);
+//            XmlDsig signat = new XmlDsig();
+            
+            signatures.signatureBuilder(temp2);
+//            signat.signatureBuilder(temp2);
 
             byte[] encoded2 = Files.readAllBytes(Paths.get(temp2.getAbsolutePath()));
             String remMessageS = new String(encoded2, "UTF-8");

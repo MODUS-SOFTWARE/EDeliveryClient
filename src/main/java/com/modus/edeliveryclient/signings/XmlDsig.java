@@ -78,9 +78,24 @@ import org.w3c.dom.NodeList;
  *
  * @author Pantelispanka
  */
-public class XmlDsig {
+public class XmlDsig implements ISignatures{
 
-    public XmlDsig() {
+//    private String keystorePath = "/Users/modussa/certificates/privateKey.store";
+//    private String keystorePasword = "@#$M0dus";
+//    private String pkEntry = "ftpkey";
+//    private String keystoreInstance = "JKS";
+    
+    private String keystorePath;
+    private String keystorePasword;
+    private String pkEntry;
+    private String keystroreInstance;
+    
+    public XmlDsig(String keystorePath, String keystorePassword
+            , String pkEntry, String keystroreInstance) {
+        this.keystorePasword = keystorePassword;
+        this.keystorePath= keystorePath;
+        this.pkEntry = pkEntry;
+        this.keystroreInstance = keystroreInstance;
     }
 
     public DOMSignContext signatureBuilder(File f) throws ParserConfigurationException,
@@ -109,10 +124,10 @@ public class XmlDsig {
                 Collections.singletonList(ref));
 
         // Load the KeyStore and get the signing key and certificate.
-        KeyStore ks = KeyStore.getInstance("JKS");
-        ks.load(new FileInputStream("/Users/modussa/certificates/privateKey.store"), "@#$M0dus".toCharArray());
+        KeyStore ks = KeyStore.getInstance(keystroreInstance);
+        ks.load(new FileInputStream(keystorePath), keystorePasword.toCharArray());
         KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) ks
-                .getEntry("ftpkey", new KeyStore.PasswordProtection("@#$M0dus".toCharArray()));
+                .getEntry(pkEntry, new KeyStore.PasswordProtection(keystorePasword.toCharArray()));
 
         X509Certificate cert = null;
         try {
@@ -175,10 +190,10 @@ public class XmlDsig {
                 Collections.singletonList(ref));
 
         // Load the KeyStore and get the signing key and certificate.
-        KeyStore ks = KeyStore.getInstance("JKS");
-        ks.load(new FileInputStream("/Users/modussa/certificates/privateKey.store"), "@#$M0dus".toCharArray());
+        KeyStore ks = KeyStore.getInstance(keystroreInstance);
+        ks.load(new FileInputStream(keystorePath), keystorePasword.toCharArray());
         KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) ks
-                .getEntry("ftpkey", new KeyStore.PasswordProtection("@#$M0dus".toCharArray()));
+                .getEntry(pkEntry, new KeyStore.PasswordProtection(keystorePasword.toCharArray()));
 
         X509Certificate cert = null;
         try {
@@ -215,55 +230,19 @@ public class XmlDsig {
         NodeList nl
                 = doc.getElementsByTagNameNS(XMLSignature.XMLNS,
                         "Signature");
-//        if (nl.getLength() == 0) {
-//            throw new Exception("Cannot find Signature element");
-//        }
 
-//        if(nl.equals(signature)){
-//            String test = "asdfas";  
-//        };
-//        String providerName = System.getProperty(
-//                "jsr105Provider",
-//                "org.jcp.xml.dsig.internal.dom.XMLDSigRI");
-//        XMLSignatureFactory fact
-//                = XMLSignatureFactory.getInstance("DOM",
-//                        (Provider) Class.forName(providerName).newInstance());
-//        
-////        DOMValidateContext valContext = new DOMValidateContext(new KeyValueKeySelector(), nl.item(0));
-//
-//        XMLSignature signature
-//                = fact.unmarshalXMLSignature(valContext);
-//        boolean coreValidity = signature.validate(valContext);
-//        remDispatch.setSignature();
         return remDispatch;
 
     }
 
-//    public SignatureType signatureParser(File f) throws ParserConfigurationException, SAXException, IOException {
-//
-//        SignatureType signature = new SignatureType();
-//        KeyInfoType kif = new KeyInfoType();
-//        SignatureValueType signValType = new SignatureValueType();
-//        SignedInfoType signInf = new SignedInfoType();
-//
-//        CanonicalizationMethodType canoni = new CanonicalizationMethodType();
-//        SignatureMethodType signMethod = new SignatureMethodType();
-//
-////        signMethod.setAlgorithm(value);
-////        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-////        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-////        Document doc = dBuilder.parse(f);
-////        doc.getDocumentElement().normalize();
-//        return signature;
-//
-//    }
+
     public XMLSignature signature() throws NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
             UnrecoverableEntryException,
             KeyStoreException,
             FileNotFoundException,
             IOException,
-            CertificateException {
+            CertificateException  {
 
         SignatureType sign = new SignatureType();
 
@@ -278,10 +257,10 @@ public class XmlDsig {
                 (C14NMethodParameterSpec) null), fac.newSignatureMethod(
                         SignatureMethod.DSA_SHA1, null), Collections.singletonList(ref));
 
-        KeyStore ks = KeyStore.getInstance("JKS");
-        ks.load(new FileInputStream("/Users/modussa/certificates/privateKey.store"), "@#$M0dus".toCharArray());
+        KeyStore ks = KeyStore.getInstance(keystroreInstance);
+        ks.load(new FileInputStream(keystorePath), keystorePasword.toCharArray());
         KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) ks
-                .getEntry("ftpkey", new KeyStore.PasswordProtection("@#$M0dus".toCharArray()));
+                .getEntry(pkEntry, new KeyStore.PasswordProtection(keystorePasword.toCharArray()));
 
         X509Certificate sigCert = (X509Certificate) keyEntry.getCertificate();
 

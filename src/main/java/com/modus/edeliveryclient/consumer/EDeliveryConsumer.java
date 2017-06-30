@@ -6,6 +6,8 @@
 package com.modus.edeliveryclient.consumer;
 
 import java.io.Closeable;
+import javax.xml.bind.Marshaller;
+import org.asynchttpclient.AsyncHttpClient;
 
 /**
  *
@@ -13,7 +15,9 @@ import java.io.Closeable;
  */
 public abstract class EDeliveryConsumer implements Closeable{
     
-    
+//    protected final AsyncHttpClient httpClient;
+//    protected final Serializer serializer;
+//    protected final Marshaller marshaller;
     
     
 }

@@ -20,6 +20,7 @@ import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.models.ResponseModel;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serializer.JacksonSerializer;
+import com.modus.edeliveryclient.signings.XmlDsig;
 import eu.noble.rem.jaxb.despatch.REMDispatchType;
 import eu.noble.rem.jaxb.despatch.REMMDEvidenceListType;
 import eu.noble.rem.jaxb.despatch.REMMDMessageType;
@@ -47,6 +48,11 @@ import static org.junit.Assert.*;
  */
 public class EDeliverySBDTestImpl {
 
+    private static String keystorePath = "/Users/modussa/certificates/privateKey.store";
+    private static String keystorePasword = "@#$M0dus";
+    private static String pkEntry = "ftpkey";
+    private static String keystoreInstance = "JKS";
+
     private static EDeliveryClient deliveryClient;
 
     private static REMDispatch papDoc;
@@ -62,7 +68,7 @@ public class EDeliverySBDTestImpl {
     private static String messageId = "9933_test1-20170519130324418@local_delivery";
 
     private static String messageId2 = "9933_test1-20170622080412929@local_delivery";
-    
+
     public EDeliverySBDTestImpl() {
         auth = new Authorization("sp1", "sp1");
         wrongAuth = new Authorization("wrong", "wrong");
@@ -73,10 +79,11 @@ public class EDeliverySBDTestImpl {
         Serializer serializer = new JacksonSerializer(new ObjectMapper());
         AsyncHttpClient httpClient = new DefaultAsyncHttpClient();
         String basepath = "http://192.168.20.10:8080/APREST";
-        deliveryClient = new EDeliveryClientImplementation(httpClient,
-                serializer,
-                new SmpParticipantConsumer(httpClient, serializer, basepath),
-                new SbdConsumer(httpClient, serializer, basepath));
+        XmlDsig signature = new XmlDsig(keystorePath, keystorePasword, pkEntry, keystoreInstance);
+        
+        deliveryClient = new EDeliveryClientImplementation(httpClient, serializer,
+                new SmpParticipantConsumer(httpClient, serializer, basepath, signature),
+                new SbdConsumer(httpClient, serializer, basepath, signature), signature);
     }
 
     @AfterClass
@@ -112,18 +119,20 @@ public class EDeliverySBDTestImpl {
 
     @Test
     public void shouldGetMessage() throws InterruptedException, ExecutionException, JAXBException {
-         System.out.println("Trying to get message");
+        System.out.println("Trying to get message");
         CompletableFuture<Object> result = deliveryClient.getMessageDefault(messageId2, auth);
 
         StandardBusinessDocument sbd = new StandardBusinessDocument();
         ResponseModel rm = new ResponseModel();
         try {
-            
+
             rm = (ResponseModel) result.get();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        System.out.println(rm.getSimpleData());
+        System.out.println(rm.getResponse());
         System.out.println(result.get().getClass().toString());
     }
 
@@ -144,23 +153,22 @@ public class EDeliverySBDTestImpl {
 
         remEvidence.setReplyTo("replyTo");
         remEvidence.setEvidenceIdentifier("EvidenceIdentifier");
-        
+
         String messageId = "MessageId / Unique id";
-        
+
         REMMDMessageType remMessage = remMesHelper.createMessage(messageId, remEvidence);
-        
+
         CompletableFuture<ResponseMessage> result = deliveryClient.createEvidenceDefault(sbdh, remMessage, auth);
-        
-        try{
+
+        try {
             ResponseMessage resp = result.get();
-            
+
             ResponseModel respM = new ResponseModel();
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        
+
     }
 
 }

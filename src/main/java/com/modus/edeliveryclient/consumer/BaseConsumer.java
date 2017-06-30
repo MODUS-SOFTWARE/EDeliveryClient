@@ -9,6 +9,7 @@ import com.modus.edeliveryclient.exception.EDeliveryException;
 import com.modus.edeliveryclient.models.Authorization;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serialize.TypeReference;
+import com.modus.edeliveryclient.signings.ISignatures;
 import java.io.ByteArrayInputStream;
 import java.io.Closeable;
 import java.io.IOException;
@@ -35,12 +36,14 @@ public abstract class BaseConsumer implements Closeable {
     protected final AsyncHttpClient httpClient;
     protected final Serializer serializer;
     protected String basepath;
+    protected final ISignatures signatures;
 //    protected final Marshaller marshaller;
 
-    public BaseConsumer(AsyncHttpClient httpClient, Serializer serializer, String basepath) {
+    public BaseConsumer(AsyncHttpClient httpClient, Serializer serializer, String basepath, ISignatures signatures) {
         this.httpClient = httpClient;
         this.serializer = serializer;
         this.basepath = basepath;
+        this.signatures = signatures;
 //        this.marshaller = marshaller;
     }
 

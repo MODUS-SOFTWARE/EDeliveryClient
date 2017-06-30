@@ -22,6 +22,7 @@ import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.models.ResponseModel;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serialize.TypeReference;
+import com.modus.edeliveryclient.signings.ISignatures;
 import com.modus.edeliveryclient.signings.XmlDsig;
 import eu.noble.rem.jaxb.despatch.REMDispatchType;
 import eu.noble.rem.jaxb.despatch.REMMDMessageType;
@@ -67,12 +68,13 @@ public class SbdConsumer extends BaseConsumer {
 
     private StandardBusinessDocument sbd;
 
+    
     private String basePath;
     private final String sendEndpoind;
     private final String messagesEndpoint;
 
-    public SbdConsumer(AsyncHttpClient httpClient, Serializer serializer, String basepath) {
-        super(httpClient, serializer, basepath);
+    public SbdConsumer(AsyncHttpClient httpClient, Serializer serializer, String basepath, ISignatures signatures) {
+        super(httpClient, serializer, basepath, signatures);
         this.basepath = basepath;
         this.sendEndpoind = createPath(basepath, SENDENDPOINT);
         this.messagesEndpoint = createPath(basepath, MESSAGESENDPOINT);
@@ -122,8 +124,9 @@ public class SbdConsumer extends BaseConsumer {
                                 bw.write(resp.getResponseBody());
                                 bw.flush();
                                 bw.close();
-                                XmlDsig sign = new XmlDsig();
-                                respModel.setValidated(sign.checkSignature(temp)); 
+//                                XmlDsig sign = new XmlDsig();
+                                signatures.signatureBuilder(temp);
+//                                respModel.setValidated(sign.checkSignature(temp)); 
                                 respModel.setResponse(resp.getResponseBody());
                                 respModel.setMessageTitle("MessageTitle");
 
@@ -158,7 +161,7 @@ public class SbdConsumer extends BaseConsumer {
             throw new EDeliveryException(e);
         }
 
-        requestBody = rbg.generateRemDispatchBody(sbdh, remType);
+        requestBody = rbg.generateRemDispatchBody(sbdh, remType, signatures);
 
         return httpClient.preparePost(sendEndpoind).addHeader("Content-Type", "application/xml")
                 .addHeader("Authorization", authorizationHeader).setBody(requestBody).execute()
@@ -264,7 +267,7 @@ public class SbdConsumer extends BaseConsumer {
         }
         RequestBodyGenerator rbg = new RequestBodyGenerator();
 
-        requestBody = rbg.generateRemMessageBody(sbdh, remType);
+        requestBody = rbg.generateRemMessageBody(sbdh, remType, signatures);
 
         return httpClient.preparePost(sendEndpoind).addHeader("Content-Type", "application/xml")
                 .addHeader("Authorization", authorizationHeader).execute().toCompletableFuture()
@@ -343,6 +346,48 @@ public class SbdConsumer extends BaseConsumer {
                     }
                 });
 
+    }
+    
+    public CompletableFuture<ResponseMessage> deleteMessage(String messageId, Authorization auth){
+        
+        String authorizationHeader;
+        String message = messagesEndpoint;
+        String deleteMessage = message + "/" + messageId;
+        
+        
+        try {
+            String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
+            String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));
+            authorizationHeader = "Basic " + authHeaderEncoded;
+        } catch (UnsupportedEncodingException e) {
+            throw new EDeliveryException(e);
+        }
+        
+        
+        ResponseMessage rm = new ResponseMessage();
+        return httpClient.prepareDelete(deleteMessage)
+                .addHeader(message, message)
+                .addHeader("Authorization", authorizationHeader)
+                .execute().toCompletableFuture().exceptionally(t -> {
+                    throw new EDeliveryException(t);
+                }).thenApply(resp -> {
+                    int status = resp.getStatusCode();
+                    if (status == 200) {
+                        try {
+                            rm.setStatus(status);
+                            rm.setMessage("Message Delleted");
+                            return rm;
+                        } catch (Exception e) {
+                            throw new EDeliveryException(resp.getResponseBody());
+                        }
+                    } else {
+                        throw new EDeliveryException(resp.getResponseBody());
+                    }
+                    
+                    
+                });
+                
+            
     }
 
 }

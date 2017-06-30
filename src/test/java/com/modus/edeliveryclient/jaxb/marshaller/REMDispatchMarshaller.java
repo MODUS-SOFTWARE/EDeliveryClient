@@ -46,6 +46,11 @@ import org.xml.sax.SAXException;
 
 public class REMDispatchMarshaller {
 
+    private static String keystorePath = "/Users/modussa/certificates/privateKey.store";
+    private static String keystorePasword = "@#$M0dus";
+    private static String pkEntry = "ftpkey";
+    private static String keystoreInstance = "JKS";
+    
     private static StandardBusinessDocumentHeader sbdh;
 
     private static REMDispatch remDisp;
@@ -160,7 +165,7 @@ public class REMDispatchMarshaller {
 
         jaxbMarshaller.marshal(remdispJ, fs);
 
-        XmlDsig sign = new XmlDsig();
+        XmlDsig sign = new XmlDsig(keystorePath, keystorePasword, pkEntry, keystoreInstance);
 
         sign.signatureBuilder(fs);
 

@@ -20,6 +20,7 @@ import com.modus.edeliveryclient.models.Authorization;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serializer.JacksonSerializer;
+import com.modus.edeliveryclient.signings.XmlDsig;
 import eu.noble.rem.jaxb.despatch.MsgMetaData;
 import eu.noble.rem.jaxb.despatch.NormalizedMsg;
 import eu.noble.rem.jaxb.despatch.OriginalMsgType;
@@ -56,6 +57,12 @@ import org.junit.Test;
  */
 public class SbdConsumerTest {
 
+    private static String keystorePath = "/Users/modussa/certificates/privateKey.store";
+    private static String keystorePasword = "@#$M0dus";
+    private static String pkEntry = "ftpkey";
+    private static String keystoreInstance = "JKS";
+    
+    
     private static EDeliveryClient delClient;
 
     private static StandardBusinessDocument sbd;
@@ -94,9 +101,11 @@ public class SbdConsumerTest {
                 "http://uri.etsi.org/02640/soapbinding/v2#", 2, "e275dd1d-f636-4c46-a4f4-489f162e334f", "REMDispatch", scopes,
                 "manifestDescr", "manifestLanguage", "maniTypeQualCode", "UniformResourceIdentifier");
 
+        XmlDsig signature = new XmlDsig(keystorePath, keystorePasword, pkEntry, keystoreInstance);
+        
         delClient = new EDeliveryClientImplementation(httpClient, serializer,
-                new SmpParticipantConsumer(httpClient, serializer, basepath),
-                new SbdConsumer(httpClient, serializer, basepath));
+                new SmpParticipantConsumer(httpClient, serializer, basepath, signature),
+                new SbdConsumer(httpClient, serializer, basepath, signature), signature);
         
         
         

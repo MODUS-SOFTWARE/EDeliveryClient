@@ -43,4 +43,8 @@ public interface EDeliveryClient {
     public CompletableFuture<ResponseMessage> createEvidenceDefault(StandardBusinessDocumentHeader sbdh,
              REMMDMessageType remType, Authorization auth);
 
+    
+    public CompletableFuture<ResponseMessage> deleteMessage(String messageId, Authorization auth);
+    
+    
 }

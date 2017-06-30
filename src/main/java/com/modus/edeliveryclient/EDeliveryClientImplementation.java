@@ -20,6 +20,8 @@ import com.modus.edeliveryclient.models.MessageId;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.models.SBDParams;
 import com.modus.edeliveryclient.serialize.Serializer;
+import com.modus.edeliveryclient.signings.ISignatures;
+import com.modus.edeliveryclient.signings.XmlDsig;
 import eu.noble.rem.jaxb.despatch.REMDispatchType;
 import eu.noble.rem.jaxb.despatch.REMMDMessageType;
 
@@ -44,6 +46,9 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
     private final Serializer serializer;
     private final AsyncHttpClient httpClient;
 
+    private final ISignatures signatures;
+    
+    
     private final SmpParticipantConsumer participantConsumer;
     private final SbdConsumer sbdConsumer;
 
@@ -54,11 +59,13 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
             AsyncHttpClient client,
             Serializer serializer,
             SmpParticipantConsumer participantConsumer,
-            SbdConsumer sbdConsumer) {
+            SbdConsumer sbdConsumer,
+            ISignatures signatures) {
         this.httpClient = client;
         this.serializer = serializer;
         this.participantConsumer = participantConsumer;
         this.sbdConsumer = sbdConsumer;
+        this.signatures = signatures;
     }
 
     @Override
@@ -93,4 +100,9 @@ public class EDeliveryClientImplementation implements EDeliveryClient {
     }
 
 
+    @Override
+    public CompletableFuture<ResponseMessage> deleteMessage(String messageId, Authorization auth){
+        return sbdConsumer.deleteMessage(messageId, auth);
+    }
+    
 }

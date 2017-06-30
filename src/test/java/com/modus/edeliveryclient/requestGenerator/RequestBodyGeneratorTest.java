@@ -12,6 +12,7 @@ import com.modus.edeliveryclient.jaxb.standardbusinessdocument.REMDispatch;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.Scope;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
+import com.modus.edeliveryclient.signings.XmlDsig;
 import eu.noble.rem.jaxb.despatch.MsgMetaData;
 import eu.noble.rem.jaxb.despatch.NormalizedMsg;
 import eu.noble.rem.jaxb.despatch.OriginalMsgType;
@@ -39,14 +40,18 @@ import static org.junit.Assert.*;
  */
 public class RequestBodyGeneratorTest {
 
+    private static String keystorePath = "/Users/modussa/certificates/privateKey.store";
+    private static String keystorePasword = "@#$M0dus";
+    private static String pkEntry = "ftpkey";
+    private static String keystoreInstance = "JKS";
+
     private static StandardBusinessDocument sbd;
     private static StandardBusinessDocumentHeader sbdh;
 
     private static REMDispatch remDisp;
 
     private static String body;
-    
-    
+
     private static REMDispatchType remType;
 
     public RequestBodyGeneratorTest() {
@@ -106,20 +111,19 @@ public class RequestBodyGeneratorTest {
     public void tearDown() {
     }
 
-    
     @Test
     public void testBodyGenerator() {
 
         RequestBodyGenerator rbg = new RequestBodyGenerator();
 
-        String body = rbg.generateRemDispatchBody(sbdh, remType);
+        XmlDsig signature = new XmlDsig(keystorePath, keystorePasword, pkEntry, keystoreInstance);
 
-        
+        String body = rbg.generateRemDispatchBody(sbdh, remType, signature);
+
         System.out.print(body);
-        
+
         RequestBodyGeneratorTest.body = body;
-        
-        
+
     }
 
 }
