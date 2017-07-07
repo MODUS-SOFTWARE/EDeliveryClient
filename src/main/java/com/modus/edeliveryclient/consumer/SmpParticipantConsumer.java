@@ -12,6 +12,7 @@ import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.models.ResponseModel;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serialize.TypeReference;
+import com.modus.edeliveryclient.signings.ISignatures;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Base64;
@@ -38,8 +39,8 @@ public class SmpParticipantConsumer extends BaseConsumer {
 
 //    private ResponseMessage rm;
 
-    public SmpParticipantConsumer(AsyncHttpClient httpClient, Serializer serializer, String basepath) {
-        super(httpClient, serializer, basepath);
+    public SmpParticipantConsumer(AsyncHttpClient httpClient, Serializer serializer, String basepath, ISignatures signature) {
+        super(httpClient, serializer, basepath, signature);
         this.basepath = basepath;
         this.participantPath = createPath(basepath, PARTICIPANT);
     }

@@ -5,13 +5,17 @@
  */
 package com.modus.edeliveryclient.jaxb.unmarshaller;
 
-import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
+import com.google.gson.Gson;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.REMDispatch;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
+import eu.noble.rem.jaxb.despatch.REMDispatchType;
 import java.io.File;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.JAXBIntrospector;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -24,9 +28,9 @@ import static org.junit.Assert.*;
  *
  * @author Pantelispanka
  */
-public class StandardBusinessDocumentUnmarshaller {
+public class StandardBusinessDocumentUnmarshallerTest {
 
-    public StandardBusinessDocumentUnmarshaller() {
+    public StandardBusinessDocumentUnmarshallerTest() {
     }
 
     @BeforeClass
@@ -55,21 +59,29 @@ public class StandardBusinessDocumentUnmarshaller {
 
         try {
 
-            File file = new File("/Users/modussa/Java/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xml");
-            JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
+            File file2 = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/AllXml.xsd");
+            JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class,
+                    eu.noble.rem.jaxb.despatch.ObjectFactory.class,
+                    eu.noble.rem.jaxb.evidence.ObjectFactory.class,
+                    eu.noble.rem.jaxb.xmldsig.ObjectFactory.class
+            );
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            StandardBusinessDocument sbd = (StandardBusinessDocument) JAXBIntrospector.getValue(jaxbUnmarshaller.unmarshal(file));
-//            StandardBusinessDocument sbd = (StandardBusinessDocument) jaxbUnmarshaller.unmarshal(file);
-//            Object sbd =  jaxbUnmarshaller.unmarshal(file);
-            System.out.println(sbd.getStandardBusinessDocumentHeader().getManifest().getManifestItem().get(0).getDescription());
-            PapyrosDocument paDoc = (PapyrosDocument) sbd.getAny();
-            System.out.println(paDoc.getActualDoc());
+            StandardBusinessDocument sbd = (StandardBusinessDocument) JAXBIntrospector.getValue(jaxbUnmarshaller.unmarshal(file2));
+
+            System.out.println(sbd.getStandardBusinessDocumentHeader());
+            
+            JAXBElement<REMDispatchType> rem = (JAXBElement<REMDispatchType>) sbd.getAny();
+            
+            System.out.println(rem.getValue().getId());
+            
+            
+            
 
         } catch (JAXBException e) {
             e.printStackTrace();
         }
 
     }
-    
+
 }

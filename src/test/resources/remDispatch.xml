@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<REMDispatch xmlns="http://uri.etsi.org/02640/soapbinding/v1#" xmlns:ns2="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns3="http://uri.etsi.org/02640/v2#" xmlns:ns4="http://uri.etsi.org/02231/v2#" xmlns:ns5="http://www.w3.org/2000/09/xmldsig#" xmlns:ns6="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns7="http://www.w3.org/2001/04/xmlenc#" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:ns9="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" Id="123-=123-123">
+    <MsgMetaData>
+        <DeliveryConstraints>
+            <Origin>2017-07-07T15:37:46.642+03:00</Origin>
+            <InitialSend>2017-07-07T15:37:46.642+03:00</InitialSend>
+            <ObsoleteAfter>2017-07-07+03:00</ObsoleteAfter>
+        </DeliveryConstraints>
+        <Originators/>
+        <Destinations>
+            <Recipient>
+                <ns3:NamesPostalAddresses>
+                    <ns3:NamePostalAddress>
+                        <ns3:PostalAddress xml:lang="Greek">
+                            <ns3:Locality>gr</ns3:Locality>
+                            <ns3:StateOrProvince>stateOrProvince</ns3:StateOrProvince>
+                            <ns3:PostalCode>postalCode</ns3:PostalCode>
+                            <ns3:CountryName>Greece</ns3:CountryName>
+                        </ns3:PostalAddress>
+                    </ns3:NamePostalAddress>
+                </ns3:NamesPostalAddresses>
+            </Recipient>
+        </Destinations>
+        <MsgIdentification>
+            <Message-ID>as-12-cdv-qw-2</Message-ID>
+        </MsgIdentification>
+    </MsgMetaData>
+    <OriginalMsg ContentType="ContentType" Size="1">QSB0ZXN0IGRvY3VtZW50IHRvIGJlIHNlbmQgYW5kIHJlY2VpdmVkIGZyb20gYW4KIFNCQiAtIENJUEEgQmFja2VuZCBDb25uZWN0b3Igd2l0aCBBUCBhbmQgU01QCg==</OriginalMsg>
+    <NormalizedMsg>
+        <Informational>
+            <Subject>Subbject</Subject>
+            <Comments>Comments</Comments>
+            <Keywords scheme="Key Scheme" meaning="KeyMeaning">Key Values</Keywords>
+        </Informational>
+        <Text format="Text format">Text value</Text>
+        <Attachment Size="1" xmime:contentType="ContentType" Filename="filename" Content_Description="ContentDiscription" xml:lang="Lang">
+            <Content-ID-Ref>ContentIdRef</Content-ID-Ref>
+        </Attachment>
+    </NormalizedMsg>
+</REMDispatch>

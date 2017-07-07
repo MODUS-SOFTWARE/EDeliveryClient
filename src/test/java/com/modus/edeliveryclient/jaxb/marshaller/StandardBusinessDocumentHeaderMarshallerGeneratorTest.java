@@ -5,7 +5,6 @@
  */
 package com.modus.edeliveryclient.jaxb.marshaller;
 
-import com.modus.edeliveryclient.jaxb.jaxbwrapper.StandardBusinessDocumentWrapper;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.BusinessScope;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.Scope;
@@ -137,10 +136,11 @@ public class StandardBusinessDocumentHeaderMarshallerGeneratorTest {
      * The file to be written
      */
 //    /Users/modussa/Desktop/Marshalling.txt
-    @Test
+    
     public void generateHeaderXml() {
-        File file = new File("/Users/modussa/Java/EDeliveryClient/src/test/resources/standardBusinessDocumentXMLtest.xsd");
-
+    	//C:\eclipseProj\edelivery\EDeliveryClient\src\test\resources\standardBusinessDocumentAllXMLtest.xsd
+        //File file = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
+    	File file = new File("C:\\eclipseProj\\edelivery\\EDeliveryClient\\src\\test\\resources\\standardBusinessDocumentAllXMLtest.xsd");
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();

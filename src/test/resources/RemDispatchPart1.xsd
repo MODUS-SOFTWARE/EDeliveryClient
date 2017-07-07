@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<StandardBusinessDocument xmlns="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:ns2="http://uri.etsi.org/02640/soapbinding/v1#" xmlns:ns3="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns4="http://uri.etsi.org/02640/v2#" xmlns:ns5="http://uri.etsi.org/02231/v2#" xmlns:ns6="http://www.w3.org/2000/09/xmldsig#" xmlns:ns7="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns8="http://www.w3.org/2001/04/xmlenc#" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+    <StandardBusinessDocumentHeader>
+        <HeaderVersion>1.0</HeaderVersion>
+        <Sender>
+            <Identifier Authority="iso6523-actorid-upis">9933:test1</Identifier>
+        </Sender>
+        <Receiver>
+            <Identifier Authority="iso6523-actorid-upis">9933:test1</Identifier>
+        </Receiver>
+        <DocumentIdentification>
+            <Standard>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</Standard>
+            <TypeVersion>1</TypeVersion>
+            <InstanceIdentifier>627a2e9a-a146-461f-b62f-f22f5799fd55</InstanceIdentifier>
+            <Type>Invoice</Type>
+            <CreationDateAndTime>2017-06-21T00:00:00.000+03:00</CreationDateAndTime>
+        </DocumentIdentification>
+        <Manifest>
+            <NumberOfItems>1</NumberOfItems>
+            <ManifestItem>
+                <MimeTypeQualifierCode>maniTypeQualCode</MimeTypeQualifierCode>
+                <UniformResourceIdentifier>uniformResourceIdentifier</UniformResourceIdentifier>
+                <Description>manifestDescr</Description>
+                <LanguageCode> manifestLanguage</LanguageCode>
+            </ManifestItem>
+        </Manifest>
+        <BusinessScope>
+            <Scope>
+                <Type>PROCESSID</Type>
+                <InstanceIdentifier>Instance</InstanceIdentifier>
+                <Identifier>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2:: Invoice##urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn: www.peppol.eu:bis:peppol4a:ver2.0::2.1</Identifier>
+            </Scope>
+            <Scope>
+                <Type>DOCUMENTID</Type>
+                <InstanceIdentifier>Instance</InstanceIdentifier>
+                <Identifier>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2:: Invoice##urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn: www.peppol.eu:bis:peppol4a:ver2.0::2.1</Identifier>
+            </Scope>
+        </BusinessScope>
+    </StandardBusinessDocumentHeader>
+    <ns2:REMDispatch Id="String id">
+        <ns2:MsgMetaData>
+            <ns2:DeliveryConstraints>
+                <ns2:Origin>2017-06-21T15:21:33.608+03:00</ns2:Origin>
+                <ns2:InitialSend>2017-06-21T15:21:33.608+03:00</ns2:InitialSend>
+                <ns2:ObsoleteAfter>2017-06-21+03:00</ns2:ObsoleteAfter>
+            </ns2:DeliveryConstraints>
+            <ns2:Destinations>
+                <ns2:Recipient>
+                    <ns4:NamesPostalAddresses>
+                        <ns4:NamePostalAddress>
+                            <ns4:PostalAddress xml:lang="Greek">
+<ns4:Locality>gr</ns4:Locality>
+<ns4:StateOrProvince>stateOrProvince</ns4:StateOrProvince>
+<ns4:PostalCode>postalCode</ns4:PostalCode>
+<ns4:CountryName>Greece</ns4:CountryName>
+                            </ns4:PostalAddress>
+                        </ns4:NamePostalAddress>
+                    </ns4:NamesPostalAddresses>
+                </ns2:Recipient>
+            </ns2:Destinations>
+            <ns2:MsgIdentification>
+                <ns2:Message-ID>as-12-cdv-qw-2</ns2:Message-ID>
+            </ns2:MsgIdentification>
+        </ns2:MsgMetaData>
+        <ns2:OriginalMsg ContentType="txt" Size="10">QSB0ZXN0IGRvY3VtZW50IHRvIGJlIHNlbmQgYW5kIHJlY2VpdmVkIGZyb20gYW4KIFNCQiAtIENJUEEgQmFja2VuZCBDb25uZWN0b3Igd2l0aCBBUCBhbmQgU01QCg==</ns2:OriginalMsg>
+        <ns2:NormalizedMsg>
+            <ns2:Informational>
+                <ns2:Subject>Subject to be seen for test</ns2:Subject>
+                <ns2:Comments>Comments to be seen for test</ns2:Comments>
+            </ns2:Informational>
+        </ns2:NormalizedMsg>
+        <ns6:Signature>
+            <ns6:SignedInfo>
+                <ns6:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+                <ns6:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+                <ns6:Reference URI="">
+                    <ns6:Transforms>
+                        <ns6:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                    </ns6:Transforms>
+                    <ns6:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+                    <ns6:DigestValue>u+MMe7Yr49Kunyzj0E0TQMBxyHE=</ns6:DigestValue>
+                </ns6:Reference>
+            </ns6:SignedInfo>
+            <ns6:SignatureValue>MvSLSq2CY8SCMy5dsq/vSViDXAwaUcKIxdk2X2jaxVUWhTBMAmaTLA==</ns6:SignatureValue>
+            <ns6:KeyInfo>
+                <ns6:X509Data>
+                    <ns6:X509SubjectName>CN=modus,OU=modus,O=modus,L=Athens,ST=Athens,C=gr</ns6:X509SubjectName>
+                    <ns6:X509Certificate>MIIDHDCCAtmgAwIBAgIEAv0rsTALBgcqhkjOOAQDBQAwXzELMAkGA1UEBhMCZ3IxDzANBgNVBAgTBkF0aGVuczEPMA0GA1UEBxMGQXRoZW5zMQ4wDAYDVQQKEwVtb2R1czEOMAwGA1UECxMFbW9kdXMxDjAMBgNVBAMTBW1vZHVzMB4XDTE3MDYwNzA5MzYzM1oXDTE3MDkwNTA5MzYzM1owXzELMAkGA1UEBhMCZ3IxDzANBgNVBAgTBkF0aGVuczEPMA0GA1UEBxMGQXRoZW5zMQ4wDAYDVQQKEwVtb2R1czEOMAwGA1UECxMFbW9kdXMxDjAMBgNVBAMTBW1vZHVzMIIBuDCCASwGByqGSM44BAEwggEfAoGBAP1/U4EddRIpUt9KnC7s5Of2EbdSPO9EAMMeP4C2USZpRV1AIlH7WT2NWPq/xfW6MPbLm1Vs14E7gB00b/JmYLdrmVClpJ+f6AR7ECLCT7up1/63xhv4O1fnxqimFQ8E+4P208UewwI1VBNaFpEy9nXzrith1yrv8iIDGZ3RSAHHAhUAl2BQjxUjC8yykrmCouuEC/BYHPUCgYEA9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoDgYUAAoGBAJzSV3JzuQ1HhWX0PiWt3/afXX+PiEQANDvjBHD1jIdlj/OMn+jxDAPRcH9FG2JlC7YqlcsxP0+id/mpYymEYtD0a473wELffu4t09z0iIZgpWcHnGwOa0zga+tk8WDqGDkwA1PTFn9A9yZRIP16HQ1mqeWNGKDY8PxLUhIRZilWoyEwHzAdBgNVHQ4EFgQUYpJ8mYG0BIhRZeRRce2PJ6AKvMEwCwYHKoZIzjgEAwUAAzAAMC0CFQCUXk5sJB/IzGeh9x4JUztTWNDHRgIUKrjt8Zwya4XOnYLpAUdBg7ZpW0g=</ns6:X509Certificate>
+                </ns6:X509Data>
+            </ns6:KeyInfo>
+        </ns6:Signature>
+    </ns2:REMDispatch>
+</StandardBusinessDocument>

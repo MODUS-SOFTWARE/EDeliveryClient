@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<REMDispatch xmlns="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:ns2="http://uri.etsi.org/02640/soapbinding/v1#" xmlns:ns3="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns4="http://uri.etsi.org/02640/v2#" xmlns:ns5="http://uri.etsi.org/02231/v2#" xmlns:ns6="http://www.w3.org/2000/09/xmldsig#" xmlns:ns7="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns8="http://www.w3.org/2001/04/xmlenc#" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+    <remType Id="String id">
+        <ns2:MsgMetaData>
+            <ns2:DeliveryConstraints>
+                <ns2:Origin>2017-06-19T13:40:43.827+03:00</ns2:Origin>
+                <ns2:InitialSend>2017-06-19T13:40:43.827+03:00</ns2:InitialSend>
+                <ns2:ObsoleteAfter>2017-06-19+03:00</ns2:ObsoleteAfter>
+            </ns2:DeliveryConstraints>
+            <ns2:Destinations>
+                <ns2:Recipient>
+                    <ns4:NamesPostalAddresses>
+                        <ns4:NamePostalAddress>
+                            <ns4:PostalAddress xml:lang="Greek">
+                                <ns4:Locality>gr</ns4:Locality>
+                                <ns4:StateOrProvince>stateOrProvince</ns4:StateOrProvince>
+                                <ns4:PostalCode>postalCode</ns4:

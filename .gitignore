@@ -4,3 +4,15 @@ nbproject/
 .project
 target/
 .classpath
+
+src/test/java/com/modus/edeliveryclient/SDBWrapperTest.java
+
+src/test/java/com/modus/edeliveryclient/jaxb/marshaller/DocumentTypeMarshallerTest.java
+
+src/test/java/com/modus/edeliveryclient/jaxb/marshaller/
+StandardBusinessDocumentHeaderMarshallerGeneratorTest.java
+
+
+C:/eclipseProj/edelivery/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd
+
+
