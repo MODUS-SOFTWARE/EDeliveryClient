@@ -57,7 +57,8 @@ public class RemEvidenceHelper {
         pat.setLocality(locality);
         pat.setPostalCode(postalCode);
         pat.setStateOrProvince(stateOrProvince);
-
+        
+        
         return pat;
 
     }
@@ -71,7 +72,7 @@ public class RemEvidenceHelper {
         aeat.setDisplayName(displayName);
         aeat.setScheme(scheme);
         aeat.setValue(value);
-
+        
         return aeat;
 
     }

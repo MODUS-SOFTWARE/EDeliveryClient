@@ -323,7 +323,7 @@ public class XmlDsig implements ISignatures{
         boolean coreValidity = signature.validate(valContext);
 
         // Check core validation status
-        if (coreValidity == false) {
+        if (coreValidity == false) {    
             System.err.println("Signature failed core validation");
             boolean sv = signature.getSignatureValue().validate(valContext);
             System.out.println("signature validation status: " + sv);

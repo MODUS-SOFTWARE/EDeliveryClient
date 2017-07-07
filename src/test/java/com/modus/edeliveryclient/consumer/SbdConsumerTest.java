@@ -21,6 +21,8 @@ import com.modus.edeliveryclient.models.ResponseMessage;
 import com.modus.edeliveryclient.serialize.Serializer;
 import com.modus.edeliveryclient.serializer.JacksonSerializer;
 import com.modus.edeliveryclient.signings.XmlDsig;
+import eu.noble.rem.jaxb.despatch.AttachmentType;
+import eu.noble.rem.jaxb.despatch.KeywordType;
 import eu.noble.rem.jaxb.despatch.MsgMetaData;
 import eu.noble.rem.jaxb.despatch.NormalizedMsg;
 import eu.noble.rem.jaxb.despatch.OriginalMsgType;
@@ -171,7 +173,37 @@ public class SbdConsumerTest {
         
         RemDispatchHelper remHelper = new RemDispatchHelper();
 
-        NormalizedMsg normMs = remHelper.createNormalizedMessage("Comments", "Subbject");
+        eu.noble.rem.jaxb.despatch.ObjectFactory of = new eu.noble.rem.jaxb.despatch.ObjectFactory();
+        
+        NormalizedMsg.Text text = of.createNormalizedMsgText();
+        
+        text.setFormat("Text format");
+        text.setValue("Text value");
+        
+        AttachmentType at = of.createAttachmentType();
+        at.setContentDescription("ContentDiscription");
+        at.setContentType("ContentType");
+        at.setFilename("filename");
+        at.setLang("Lang");
+        at.setSize(BigInteger.ONE);
+        at.setContentIDRef("ContentIdRef");
+        
+        
+        KeywordType kt = of.createKeywordType();
+        kt.setMeaning("KeyMeaning");
+        kt.setScheme("Key Scheme");
+        kt.setValue("Key Values");
+        KeywordType kt1 = of.createKeywordType();
+        kt1.setMeaning("KeyMeaning");
+        kt1.setScheme("Key Scheme");
+        kt1.setValue("Key Values");
+        
+        
+        List<KeywordType> keys = new ArrayList<>();
+        keys.add(kt);
+        keys.add(kt1);
+        
+        NormalizedMsg normMs = remHelper.createNormalizedMessage("Comments", "Subbject", at , text, keys);
 
         byte[] filetobit = Files.readAllBytes(new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/test.txt").toPath());
 

@@ -11,8 +11,11 @@ import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.signings.XmlDsig;
+import eu.noble.rem.jaxb.despatch.AttachmentType;
+import eu.noble.rem.jaxb.despatch.KeywordType;
 import eu.noble.rem.jaxb.despatch.MsgMetaData;
 import eu.noble.rem.jaxb.despatch.NormalizedMsg;
+import eu.noble.rem.jaxb.despatch.NormalizedMsg.Text;
 import eu.noble.rem.jaxb.despatch.OriginalMsgType;
 import eu.noble.rem.jaxb.despatch.REMDispatchType;
 import java.io.File;
@@ -24,7 +27,9 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableEntryException;
 import java.security.cert.CertificateException;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -87,7 +92,31 @@ public class REMDispatchMarshaller {
 
         RemDispatchHelper remHelper = new RemDispatchHelper();
 
-        NormalizedMsg normMs = remHelper.createNormalizedMessage("Comments", "Subbject");
+        eu.noble.rem.jaxb.despatch.ObjectFactory of = new eu.noble.rem.jaxb.despatch.ObjectFactory();
+        
+        AttachmentType at = of.createAttachmentType();
+        at.setContentDescription("ContentDiscription");
+        at.setContentType("ContentType");
+        at.setFilename("filename");
+        at.setLang("Lang");
+        at.setSize(BigInteger.ONE);
+        at.setContentIDRef("ContentIdRef");
+        
+        
+        Text text = of.createNormalizedMsgText();
+        
+        text.setFormat("Text format");
+        text.setValue("Text value");
+        
+        KeywordType kt = of.createKeywordType();
+        kt.setMeaning("KeyMeaning");
+        kt.setScheme("Key Scheme");
+        kt.setValue("Key Values");
+        
+        List<KeywordType> keys = new ArrayList<>();
+        keys.add(kt);
+        
+        NormalizedMsg normMs = remHelper.createNormalizedMessage("Comments", "Subbject", at, text, keys);
 
         byte[] filetobit = Files.readAllBytes(new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/test.txt").toPath());
 
@@ -132,7 +161,30 @@ public class REMDispatchMarshaller {
 
         RemDispatchHelper remHelper = new RemDispatchHelper();
 
-        NormalizedMsg normMs = remHelper.createNormalizedMessage("Comments", "Subbject");
+        eu.noble.rem.jaxb.despatch.ObjectFactory of = new eu.noble.rem.jaxb.despatch.ObjectFactory();
+        
+        AttachmentType at = of.createAttachmentType();
+        at.setContentDescription("ContentDiscription");
+        at.setContentType("ContentType");
+        at.setFilename("filename");
+        at.setLang("Lang");
+        at.setSize(BigInteger.ONE);
+        at.setContentIDRef("ContentIdRef");
+        
+        Text text = of.createNormalizedMsgText();
+        
+        text.setFormat("Text format");
+        text.setValue("Text value");
+        
+        KeywordType kt = of.createKeywordType();
+        kt.setMeaning("KeyMeaning");
+        kt.setScheme("Key Scheme");
+        kt.setValue("Key Values");
+        
+        List<KeywordType> keys = new ArrayList<>();
+        keys.add(kt);
+        
+        NormalizedMsg normMs = remHelper.createNormalizedMessage("Comments", "Subbject", at, text, keys);
 
         byte[] filetobit = Files.readAllBytes(new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/test.txt").toPath());
 

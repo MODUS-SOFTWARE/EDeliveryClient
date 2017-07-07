@@ -2,10 +2,11 @@
 <REMDispatch xmlns="http://uri.etsi.org/02640/soapbinding/v1#" xmlns:ns2="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns3="http://uri.etsi.org/02640/v2#" xmlns:ns4="http://uri.etsi.org/02231/v2#" xmlns:ns5="http://www.w3.org/2000/09/xmldsig#" xmlns:ns6="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns7="http://www.w3.org/2001/04/xmlenc#" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:ns9="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" Id="123-=123-123">
     <MsgMetaData>
         <DeliveryConstraints>
-            <Origin>2017-06-30T09:41:10.622+03:00</Origin>
-            <InitialSend>2017-06-30T09:41:10.622+03:00</InitialSend>
-            <ObsoleteAfter>2017-06-30+03:00</ObsoleteAfter>
+            <Origin>2017-07-07T15:37:46.642+03:00</Origin>
+            <InitialSend>2017-07-07T15:37:46.642+03:00</InitialSend>
+            <ObsoleteAfter>2017-07-07+03:00</ObsoleteAfter>
         </DeliveryConstraints>
+        <Originators/>
         <Destinations>
             <Recipient>
                 <ns3:NamesPostalAddresses>
@@ -29,6 +30,11 @@
         <Informational>
             <Subject>Subbject</Subject>
             <Comments>Comments</Comments>
+            <Keywords scheme="Key Scheme" meaning="KeyMeaning">Key Values</Keywords>
         </Informational>
+        <Text format="Text format">Text value</Text>
+        <Attachment Size="1" xmime:contentType="ContentType" Filename="filename" Content_Description="ContentDiscription" xml:lang="Lang">
+            <Content-ID-Ref>ContentIdRef</Content-ID-Ref>
+        </Attachment>
     </NormalizedMsg>
 </REMDispatch>

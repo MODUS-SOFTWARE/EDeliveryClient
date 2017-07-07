@@ -5,13 +5,16 @@
  */
 package com.modus.edeliveryclient.jaxb.remdispatchhelpers;
 
+import eu.noble.rem.jaxb.despatch.AttachmentType;
 import eu.noble.rem.jaxb.despatch.DeliveryConstraints;
 import eu.noble.rem.jaxb.despatch.Destinations;
 import eu.noble.rem.jaxb.despatch.Destinations.OtherRecipients;
 import eu.noble.rem.jaxb.despatch.Informational;
+import eu.noble.rem.jaxb.despatch.KeywordType;
 import eu.noble.rem.jaxb.despatch.MsgIdentification;
 import eu.noble.rem.jaxb.despatch.MsgMetaData;
 import eu.noble.rem.jaxb.despatch.NormalizedMsg;
+import eu.noble.rem.jaxb.despatch.NormalizedMsg.Text;
 import eu.noble.rem.jaxb.despatch.OriginalMsgType;
 import eu.noble.rem.jaxb.despatch.Originators;
 import eu.noble.rem.jaxb.despatch.REMDispatchType;
@@ -25,6 +28,7 @@ import eu.noble.rem.jaxb.evidence.NamesPostalAddressListType;
 import eu.noble.rem.jaxb.evidence.PostalAddressType;
 import eu.noble.rem.jaxb.saml.AssertionType;
 import java.math.BigInteger;
+import java.util.List;
 import javax.xml.bind.JAXBElement;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -88,16 +92,19 @@ public class RemDispatchHelper {
 
         CertIDAndSignatureType cst = of1.createCertIDAndSignatureType();
 
-//        cdt.setCertID(value);
         sender.setNamesPostalAddresses(lt);
 
-//        originator.setSender(entDet);
-//        metaData.setOriginators(value);
+        metaData.setOriginators(originator);
+
+        
+        
         return metaData;
 
     }
 
-    public NormalizedMsg createNormalizedMessage(String comments, String subject) {
+    public NormalizedMsg createNormalizedMessage(String comments, String subject,
+            AttachmentType attachmentType, Text text,
+            List<KeywordType> keys) {
 
         eu.noble.rem.jaxb.despatch.ObjectFactory of = new eu.noble.rem.jaxb.despatch.ObjectFactory();
 
@@ -110,6 +117,12 @@ public class RemDispatchHelper {
         info.setSubject(subject);
 
         nms.setInformational(info);
+
+        nms.getAttachment().add(attachmentType);
+        
+        nms.getInformational().getKeywords().addAll(keys);
+        
+        nms.getText().add(text);
 
         return nms;
 
@@ -130,37 +143,33 @@ public class RemDispatchHelper {
         return omt;
 
     }
-    
-    public REMDispatchType createRemDispatch(String id,MsgMetaData msmeta, NormalizedMsg normMsg
-            , OriginalMsgType orMessag, AssertionType assertion, REMMDEvidenceListType evidList){
-        
+
+    public REMDispatchType createRemDispatch(String id, MsgMetaData msmeta, NormalizedMsg normMsg,
+            OriginalMsgType orMessag, AssertionType assertion, REMMDEvidenceListType evidList) {
+
         eu.noble.rem.jaxb.despatch.ObjectFactory of = new eu.noble.rem.jaxb.despatch.ObjectFactory();
-    
+
         REMDispatchType rem = of.createREMDispatchType();
-        
-        
+
         rem.setId(id);
         rem.setMsgMetaData(msmeta);
         rem.setNormalizedMsg(normMsg);
         rem.setOriginalMsg(orMessag);
         rem.setAssertion(assertion);
         rem.setREMMDEvidenceList(evidList);
-        
-        
-        return rem;
-        
-    }
-    
 
-    public JAXBElement<REMDispatchType> generateRexmXml(REMDispatchType remDispatch){
-        
-        eu.noble.rem.jaxb.despatch.ObjectFactory of = new eu.noble.rem.jaxb.despatch.ObjectFactory();
-        
-        JAXBElement<REMDispatchType> remDisp = of.createREMDispatch(remDispatch);
-        
-        return remDisp;
-    
+        return rem;
+
     }
-    
-    
+
+    public JAXBElement<REMDispatchType> generateRexmXml(REMDispatchType remDispatch) {
+
+        eu.noble.rem.jaxb.despatch.ObjectFactory of = new eu.noble.rem.jaxb.despatch.ObjectFactory();
+
+        JAXBElement<REMDispatchType> remDisp = of.createREMDispatch(remDispatch);
+
+        return remDisp;
+
+    }
+
 }

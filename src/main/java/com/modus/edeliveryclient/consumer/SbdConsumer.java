@@ -6,6 +6,7 @@
 package com.modus.edeliveryclient.consumer;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import com.modus.edelivery.utils.SBDMessageWrapper;
 
@@ -68,7 +69,6 @@ public class SbdConsumer extends BaseConsumer {
 
     private StandardBusinessDocument sbd;
 
-    
     private String basePath;
     private final String sendEndpoind;
     private final String messagesEndpoint;
@@ -107,7 +107,8 @@ public class SbdConsumer extends BaseConsumer {
                     switch (status) {
                         case 200: {
                             try {
-                                new TypeReference<ResponseModel<StandardBusinessDocument>>(){};
+                                new TypeReference<ResponseModel<StandardBusinessDocument>>() {
+                                };
                                 JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class,
                                         eu.noble.rem.jaxb.evidence.ObjectFactory.class, eu.noble.rem.jaxb.despatch.ObjectFactory.class,
                                         com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory.class);
@@ -118,7 +119,7 @@ public class SbdConsumer extends BaseConsumer {
                                 sbds.add(sbd);
                                 respModel.setData(sbds);
                                 File temp = File.createTempFile("xmlFile", ".tmp");
-                                
+
                                 FileWriter fw = new FileWriter(temp.getPath());
                                 BufferedWriter bw = new BufferedWriter(fw);
                                 bw.write(resp.getResponseBody());
@@ -316,7 +317,7 @@ public class SbdConsumer extends BaseConsumer {
         Object obj = new Object();
 
         try {
-            String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
+            String authHeader = auth.getUsername() + ":" + auth.getPassword();
             String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));
             authorizationHeader = "Basic " + authHeaderEncoded;
         } catch (UnsupportedEncodingException e) {
@@ -338,8 +339,8 @@ public class SbdConsumer extends BaseConsumer {
 
                             Messages msgs = new Gson().fromJson(resp.getResponseBody(), Messages.class);
                             return msgs;
-                        } catch (Exception e) {
-                            throw new EDeliveryException(resp.getResponseBody());
+                        } catch (JsonSyntaxException e) {
+                            throw new EDeliveryException(resp.getResponseBody() , e);
                         }
                     } else {
                         throw new EDeliveryException(resp.getResponseBody());
@@ -347,14 +348,13 @@ public class SbdConsumer extends BaseConsumer {
                 });
 
     }
-    
-    public CompletableFuture<ResponseMessage> deleteMessage(String messageId, Authorization auth){
-        
+
+    public CompletableFuture<ResponseMessage> deleteMessage(String messageId, Authorization auth) {
+
         String authorizationHeader;
         String message = messagesEndpoint;
         String deleteMessage = message + "/" + messageId;
-        
-        
+
         try {
             String authHeader = auth.getUsername().toString() + ":" + auth.getPassword().toString();
             String authHeaderEncoded = Base64.getEncoder().encodeToString(authHeader.getBytes("utf-8"));
@@ -362,8 +362,7 @@ public class SbdConsumer extends BaseConsumer {
         } catch (UnsupportedEncodingException e) {
             throw new EDeliveryException(e);
         }
-        
-        
+
         ResponseMessage rm = new ResponseMessage();
         return httpClient.prepareDelete(deleteMessage)
                 .addHeader(message, message)
@@ -371,23 +370,21 @@ public class SbdConsumer extends BaseConsumer {
                 .execute().toCompletableFuture().exceptionally(t -> {
                     throw new EDeliveryException(t);
                 }).thenApply(resp -> {
-                    int status = resp.getStatusCode();
-                    if (status == 200) {
-                        try {
-                            rm.setStatus(status);
-                            rm.setMessage("Message Delleted");
-                            return rm;
-                        } catch (Exception e) {
-                            throw new EDeliveryException(resp.getResponseBody());
-                        }
-                    } else {
-                        throw new EDeliveryException(resp.getResponseBody());
-                    }
-                    
-                    
-                });
-                
-            
+            int status = resp.getStatusCode();
+            if (status == 200) {
+                try {
+                    rm.setStatus(status);
+                    rm.setMessage("Message Delleted");
+                    return rm;
+                } catch (Exception e) {
+                    throw new EDeliveryException(resp.getResponseBody());
+                }
+            } else {
+                throw new EDeliveryException(resp.getResponseBody());
+            }
+
+        });
+
     }
 
 }

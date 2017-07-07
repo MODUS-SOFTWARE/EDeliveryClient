@@ -13,8 +13,11 @@ import com.modus.edeliveryclient.jaxb.standardbusinessdocument.Scope;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.signings.XmlDsig;
+import eu.noble.rem.jaxb.despatch.AttachmentType;
+import eu.noble.rem.jaxb.despatch.KeywordType;
 import eu.noble.rem.jaxb.despatch.MsgMetaData;
 import eu.noble.rem.jaxb.despatch.NormalizedMsg;
+import eu.noble.rem.jaxb.despatch.NormalizedMsg.Text;
 import eu.noble.rem.jaxb.despatch.OriginalMsgType;
 import eu.noble.rem.jaxb.despatch.REMDispatchType;
 import java.io.File;
@@ -70,6 +73,8 @@ public class RequestBodyGeneratorTest {
 
         StandardBusinessDocumentHeaderGenerator sbdhg = new StandardBusinessDocumentHeaderGenerator();
 
+        eu.noble.rem.jaxb.despatch.ObjectFactory of = new eu.noble.rem.jaxb.despatch.ObjectFactory();
+        
         List<Scope> scopes = new ArrayList<>();
         Scope scope1 = new Scope();
         scope1.setInstanceIdentifier(" http://uri.etsi.org/02640/soapbinding/v2#::REMDispatch:2");
@@ -88,7 +93,34 @@ public class RequestBodyGeneratorTest {
 
         RemDispatchHelper remHelper = new RemDispatchHelper();
 
-        NormalizedMsg normMs = remHelper.createNormalizedMessage("Comments", "Subbject");
+        AttachmentType at = of.createAttachmentType();
+        at.setContentDescription("ContentDiscription");
+        at.setContentType("ContentType");
+        at.setFilename("filename");
+        at.setLang("Lang");
+        at.setSize(BigInteger.ONE);
+        at.setContentIDRef("ContentIdRef");
+        
+        Text text = of.createNormalizedMsgText();
+        
+        text.setFormat("Text format");
+        text.setValue("Text value");
+        
+        KeywordType kt = of.createKeywordType();
+        kt.setMeaning("KeyMeaning");
+        kt.setScheme("Key Scheme");
+        kt.setValue("Key Values");
+        KeywordType kt1 = of.createKeywordType();
+        kt1.setMeaning("KeyMeaning");
+        kt1.setScheme("Key Scheme");
+        kt1.setValue("Key Values");
+        
+        
+        List<KeywordType> keys = new ArrayList<>();
+        keys.add(kt);
+        keys.add(kt1);
+        
+        NormalizedMsg normMs = remHelper.createNormalizedMessage("Comments", "Subbject", at, text, keys);
 
         byte[] filetobit = Files.readAllBytes(new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/test.txt").toPath());
 
