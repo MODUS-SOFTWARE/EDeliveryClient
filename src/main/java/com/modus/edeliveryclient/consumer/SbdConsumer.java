@@ -271,7 +271,7 @@ public class SbdConsumer extends BaseConsumer {
         requestBody = rbg.generateRemMessageBody(sbdh, remType, signatures);
 
         return httpClient.preparePost(sendEndpoind).addHeader("Content-Type", "application/xml")
-                .addHeader("Authorization", authorizationHeader).execute().toCompletableFuture()
+                .addHeader("Authorization", authorizationHeader).setBody(requestBody).execute().toCompletableFuture()
                 .exceptionally(t -> {
                     throw new EDeliveryException(t);
                 })

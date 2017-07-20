@@ -120,7 +120,7 @@ public class EDeliverySBDTestImpl {
     @Test
     public void shouldGetMessage() throws InterruptedException, ExecutionException, JAXBException {
         System.out.println("Trying to get message");
-        CompletableFuture<Object> result = deliveryClient.getMessageDefault(messageId2, auth);
+        CompletableFuture<Object> result = deliveryClient.getMessageDefault("9933_test1-20170707131832506@local_delivery", auth);
 
         StandardBusinessDocument sbd = new StandardBusinessDocument();
         ResponseModel rm = new ResponseModel();
@@ -144,7 +144,7 @@ public class EDeliverySBDTestImpl {
         msg = (Messages) result.get();
     }
 
-    @Test
+//    @Test
     public void shoudPostREMMDMessage() {
 
         RemMessageHelper remMesHelper = new RemMessageHelper();
