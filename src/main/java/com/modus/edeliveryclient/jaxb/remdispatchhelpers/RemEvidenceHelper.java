@@ -58,7 +58,6 @@ public class RemEvidenceHelper {
         pat.setPostalCode(postalCode);
         pat.setStateOrProvince(stateOrProvince);
         
-        
         return pat;
 
     }
