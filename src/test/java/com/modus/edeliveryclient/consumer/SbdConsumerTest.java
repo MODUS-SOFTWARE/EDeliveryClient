@@ -131,7 +131,7 @@ public class SbdConsumerTest {
     public void tearDown() {
     }
 
-    @Test
+//    @Test
     public void sendSBD() throws JAXBException, UnsupportedEncodingException, IOException, InterruptedException, ExecutionException, DatatypeConfigurationException {
 
         File f = new File("/Users/modussa/NetBeansProjects/EDeliveryClient/src/test/resources/remDispatchSigned.xml");
@@ -230,7 +230,15 @@ public class SbdConsumerTest {
     }
 
     
-    @Test
+//    @Test
+    public void shouldRemoveMessage(){
+        
+        CompletableFuture<ResponseMessage> mes = delClient.deleteMessage("9933_test1-20170720131629736@local_delivery", auth);
+        System.out.println(mes);
+    }
+    
+    
+//    @Test
     public void testRemMessage(){
     
         

@@ -365,7 +365,6 @@ public class SbdConsumer extends BaseConsumer {
 
         ResponseMessage rm = new ResponseMessage();
         return httpClient.prepareDelete(deleteMessage)
-                .addHeader(message, message)
                 .addHeader("Authorization", authorizationHeader)
                 .execute().toCompletableFuture().exceptionally(t -> {
                     throw new EDeliveryException(t);
