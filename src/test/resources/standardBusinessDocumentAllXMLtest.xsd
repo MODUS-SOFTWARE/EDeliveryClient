@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<StandardBusinessDocument xmlns="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:ns2="http://uri.etsi.org/02640/soapbinding/v1#" xmlns:ns3="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns4="http://uri.etsi.org/02640/v2#" xmlns:ns5="http://uri.etsi.org/02231/v2#" xmlns:ns6="http://www.w3.org/2000/09/xmldsig#" xmlns:ns7="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns8="http://www.w3.org/2001/04/xmlenc#" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+<StandardBusinessDocument xmlns="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:ns2="http://uri.etsi.org/02640/v2#" xmlns:ns3="http://uri.etsi.org/02231/v2#" xmlns:ns4="http://www.w3.org/2000/09/xmldsig#" xmlns:ns5="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns6="http://uri.etsi.org/02640/soapbinding/v1#" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:ns8="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns9="http://www.w3.org/2001/04/xmlenc#">
     <StandardBusinessDocumentHeader>
         <HeaderVersion>1.0</HeaderVersion>
         <Sender>
@@ -13,7 +13,7 @@
             <TypeVersion>1</TypeVersion>
             <InstanceIdentifier>627a2e9a-a146-461f-b62f-f22f5799fd55</InstanceIdentifier>
             <Type>Invoice</Type>
-            <CreationDateAndTime>2017-07-20T00:00:00.000+03:00</CreationDateAndTime>
+            <CreationDateAndTime>2017-07-21T00:00:00.000+03:00</CreationDateAndTime>
         </DocumentIdentification>
         <Manifest>
             <NumberOfItems>1</NumberOfItems>
@@ -47,7 +47,7 @@
             </Scope>
         </BusinessScope>
     </StandardBusinessDocumentHeader>
-    <ns2:REMDispatch Id="11111">
-        <ns2:OriginalMsg ContentType="sadcf" Size="1"/>
-    </ns2:REMDispatch>
+    <ns6:REMDispatch Id="11111">
+        <ns6:OriginalMsg ContentType="sadcf" Size="1"/>
+    </ns6:REMDispatch>
 </StandardBusinessDocument>
